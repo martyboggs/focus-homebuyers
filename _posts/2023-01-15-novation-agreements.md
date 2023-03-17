@@ -1,3 +1,7 @@
+---
+layout: post
+title: Novation Agreements
+---
 <p>A novation agreement is a type of contract that replaces one party to a contract with a new party, effectively transferring the rights and obligations of the original party to the new party. Novation agreements are commonly used in business transactions, particularly when one party wants to transfer their contractual obligations to a new party, while releasing themselves from any further liability.</p>
 
 <p>Novation agreements can be useful in a variety of situations, such as when a business is sold and the new owner wants to assume the existing contracts, or when a contractor wants to subcontract some of the work to another party. By using a novation agreement, the original party is released from their obligations under the contract, while the new party assumes all rights and obligations going forward.</p>

@@ -1,3 +1,7 @@
+---
+layout: post
+title: Housing Counselors
+---
 Housing counselors are professionals who provide guidance and assistance to individuals and families who are seeking to buy a home, facing foreclosure, or struggling to pay their mortgage. They are trained and certified by the U.S. Department of Housing and Urban Development (HUD), and can provide a wide range of services to help people navigate the complex world of homeownership.
 
 If you are considering buying a home, facing foreclosure, or struggling to make your mortgage payments, working with a housing counselor can be a smart move. Here are some reasons why:
