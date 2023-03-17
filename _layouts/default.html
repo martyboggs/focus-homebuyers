@@ -8,6 +8,8 @@
 	<style>
 	body {
 		margin: 0;
+	}
+	.main {
 		display: flex;
 	}
 	.sidebar {
@@ -19,7 +21,16 @@
 	</style>
 </head>
 <body>
+<div class="main">
 <div class="sidebar">
+	<ul>
+		{% for post in site.posts %}
+		<li>
+			<a href="{{ post.url }}">{{ post.title }}</a>
+		</li>
+		{% endfor %}
+	</ul>
+
 	<a href="creative-finance.html">Creative Finance</a>
 	<a href="creative-finance1.html">Creative Finance</a>
 	<a href="novation-agreements.html">Novation Agreements</a>
@@ -37,6 +48,7 @@
 </div>
 <div class="content">
 {{content}}
+</div>
 </div>
 </body>
 </html>
