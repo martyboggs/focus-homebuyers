@@ -1,3 +1,7 @@
+---
+layout: post
+title: The Foreclosure Process
+---
 <p>Foreclosure is a legal process that allows a lender to sell or take possession of a property when the borrower defaults on their mortgage payments. If you're a homeowner who is struggling to keep up with your mortgage payments or a real estate investor looking to understand the foreclosure process, this article will provide a detailed overview of the foreclosure process.</p>
 
 <ol>
