@@ -6,14 +6,20 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>financing on smack</title>
 	<style>
-	div a {
-		display: block;
+	body {
+		margin: 0;
+		display: flex;
+	}
+	.sidebar {
+		width: 25%;
+	}
+	.content {
+		width: 75%;
 	}
 	</style>
 </head>
 <body>
-{{content}}
-<div>
+<div class="sidebar">
 	<a href="creative-finance.html">Creative Finance</a>
 	<a href="creative-finance1.html">Creative Finance</a>
 	<a href="novation-agreements.html">Novation Agreements</a>
@@ -28,6 +34,9 @@
 	<a href="cant-make-payments.html">What if I can't make payments?</a>
 	<a href="housing-counselors.html">Housing Counselors</a>
 	<a href="reverse-mortgages.html">Reverse Mortgages</a>
+</div>
+<div class="content">
+{{content}}
 </div>
 </body>
 </html>
