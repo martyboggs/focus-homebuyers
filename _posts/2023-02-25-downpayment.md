@@ -1,3 +1,7 @@
+---
+layout: post
+title: Downpayments
+---
 <h1>Down Payments: A Guide for Homebuyers</h1>
 
 <p>For most people, buying a home is the largest purchase they will ever make. And for many homebuyers, the biggest obstacle to homeownership is saving enough money for a down payment. In this article, we'll take a closer look at down payments and provide tips for homebuyers on how to save for and pay their down payments.</p>

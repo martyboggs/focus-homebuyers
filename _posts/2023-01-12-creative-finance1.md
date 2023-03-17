@@ -1,3 +1,7 @@
+---
+layout: post
+title: Creative Finance
+---
 Creative financing refers to the use of non-traditional or unconventional methods to secure funding for a project or business. It can be a valuable tool for entrepreneurs and businesses looking to obtain capital in a challenging financial landscape, where traditional financing options may not be readily available. In this article, we will explore what creative financing is, its benefits and drawbacks, and some common examples of creative financing.
 
 What is Creative Financing?
