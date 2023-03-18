@@ -1,3 +1,7 @@
+---
+layout: post
+title: Real Estate Investing Rules
+---
 <p>Real estate investing can be a lucrative venture if you have the right knowledge and strategy. One crucial aspect of real estate investing is understanding the different rules that guide the industry. In this article, we'll discuss the different real estate investing rules that you should be familiar with as a real estate investor.</p>
 
 <ol>

@@ -1,3 +1,7 @@
+---
+layout: post
+title: Seller Financing
+---
 <p>Seller financing is a type of real estate transaction where the seller acts as the lender and provides financing to the buyer instead of relying on a traditional mortgage lender. In other words, the seller allows the buyer to make payments on the property over time, instead of requiring the buyer to pay for the entire property upfront.</p>
 
 <p>Seller financing can be an attractive option for both buyers and sellers, especially in situations where the buyer is unable to obtain financing from a traditional lender. For buyers, seller financing can be a way to purchase a property without having to qualify for a mortgage or put down a large down payment. For sellers, seller financing can be a way to sell a property quickly, especially in a slow market where traditional buyers are scarce.</p>

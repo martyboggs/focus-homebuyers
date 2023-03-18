@@ -1,3 +1,7 @@
+---
+layout: post
+title: Reverse Mortgages
+---
 Reverse mortgages are a type of loan that allows homeowners who are 62 years or older to convert a portion of their home equity into cash. While reverse mortgages can provide financial relief for seniors who are struggling to make ends meet, there are some significant risks associated with these loans. In this article, we'll explore some of the dangers of reverse mortgages.
 
 High Fees and Costs

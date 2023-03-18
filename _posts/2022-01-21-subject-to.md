@@ -1,3 +1,7 @@
+---
+layout: post
+title: Subject To
+---
 <h2>Introduction</h2>
 <p>A "subject to" mortgage is a type of real estate transaction in which a buyer takes over the existing mortgage on a property rather than obtaining a new mortgage. The buyer assumes responsibility for making payments on the existing mortgage, but the original borrower remains liable for the debt.</p>
 <h2>How "Subject To" Mortgages Work</h2>
