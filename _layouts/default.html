@@ -14,6 +14,10 @@ body {
 p {
 	margin-top: 0;
 }
+h1, h2, h3 {
+	margin-top: 0;
+	line-height: 1.2;
+}
 .main {
 	display: flex;
 	max-width: 1200px;
@@ -37,15 +41,15 @@ p {
 <body>
 <h1 style="text-align: center;">Creative Financing</h1>
 <div class="main">
+<div class="content">
+	{{ content }}
+</div>
 <div class="sidebar">
 	{% for post in site.posts %}
 		<div>
 			<a href="/creative-finance/{{ post.url }}">{{ post.title }}</a>
 		</div>
 	{% endfor %}
-</div>
-<div class="content">
-	{{ content }}
 </div>
 </div>
 </body>
