@@ -21,7 +21,7 @@ document.querySelectorAll('button').forEach(function (button) {
 		var pmt = document.querySelector('[name="payment"]');
 		var fv = document.querySelector('[name="future-value"]');
 		var monthRate = int.value / 100 / 12;
-		console.log(fa, int, term, pmt, fv);
+		console.log(fa.value, int.value, term.value, pmt.value, fv.value);
 		switch (button.className) {
 			case 'finance-amount':
 				// if (int && term && pmt && fv)
