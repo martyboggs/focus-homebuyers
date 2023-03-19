@@ -10,7 +10,8 @@
 	box-sizing: border-box;
 }
 :root {
-	--spacing: 30px
+	--spacing: 30px;
+	--primary: #0000af;
 }
 body {
 	margin: 0;
@@ -26,7 +27,7 @@ h1:first-child, h2:first-child, h3:first-child {
 h1, h2, h3 {
 	line-height: 1.2;
 	font-family: sans-serif;
-	color: #0000af;
+	color: var(--primary);
 }
 li {
 	margin-bottom: 1em;
@@ -72,7 +73,7 @@ section {
 }
 .footer {
 	min-height: 100px;
-	background: gray;
+	background: var(--primary);
 }
 @media (max-width: 767px) {
 	.content {

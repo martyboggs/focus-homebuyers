@@ -1,6 +1,6 @@
 ---
-title: Why You Should Sell Your House to an Investor
 layout: post
+title: Why You Should Sell Your House to an Investor
 ---
 Selling a house can be a daunting task, especially if you need to do it quickly or are facing financial difficulties. In these situations, selling your house to an investor can be a great option. Here are some reasons why:
 
