@@ -25,14 +25,15 @@ document.querySelectorAll('[name="purchase-price"], [name="down-payment"], [name
 		var ppVal = Number(pp.value);
 		var dpVal = Number(dp.value);
 		var faVal = Number(fa.value);
-console.log(ppVal, dpVal, faVal);
 		switch (field.name) {
 			case 'purchase-price':
-				
+				fa.value = ppVal - dpVal;
 			break;
 			case 'down-payment':
+				fa.value = ppVal - dpVal;
 			break;
 			case 'finance-amount':
+				pp.value = faVal + dpVal;
 			break;
 		}
 	});
