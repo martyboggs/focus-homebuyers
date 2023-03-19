@@ -2,8 +2,6 @@
 layout: post
 title: Exit Strategies
 ---
-<h2>Real Estate Investor Exit Strategies: A Comprehensive Guide</h2>
-
 <p>Real estate investing can be a lucrative venture, but it's important to have a plan in place for when it's time to sell. This is where exit strategies come into play. Exit strategies are plans that real estate investors use to sell their properties and realize a profit. In this article, we'll take a closer look at the various exit strategies that real estate investors use.</p>
 
 <ol>

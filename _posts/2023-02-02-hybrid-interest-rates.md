@@ -2,8 +2,6 @@
 layout: post
 title: Hybrid Interest Rates
 ---
-<h2>Hybrid Interest Rates: Understanding the Pros and Cons</h2>
-
 <p>When it comes to borrowing money, interest rates play a critical role in determining the overall cost of the loan. There are various types of interest rates, such as fixed and variable rates, that borrowers can choose from depending on their financial situation and preference. However, another type of interest rate that has gained popularity in recent years is the hybrid interest rate. In this article, we'll delve into what hybrid interest rates are and examine their advantages and disadvantages.</p>
 
 <h2>What is a hybrid interest rate?</h2>
