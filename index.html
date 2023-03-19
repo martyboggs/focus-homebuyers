@@ -1,0 +1,26 @@
+---
+title: Creative Financing
+layout: default
+---
+Finance Amount<input type="number" name="finance-amount">
+<button class="finance-amount">calculate</button>
+Interest Rate<input type="number" name="interest-rate">
+<button class="interest-rate">calculate</button>
+Term Length<input type="number" name="term-length">
+<button class="term-length">calculate</button>
+Payment<input type="number" name="payment">
+<button class="payment">calculate</button>
+Future Value<input type="number" name="future-value">
+<button class="future-value">calculate</button>
+<script>
+document.querySelectorAll('button').forEach(function (button) {
+	button.addEventListener('click', function (e) {
+		var fa = document.querySelector('[name="finance-amount"]').value;
+		var int = document.querySelector('[name="interest-rate"]').value;
+		var term = document.querySelector('[name="term-length"]').value;
+		var pmt = document.querySelector('[name="payment"]').value;
+		var fv = document.querySelector('[name="future-value"]').value;
+		console.log(fa, int, term, pmt, fv);
+	});
+});
+</script>
