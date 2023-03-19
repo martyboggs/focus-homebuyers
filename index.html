@@ -31,7 +31,7 @@ document.querySelectorAll('button').forEach(function (button) {
 			case 'term-length':
 			break;
 			case 'payment':
-				pmt.value = fa.value * monthRate * Math.POW(1 + monthRate, term) / (Math.POW(1 + monthRate, term) - 1);
+				pmt.value = fa.value * monthRate * Math.pow(1 + monthRate, term) / (Math.pow(1 + monthRate, term) - 1);
 			break;
 			case 'future-value':
 			break;
