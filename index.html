@@ -22,8 +22,8 @@ label {
 <button class="term-months">calculate</button></div>
 <div><label>Payment</label><input type="number" name="payment">
 <button class="payment">calculate</button></div>
-<div><label>Future Value</label><input type="number" name="future-value">
-<button class="future-value">calculate</button></div>
+<div><label>Balloon</label><input type="number" name="balloon">
+<button class="balloon">calculate</button></div>
 <script>
 document.querySelectorAll('[name="purchase-price"], [name="down-payment"], [name="finance-amount"]').forEach(function (field) {
 	field.addEventListener('input', function (e) {
@@ -56,13 +56,13 @@ document.querySelectorAll('button').forEach(function (button) {
 		var term = document.querySelector('[name="term-months"]');
 		var amort = document.querySelector('[name="amortized-months"]');
 		var pmt = document.querySelector('[name="payment"]');
-		var fv = document.querySelector('[name="future-value"]');
+		var balloon = document.querySelector('[name="balloon"]');
 		var monthRate = Number(int.value) / 100 / 12;
 		var termMonths = Number(term.value);
 		var amortMonths = Number(amort.value);
 		switch (button.className) {
 			case 'finance-amount':
-				// if (int && term && pmt && fv)
+				// if (int && term && pmt && balloon)
 			break;
 			case 'interest-rate':
 			break;
@@ -75,8 +75,8 @@ document.querySelectorAll('button').forEach(function (button) {
 				// what if no term?
 				// what if no future?
 			break;
-			case 'future-value':
-				fv.value = (!monthRate ? Number(fa.value) * (amortMonths - termMonths) / amortMonths : Number(fa.value) * (Math.pow(1 + monthRate, amortMonths)-Math.pow(1 + monthRate, termMonths))/(Math.pow(1 + monthRate, amortMonths) - 1)).toFixed(2);
+			case 'balloon':
+				balloon.value = (!monthRate ? Number(fa.value) * (amortMonths - termMonths) / amortMonths : Number(fa.value) * (Math.pow(1 + monthRate, amortMonths)-Math.pow(1 + monthRate, termMonths))/(Math.pow(1 + monthRate, amortMonths) - 1)).toFixed(2);
 				// what if no fa?
 				// what if no amort?
 				// what if no term?
