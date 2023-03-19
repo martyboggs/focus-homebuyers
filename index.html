@@ -2,6 +2,8 @@
 title: Creative Financing
 layout: default
 ---
+<div>Purchase Price<input type="number" name="purchase-price"></div>
+<div>Down Payment<input type="number" name="down-payment"></div>
 <div>Finance Amount<input type="number" name="finance-amount">
 <button class="finance-amount">calculate</button></div>
 <div>Annual Interest Rate<input type="number" name="interest-rate">
@@ -13,8 +15,11 @@ layout: default
 <div>Future Value<input type="number" name="future-value">
 <button class="future-value">calculate</button></div>
 <script>
+console.log(document.querySelectorAll('[name="purchase-price"], [name="down-payment"], [name="finance-amount"]'));
 document.querySelectorAll('button').forEach(function (button) {
 	button.addEventListener('click', function (e) {
+		var pp = document.querySelector('[name="payment-purchase"]');
+		var dp = document.querySelector('[name="down-payment"]');
 		var fa = document.querySelector('[name="finance-amount"]');
 		var int = document.querySelector('[name="interest-rate"]');
 		var term = document.querySelector('[name="term-length"]');
@@ -33,6 +38,7 @@ document.querySelectorAll('button').forEach(function (button) {
 				pmt.value = Number(fa.value) * monthRate * Math.pow(1 + monthRate, Number(term.value)) / (Math.pow(1 + monthRate, Number(term.value)) - 1);
 			break;
 			case 'future-value':
+				fv.value = Number(fa.value) * (Math.pow(1 + monthRate, Number(term.value))-Math.pow(1 + monthRate, Number(term.value)))/(Math.pow(1 + monthRate, Number(term.value)) - 1);
 			break;
 		}
 	});
