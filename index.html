@@ -19,7 +19,7 @@ layout: default
 <script>
 document.querySelectorAll('[name="purchase-price"], [name="down-payment"], [name="finance-amount"]').forEach(function (field) {
 	field.addEventListener('input', function (e) {
-		var pp = document.querySelector('[name="payment-purchase"]');
+		var pp = document.querySelector('[name="purchase-price"]');
 		var dp = document.querySelector('[name="down-payment"]');
 		var fa = document.querySelector('[name="finance-amount"]');
 		var ppVal = Number(pp.value);
