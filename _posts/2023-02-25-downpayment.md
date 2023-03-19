@@ -23,15 +23,15 @@ title: Down Payments
 <p>Saving for a down payment can be challenging, but it's not impossible. Here are some tips to help you save for your down payment:</p>
 
 <ol>
-<li>Create a Budget: Create a budget to help you identify areas where you can cut back on expenses and save more money.</li>
+<li>Create a Budget:<br>Create a budget to help you identify areas where you can cut back on expenses and save more money.</li>
 
-<li>Set a Savings Goal: Set a savings goal for your down payment and create a timeline for reaching it. Be realistic and take into account your other financial obligations.</li>
+<li>Set a Savings Goal:<br>Set a savings goal for your down payment and create a timeline for reaching it. Be realistic and take into account your other financial obligations.</li>
 
-<li>Automate Savings: Set up automatic transfers from your checking account to a dedicated savings account each month.</li>
+<li>Automate Savings:<br>Set up automatic transfers from your checking account to a dedicated savings account each month.</li>
 
-<li>Look for Assistance Programs: There are several assistance programs available to help homebuyers with down payments, particularly for first-time homebuyers. Research programs that may be available to you.</li>
+<li>Look for Assistance Programs:<br>There are several assistance programs available to help homebuyers with down payments, particularly for first-time homebuyers. Research programs that may be available to you.</li>
 
-<li>Consider Alternative Sources of Income: Consider taking on a part-time job, selling unwanted items, or renting out a spare room to earn extra income.</li>
+<li>Consider Alternative Sources of Income:<br>Consider taking on a part-time job, selling unwanted items, or renting out a spare room to earn extra income.</li>
 </ol>
 
 <h2>Paying Your Down Payment</h2>
