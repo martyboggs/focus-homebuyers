@@ -9,6 +9,9 @@
 *, ::after, ::before {
 	box-sizing: border-box;
 }
+:root {
+	--spacing: 30px
+}
 body {
 	margin: 0;
 	font-size: 20px;
@@ -25,8 +28,8 @@ h1:first-child, h2:first-child, h3:first-child {
 	max-width: 1000px;
 	margin-left: auto;
 	margin-right: auto;
-	padding-left: 30px;
-	padding-right: 30px;
+	padding-left: var(--spacing);
+	padding-right: var(--spacing);
 }
 .row {
 	display: -webkit-box;
