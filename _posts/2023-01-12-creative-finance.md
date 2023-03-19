@@ -4,7 +4,7 @@ title: Creative Finance
 ---
 Creative financing refers to the use of non-traditional or unconventional methods to secure funding for a project or business. It can be a valuable tool for entrepreneurs and businesses looking to obtain capital in a challenging financial landscape, where traditional financing options may not be readily available. In this article, we will explore what creative financing is, its benefits and drawbacks, and some common examples of creative financing.
 
-What is Creative Financing?
+## What is Creative Financing?
 
 Creative financing is a broad term that encompasses a variety of alternative funding options beyond the conventional loans, credit lines, and investments. These methods may include:
 
@@ -20,7 +20,7 @@ Creative financing is a broad term that encompasses a variety of alternative fun
 <li>Leaseback: A leaseback is when a company sells an asset, such as property, to a third party and then leases it back from them. This provides immediate cash flow to the business, although the business loses ownership of the asset.</li>
 </ol>
 
-Benefits and Drawbacks of Creative Financing
+## Benefits and Drawbacks of Creative Financing
 
 Creative financing has several benefits that make it attractive to businesses and entrepreneurs, including:
 <ol>
@@ -41,7 +41,7 @@ However, creative financing also has some drawbacks to consider, including:
 <li>Complexity: Creative financing can be complex and time-consuming to set up and manage, requiring legal and financial expertise.</li>
 </ol>
 
-Examples of Creative Financing
+## Examples of Creative Financing
 
 Here are some examples of creative financing in action:
 
