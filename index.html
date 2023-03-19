@@ -4,7 +4,7 @@ layout: default
 ---
 Finance Amount<input type="number" name="finance-amount">
 <button class="finance-amount">calculate</button>
-Interest Rate<input type="number" name="interest-rate">
+Annual Interest Rate<input type="number" name="interest-rate">
 <button class="interest-rate">calculate</button>
 Term Length<input type="number" name="term-length">
 <button class="term-length">calculate</button>
@@ -15,12 +15,27 @@ Future Value<input type="number" name="future-value">
 <script>
 document.querySelectorAll('button').forEach(function (button) {
 	button.addEventListener('click', function (e) {
-		var fa = document.querySelector('[name="finance-amount"]').value;
-		var int = document.querySelector('[name="interest-rate"]').value;
-		var term = document.querySelector('[name="term-length"]').value;
-		var pmt = document.querySelector('[name="payment"]').value;
-		var fv = document.querySelector('[name="future-value"]').value;
+		var fa = document.querySelector('[name="finance-amount"]');
+		var int = document.querySelector('[name="interest-rate"]');
+		var term = document.querySelector('[name="term-length"]');
+		var pmt = document.querySelector('[name="payment"]');
+		var fv = document.querySelector('[name="future-value"]');
+		var monthRate = int.value / 100 / 12;
 		console.log(fa, int, term, pmt, fv);
+		switch (button.className) {
+			case 'finance-amount':
+				// if (int && term && pmt && fv)
+			break;
+			case 'interest-rate':
+			break;
+			case 'term-length':
+			break;
+			case 'payment':
+				pmt.value = fa.value * monthRate * Math.POW(1 + monthRate, term) / (Math.POW(1 + monthRate, term) - 1);
+			break;
+			case 'future-value':
+			break;
+		}
 	});
 });
 </script>
