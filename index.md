@@ -1,5 +1,5 @@
 ---
-title: financing on smack
+title: Creative Financing
 layout: default
 ---
 index
