@@ -1,16 +1,16 @@
 ---
-title: Creative Financing
 layout: default
+title: Creative Financing
 ---
 <div>Purchase Price<input type="number" name="purchase-price"></div>
 <div>Down Payment<input type="number" name="down-payment"></div>
 <div>Finance Amount<input type="number" name="finance-amount">
 <button class="finance-amount">calculate</button></div>
-<div>Annual Interest Rate<input type="number" name="interest-rate">
+<div>Annual Interest Rate<input type="number" name="interest-rate" value="0">
 <button class="interest-rate">calculate</button></div>
 <div>Amortized Months<input type="number" name="amortized-months" value="360">
 <button class="amortized-months">calculate</button></div>
-<div>Term Months<input type="number" name="term-months">
+<div>Term Months<input type="number" name="term-months" value="96">
 <button class="term-months">calculate</button></div>
 <div>Payment<input type="number" name="payment">
 <button class="payment">calculate</button></div>
@@ -61,10 +61,10 @@ document.querySelectorAll('button').forEach(function (button) {
 			case 'term-months':
 			break;
 			case 'payment':
-				pmt.value = Number(fa.value) * monthRate * Math.pow(1 + monthRate, amortMonths) / (Math.pow(1 + monthRate, amortMonths) - 1);
+				pmt.value = (Number(fa.value) * monthRate * Math.pow(1 + monthRate, amortMonths) / (Math.pow(1 + monthRate, amortMonths) - 1)).toFixed(2);
 			break;
 			case 'future-value':
-				fv.value = Number(fa.value) * (Math.pow(1 + monthRate, amortMonths)-Math.pow(1 + monthRate, termMonths))/(Math.pow(1 + monthRate, amortMonths) - 1);
+				fv.value = (Number(fa.value) * (Math.pow(1 + monthRate, amortMonths)-Math.pow(1 + monthRate, termMonths))/(Math.pow(1 + monthRate, amortMonths) - 1)).toFixed(2);
 			break;
 		}
 	});
