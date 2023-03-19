@@ -5,7 +5,7 @@ title: Real Estate Investing Rules
 <p>Real estate investing can be a lucrative venture if you have the right knowledge and strategy. One crucial aspect of real estate investing is understanding the different rules that guide the industry. In this article, we'll discuss the different real estate investing rules that you should be familiar with as a real estate investor.</p>
 
 <ol>
-<li>The 1% Rule
+<li><b>The 1% Rule</b><br>
 The 1% rule is a rule of thumb used by real estate investors to determine whether a rental property is a good investment. According to this rule, the monthly rent of a property should be at least 1% of the property's purchase price. For example, if you buy a property for $200,000, the monthly rent should be at least $2,000. If the monthly rent is less than 1% of the purchase price, it may not be a good investment.</li>
 
 <li>The 50% Rule
