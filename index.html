@@ -8,6 +8,8 @@ layout: default
 <button class="finance-amount">calculate</button></div>
 <div>Annual Interest Rate<input type="number" name="interest-rate">
 <button class="interest-rate">calculate</button></div>
+<div>Amortized Length<input type="number" name="amortized-length" value="360">
+<button class="amortized-length">calculate</button></div>
 <div>Term Length<input type="number" name="term-length">
 <button class="term-length">calculate</button></div>
 <div>Payment<input type="number" name="payment">
@@ -15,17 +17,36 @@ layout: default
 <div>Future Value<input type="number" name="future-value">
 <button class="future-value">calculate</button></div>
 <script>
-console.log(document.querySelectorAll('[name="purchase-price"], [name="down-payment"], [name="finance-amount"]'));
-document.querySelectorAll('button').forEach(function (button) {
-	button.addEventListener('click', function (e) {
+document.querySelectorAll('[name="purchase-price"], [name="down-payment"], [name="finance-amount"]').forEach(function (field) {
+	field.addEventListener('input', function (e) {
 		var pp = document.querySelector('[name="payment-purchase"]');
 		var dp = document.querySelector('[name="down-payment"]');
 		var fa = document.querySelector('[name="finance-amount"]');
+		var ppVal = Number(pp.value);
+		var dpVal = Number(dp.value);
+		var faVal = Number(fa.value);
+console.log(ppVal, dpVal, faVal);
+		switch (field.name) {
+			case 'purchase-price':
+				
+			break;
+			case 'down-payment':
+			break;
+			case 'finance-amount':
+			break;
+		}
+	});
+});
+document.querySelectorAll('button').forEach(function (button) {
+	button.addEventListener('click', function (e) {
+		var fa = document.querySelector('[name="finance-amount"]');
 		var int = document.querySelector('[name="interest-rate"]');
 		var term = document.querySelector('[name="term-length"]');
+		var amort = document.querySelector('[name="amortized-length"]');
 		var pmt = document.querySelector('[name="payment"]');
 		var fv = document.querySelector('[name="future-value"]');
 		var monthRate = Number(int.value) / 100 / 12;
+		var termMonths = Number(term.value);
 		switch (button.className) {
 			case 'finance-amount':
 				// if (int && term && pmt && fv)
@@ -35,10 +56,10 @@ document.querySelectorAll('button').forEach(function (button) {
 			case 'term-length':
 			break;
 			case 'payment':
-				pmt.value = Number(fa.value) * monthRate * Math.pow(1 + monthRate, Number(term.value)) / (Math.pow(1 + monthRate, Number(term.value)) - 1);
+				pmt.value = Number(fa.value) * monthRate * Math.pow(1 + monthRate, termMonths) / (Math.pow(1 + monthRate, termMonths) - 1);
 			break;
 			case 'future-value':
-				fv.value = Number(fa.value) * (Math.pow(1 + monthRate, Number(term.value))-Math.pow(1 + monthRate, Number(term.value)))/(Math.pow(1 + monthRate, Number(term.value)) - 1);
+				fv.value = Number(fa.value) * (Math.pow(1 + monthRate, termMonths)-Math.pow(1 + monthRate, termMonths))/(Math.pow(1 + monthRate, termMonths) - 1);
 			break;
 		}
 	});
