@@ -61,10 +61,10 @@ document.querySelectorAll('button').forEach(function (button) {
 			case 'term-months':
 			break;
 			case 'payment':
-				pmt.value = (Number(fa.value) * monthRate * Math.pow(1 + monthRate, amortMonths) / (Math.pow(1 + monthRate, amortMonths) - 1)).toFixed(2);
+				pmt.value = Number(Number(fa.value) * monthRate * Math.pow(1 + monthRate, amortMonths) / (Math.pow(1 + monthRate, amortMonths) - 1)).toFixed(2);
 			break;
 			case 'future-value':
-				fv.value = (Number(fa.value) * (Math.pow(1 + monthRate, amortMonths)-Math.pow(1 + monthRate, termMonths))/(Math.pow(1 + monthRate, amortMonths) - 1)).toFixed(2);
+				fv.value = Number(Number(fa.value) * (Math.pow(1 + monthRate, amortMonths)-Math.pow(1 + monthRate, termMonths))/(Math.pow(1 + monthRate, amortMonths) - 1)).toFixed(2);
 			break;
 		}
 	});
