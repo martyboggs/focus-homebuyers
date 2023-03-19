@@ -25,6 +25,9 @@ document.querySelectorAll('[name="purchase-price"], [name="down-payment"], [name
 		var ppVal = Number(pp.value);
 		var dpVal = Number(dp.value);
 		var faVal = Number(fa.value);
+		if (!ppVal && pp !== field) pp.value = ppVal;
+		if (!dpVal && dp !== field) dp.value = dpVal;
+		if (!faVal && fa !== field) fa.value = faVal;
 		switch (field.name) {
 			case 'purchase-price':
 				fa.value = ppVal - dpVal;
@@ -48,6 +51,7 @@ document.querySelectorAll('button').forEach(function (button) {
 		var fv = document.querySelector('[name="future-value"]');
 		var monthRate = Number(int.value) / 100 / 12;
 		var termMonths = Number(term.value);
+		var amortMonths = Number(amort.value);
 		switch (button.className) {
 			case 'finance-amount':
 				// if (int && term && pmt && fv)
@@ -57,10 +61,10 @@ document.querySelectorAll('button').forEach(function (button) {
 			case 'term-length':
 			break;
 			case 'payment':
-				pmt.value = Number(fa.value) * monthRate * Math.pow(1 + monthRate, termMonths) / (Math.pow(1 + monthRate, termMonths) - 1);
+				pmt.value = Number(fa.value) * monthRate * Math.pow(1 + monthRate, amortMonths) / (Math.pow(1 + monthRate, amortMonths) - 1);
 			break;
 			case 'future-value':
-				fv.value = Number(fa.value) * (Math.pow(1 + monthRate, termMonths)-Math.pow(1 + monthRate, termMonths))/(Math.pow(1 + monthRate, termMonths) - 1);
+				fv.value = Number(fa.value) * (Math.pow(1 + monthRate, amortMonths)-Math.pow(1 + monthRate, termMonths))/(Math.pow(1 + monthRate, amortMonths) - 1);
 			break;
 		}
 	});
