@@ -14,20 +14,7 @@
 	</div>
 </header>
 <section>
-	<div class="container">
-		<div class="row">
-			<div class="content">
-				{{ content }}
-			</div>
-			<div class="sidebar">
-				{% for post in site.posts %}
-					<div>
-						<a href="/creative-finance{{ post.url }}">{{ post.title }}</a>
-					</div>
-				{% endfor %}
-			</div>
-		</div>
-	</div>
+{{ content }}
 </section>
 <section class="footer">
 	<div class="container">
