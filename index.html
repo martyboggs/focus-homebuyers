@@ -2,6 +2,9 @@
 layout: default
 title: Creative Financing
 ---
+
+<div class="container">
+<div class="column">
 homes bought on terms<br>
 pro house home snap
 snap homebuyers
@@ -34,6 +37,15 @@ flyhomes
 <div><label>Balloon</label><input type="number" name="balloon">
 <button class="balloon">calculate</button></div>
 <div><label>Net</label><input readonly type="number" name="net"></div>
+</div>
+
+{% for post in site.posts %}
+	<div>
+		<a href="/creative-finance{{ post.url }}">{{ post.title }}</a>
+	</div>
+{% endfor %}
+
+</div>
 </div>
 
 <script>
