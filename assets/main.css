@@ -77,7 +77,8 @@ section {
 	min-height: 1px;
 	position: relative;
 }
-.content h1 {
+.content h1,
+.content h2 {
 	color: var(--primary);
 }
 .sidebar {
