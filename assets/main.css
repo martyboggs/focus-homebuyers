@@ -19,17 +19,20 @@ h1:first-child, h2:first-child, h3:first-child {
 h1, h2, h3 {
 	line-height: 1.2;
 	font-family: Lora,Georgia,serif;
-	color: var(--primary);
+}
+h1 {
+	font-size: 2em;
 }
 a, a:visited, a:active {
 	color: var(--primary);
 	text-underline-position: under;
 }
-header {
-	margin-bottom: 1.8em;
+header, 
+footer {
 	background: var(--primary);
-	padding: 1em 0 1em;
+	padding: 2em 0;
 }
+
 header a {
 	text-decoration: none;
 }
@@ -41,7 +44,7 @@ li {
 	margin-bottom: 1em;
 }
 section {
-	padding-bottom: 3em;
+	padding: 3em 0;
 }
 .full {
 	background: var(--primary);
@@ -73,6 +76,9 @@ section {
 	min-height: 1px;
 	position: relative;
 }
+.content h1 {
+	color: var(--primary);
+}
 .sidebar {
 	-webkit-box-flex: 0;
 	flex: 0 0 34%;
@@ -82,10 +88,6 @@ section {
 	width: 100%;
 	min-height: 1px;
 	position: relative;
-}
-.footer {
-	min-height: 100px;
-	background: var(--primary);
 }
 .calculator label {
 	display: inline-block;
