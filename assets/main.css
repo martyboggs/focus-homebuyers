@@ -43,6 +43,10 @@ li {
 section {
 	padding-bottom: 3em;
 }
+.full {
+	background: var(--primary);
+	color: white;
+}
 .container {
 	max-width: 870px;
 	margin-left: auto;
