@@ -9,7 +9,6 @@ body {
 	margin: 0;
 	font-size: 20px;
 	line-height: 1.8;
-	background: url(/creative-finance/assets/pattern.jpg) 100% 100% / cover;
 }
 p {
 	margin-top: 0;
@@ -37,10 +36,10 @@ footer {
 
 header a {
 	text-decoration: none;
-	color: white;
 }
 header h1 {
 	margin: 0;
+	color: white;
 }
 li {
 	margin-bottom: 1em;
