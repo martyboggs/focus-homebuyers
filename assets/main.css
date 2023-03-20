@@ -31,13 +31,13 @@ header,
 footer {
 	background: var(--primary);
 	padding: 2em 0;
+	color: white;
 }
 
 header a {
 	text-decoration: none;
 }
 header h1 {
-	color: white;
 	margin: 0;
 }
 li {
