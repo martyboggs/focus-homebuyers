@@ -1,3 +1,7 @@
+---
+layout: post
+title: Dodd-Frank Rules for Seller Financing
+---
 The Dodd-Frank Wall Street Reform and Consumer Protection Act was signed into law in 2010 as a response to the financial crisis of 2008. This act aimed to regulate financial institutions and protect consumers from predatory lending practices. One aspect of the act that often goes overlooked is the rules around seller financing.
 
 Seller financing, also known as owner financing, is when the seller of a property provides financing to the buyer instead of the buyer obtaining a traditional mortgage from a bank or other lender. This can be an attractive option for buyers who may not be able to qualify for a traditional mortgage or who prefer to avoid the strict requirements and high fees associated with conventional financing.
