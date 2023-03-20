@@ -18,4 +18,4 @@ Under the Dodd-Frank Act, seller financing is subject to a number of rules and r
 
 While these rules may seem restrictive, they are designed to protect both buyers and sellers from the risks associated with seller financing. By ensuring that buyers have the ability to repay the loan and that the terms of the loan are fair and transparent, the Dodd-Frank Act helps to prevent predatory lending practices and promote responsible homeownership.
 
-In conclusion, if you are considering seller financing as an option for buying or selling a property, it is important to understand the rules and regulations set forth by the Dodd-Frank Act. By following these guidelines, you can ensure that the transaction is fair and transparent and that both parties are protected from any potential risks or pitfalls.
+If you are considering seller financing as an option for buying or selling a property, it is important to understand the rules and regulations set forth by the Dodd-Frank Act. By following these guidelines, you can ensure that the transaction is fair and transparent and that both parties are protected from any potential risks or pitfalls.
