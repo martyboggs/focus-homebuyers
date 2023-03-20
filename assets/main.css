@@ -21,6 +21,10 @@ h1, h2, h3 {
 	font-family: Lora,Georgia,serif;
 	color: var(--primary);
 }
+a, a:visited, a:active {
+	color: var(--primary);
+	text-underline-position: under;
+}
 header {
 	margin-bottom: 1.8em;
 	background: var(--primary);
@@ -78,6 +82,12 @@ section {
 .footer {
 	min-height: 100px;
 	background: var(--primary);
+}
+.calculator label {
+	display: inline-block;
+	min-width: 165px;
+	text-align: right;
+	margin-right: 5px;
 }
 @media (max-width: 767px) {
 	.content {

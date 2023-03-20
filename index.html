@@ -2,14 +2,6 @@
 layout: default
 title: Creative Financing
 ---
-<style>
-label {
-	display: inline-block;
-	min-width: 165px;
-	text-align: right;
-	margin-right: 5px;
-}
-</style>
 homes bought on terms<br>
 pro house home snap
 snap homebuyers
@@ -26,6 +18,7 @@ knock
 orchard
 flyhomes
 
+<div class="calculator">
 <div><label>Purchase Price</label><input type="number" name="purchase-price"></div>
 <div><label>Down Payment</label><input type="number" name="down-payment"></div>
 <div><label>Finance Amount</label><input type="number" name="finance-amount">
@@ -41,6 +34,7 @@ flyhomes
 <div><label>Balloon</label><input type="number" name="balloon">
 <button class="balloon">calculate</button></div>
 <div><label>Net</label><input readonly type="number" name="net"></div>
+</div>
 <script>
 document.querySelectorAll('[name="purchase-price"], [name="down-payment"], [name="finance-amount"]').forEach(function (field) {
 	field.addEventListener('input', function (e) {
