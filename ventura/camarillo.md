@@ -1,4 +1,4 @@
 ---
-layout: promotion
+layout: marketing
 title: Camarillo
 ---

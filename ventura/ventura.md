@@ -1,5 +1,4 @@
 ---
-layout: promotion
+layout: marketing
 title: Ventura
 ---
-ventura
