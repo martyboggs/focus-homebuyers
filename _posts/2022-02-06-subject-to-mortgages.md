@@ -12,6 +12,6 @@ title: Subject-to Mortgages
 
 <p>For the seller, there is a risk that the buyer may default on the mortgage payments, which could result in a foreclosure and damage to the seller's credit. Additionally, the original owner may still be liable for the mortgage even after the property has been sold, which could impact their ability to obtain new financing in the future.</p>
 
-<p>It's important for both parties to carefully consider the potential risks and benefits of a subject-to mortgage before entering into an agreement. It's also important to work with experienced professionals, such as real estate agents, attorneys, and mortgage brokers, who can help guide the process and ensure that all legal and financial obligations are properly addressed.</p>
+<p>It's important for both parties to carefully consider the potential risks and benefits of a subject-to mortgage before entering into an agreement. It's also important to work with experienced professionals, such as real estate investors, attorneys, and mortgage brokers, who can help guide the process and ensure that all legal and financial obligations are properly addressed.</p>
 
 <p>Subject-to mortgages can be a viable financing option for buyers and sellers alike, but they do come with certain risks and complexities. As with any real estate transaction, it's important to do your due diligence and work with experienced professionals to ensure that the transaction is properly structured and all parties are protected.</p>

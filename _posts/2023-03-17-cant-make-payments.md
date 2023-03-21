@@ -14,7 +14,7 @@ title: Can't Make Payments
 <p>Loan modification programs are designed to help homeowners who are struggling to make their mortgage payments. These programs can include lowering your interest rate, extending the term of your loan, or even forgiving a portion of your principal balance. Contact your lender or a housing counselor to see if you qualify for a loan modification program.</p>
 
 <h2>Consider Selling Your Home</h2>
-<p>If you are unable to make your mortgage payments, selling your home may be the best option. This can help you avoid foreclosure and allow you to move on from the financial burden of your mortgage. However, it's important to work with a real estate agent and your lender to ensure that you are able to sell your home for a fair price.</p>
+<p>If you are unable to make your mortgage payments, selling your home may be the best option. This can help you avoid foreclosure and allow you to move on from the financial burden of your mortgage.</p>
 
 <h2>Seek Help From a Housing Counselor</h2>
 <p>If you're struggling to make your mortgage payments, consider working with a housing counselor. These professionals can offer guidance and support, and they may be able to help you negotiate with your lender or find other resources to help you stay in your home.</p>
