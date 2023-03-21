@@ -91,6 +91,35 @@ section {
 	min-height: 1px;
 	position: relative;
 }
+.homepage-form {
+	background: white;
+	padding: 5px;
+	text-align: center;
+	display: flex;
+	flex-wrap: wrap;
+}
+.homepage-form input {
+	box-shadow: inset 0 1px 3px -2px rgb(29 29 29 / 50%);
+	border: 1px solid #ced4da;
+	flex: 0 0 50%;
+}
+.homepage-form input:first-child {
+	flex: 0 0 100%;
+}
+.homepage-form input,
+.homepage-form button {
+	font-size: 20px;
+	padding: 5px;
+	margin: 5px;
+	border-radius: 5px;
+	color: #495057;
+}
+.homepage-form button {
+	background: #ff09d5;
+	color: white;
+	border: 0;
+	padding: 5px 20px;	
+}
 .calculator label {
 	display: inline-block;
 	min-width: 165px;
