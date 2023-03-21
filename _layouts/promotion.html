@@ -1,0 +1,26 @@
+---
+layout: default
+---
+<section class="">
+<div class="container">
+	<h1>{{ title }}</h1>
+</div>
+</section>
+
+<section class="full">
+<div class="container">
+	<h1>Damn Daniel</h1>
+</div>
+</section>
+
+<section>
+<div class="container">
+
+{% for post in site.posts %}
+	<div>
+		<a href="/creative-finance{{ post.url }}">{{ post.title }}</a>
+	</div>
+{% endfor %}
+
+</div>
+</section>

@@ -1,4 +1,4 @@
 ---
+layout: promotion
 title: Camarillo
-layout: index
 ---
