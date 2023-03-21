@@ -1,6 +1,4 @@
 theme: jekyll-theme-minimal
 title: Creative Financing
 description: Bookmark this to keep an eye on my project updates!
-collections:
-  cities:
-    output: true
+exclude: notes.txt
