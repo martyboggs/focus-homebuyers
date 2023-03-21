@@ -2,8 +2,12 @@
 layout: default
 title: Blog
 ---
-{% for post in site.posts %}
-	<div>
-		<a href="/creative-finance{{ post.url }}">{{ post.title }}</a>
+<section>
+	<div class="container">
+		{% for post in site.posts %}
+			<div>
+				<a href="/creative-finance{{ post.url }}">{{ post.title }}</a>
+			</div>
+		{% endfor %}
 	</div>
-{% endfor %}
+</section>
