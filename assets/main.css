@@ -93,15 +93,18 @@ section {
 }
 .homepage-form {
 	background: white;
-	padding: 5px;
+	padding: 15px;
 	text-align: center;
 	display: flex;
 	flex-wrap: wrap;
+	box-shadow: 0 2px 3px 0 rgb(29 29 29 / 50%);
+	border: solid 1px #c9c9c9;
+	justify-content: space-between
 }
 .homepage-form input {
 	box-shadow: inset 0 1px 3px -2px rgb(29 29 29 / 50%);
 	border: 1px solid #ced4da;
-	flex: 0 0 50%;
+	flex: 0 0 49%;
 }
 .homepage-form input:first-child {
 	flex: 0 0 100%;
@@ -109,8 +112,9 @@ section {
 .homepage-form input,
 .homepage-form button {
 	font-size: 20px;
-	padding: 5px;
-	margin: 5px;
+	line-height: 1.2;
+	padding: 10px;
+	margin: 5px 0;
 	border-radius: 5px;
 	color: #495057;
 }
@@ -118,7 +122,8 @@ section {
 	background: #ff09d5;
 	color: white;
 	border: 0;
-	padding: 5px 20px;	
+	padding: 10px 20px;	
+	flex: 1;
 }
 .calculator label {
 	display: inline-block;
