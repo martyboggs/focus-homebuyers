@@ -1,5 +1,4 @@
 ---
 title: Camarillo
-layout: default
+layout: index
 ---
-ventura
