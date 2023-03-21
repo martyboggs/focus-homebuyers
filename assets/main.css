@@ -23,22 +23,36 @@ h1, h2, h3 {
 h1 {
 	font-size: 2em;
 }
+a, button {
+	cursor: pointer;
+}
 a, a:visited, a:active {
 	color: var(--primary);
 	text-underline-position: under;
 }
 header, 
 footer {
-	background: var(--primary);
 	padding: 2em 0;
+}
+header, 
+footer,
+.full {
+	background: var(--primary);
 	color: white;
 }
+
 
 header a {
 	text-decoration: none;
 }
-header h1 {
+header h1,
+footer h1 {
 	margin: 0;
+}
+header a,
+header a:visited,
+footer a,
+footer a:visited {
 	color: white;
 }
 li {
@@ -46,10 +60,6 @@ li {
 }
 section {
 	padding: 3em 0;
-}
-.full {
-	background: var(--primary);
-	color: white;
 }
 .container {
 	max-width: 870px;
