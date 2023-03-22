@@ -29,6 +29,7 @@ h1:first-child, h2:first-child, h3:first-child {
 }
 h1, h2, h3 {
 	line-height: 1.2;
+	font-weight: 700;
 }
 h1 {
 	font-size: 2em;
