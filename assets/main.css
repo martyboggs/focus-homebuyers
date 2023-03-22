@@ -4,7 +4,6 @@
 :root {
 	--bg-base: #f5f7f8;
 	--primary: #0000af;
-	--gray: #495057;
 	--spacing: 30px;
 }
 h1:empty {
@@ -134,9 +133,11 @@ img {
 	box-shadow: inset 0 1px 3px -2px rgb(29 29 29 / 50%);
 	border: 1px solid #ced4da;
 	flex: 0 0 49%;
+	max-width: 49%;
 }
 .homepage-form input:first-child {
 	flex: 0 0 100%;
+	max-width: 100%;
 }
 .homepage-form input,
 .homepage-form button {
@@ -145,7 +146,7 @@ img {
 	padding: 10px;
 	margin: 5px 0;
 	border-radius: 5px;
-	color: var(--gray);
+	color: #495057;
 }
 .homepage-form button {
 	background: #ff09d5;
@@ -153,9 +154,6 @@ img {
 	border: 0;
 	padding: 10px 20px;	
 	flex: 1;
-}
-.homepage-form #my-form-status {
-	color: var(--gray);
 }
 .calculator label {
 	display: inline-block;
