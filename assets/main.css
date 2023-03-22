@@ -176,6 +176,10 @@ img {
 	padding: 10px 20px;	
 	flex: 1;
 }
+.header-nav1 > div,
+.header-nav2 > div {
+	display: flex;
+}
 .calculator label {
 	display: inline-block;
 	min-width: 165px;
