@@ -46,6 +46,9 @@ footer,
 	color: white;
 }
 
+.full-white {
+	background: white;
+}
 
 header a {
 	text-decoration: none;
