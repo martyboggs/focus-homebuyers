@@ -55,6 +55,11 @@ footer,
 	color: white;
 }
 
+.full {
+	padding: 250px 0;
+	background: url('background-gray-10-bottom-lines-2.png') bottom center / 100% no-repeat, url('background-gray-10-top-4.png') top center / 100% no-repeat, fixed url('https://cdn.ramseysolutions.net/cms/sites/daveramsey-com/elp/differences-between-realtors-and-agents/ramsey-trusted-background.jpg') top right / cover no-repeat, #fff;
+}
+
 .full-white {
 	background: white;
 }
