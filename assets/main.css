@@ -6,6 +6,9 @@
 	--primary: #0000af;
 	--spacing: 30px;
 }
+h1:empty {
+	display: none;
+}
 body {
 	background: var(--bg-base);
 	margin: 0;
