@@ -64,7 +64,8 @@ footer,
 	background: white;
 }
 
-header a {
+header a,
+footer a {
 	text-decoration: none;
 }
 header h1,
@@ -77,6 +78,16 @@ footer a,
 footer a:visited {
 	color: white;
 }
+.header-nav1 > div,
+.header-nav2 > div {
+	display: flex;
+}
+.header-nav1 a:not(:last-child),
+.header-nav2 a:not(:last-child) {
+	display: inline-block;
+	margin: 0 5px 5px 0;
+}
+
 li {
 	margin-bottom: 1em;
 }
@@ -175,10 +186,6 @@ img {
 	border: 0;
 	padding: 10px 20px;	
 	flex: 1;
-}
-.header-nav1 > div,
-.header-nav2 > div {
-	display: flex;
 }
 .calculator label {
 	display: inline-block;
