@@ -5,4 +5,3 @@ exclude: notes.txt
 collections:
   locations:
     ventura: true
-    santa-barbara: true
