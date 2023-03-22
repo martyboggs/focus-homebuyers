@@ -78,14 +78,19 @@ footer a,
 footer a:visited {
 	color: white;
 }
-.header-nav1 > div,
-.header-nav2 > div {
+.nav1 > div,
+.nav2 > div {
 	display: flex;
 }
-.header-nav1 a:not(:last-child),
-.header-nav2 a:not(:last-child) {
+footer .nav1 {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.nav1 a:not(:last-child),
+.nav2 a:not(:last-child) {
 	display: inline-block;
-	margin: 0 5px 5px 0;
+	margin: 0 15px 0px 0;
 }
 
 li {
