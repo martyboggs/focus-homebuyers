@@ -16,6 +16,11 @@ body {
 	line-height: 1.8;
 	font-family: 'Poppins', sans-serif;
 }
+button,
+select,
+input {
+	font-family: 'Poppins', sans-serif;
+}
 p {
 	margin-top: 0;
 }
@@ -24,7 +29,6 @@ h1:first-child, h2:first-child, h3:first-child {
 }
 h1, h2, h3 {
 	line-height: 1.2;
-	font-family: Lora,Georgia,serif;
 }
 h1 {
 	font-size: 2em;
