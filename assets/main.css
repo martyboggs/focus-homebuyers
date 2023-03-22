@@ -153,6 +153,9 @@ img {
 	padding: 10px 20px;	
 	flex: 1;
 }
+.homepage-form #my-form-status {
+	color: black;
+}
 .calculator label {
 	display: inline-block;
 	min-width: 165px;
