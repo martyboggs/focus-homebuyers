@@ -12,7 +12,7 @@ h1:empty {
 body {
 	background: var(--bg-base);
 	margin: 0;
-	font-size: 20px;
+	font-size: 18px;
 	line-height: 1.8;
 	font-family: 'Poppins', sans-serif;
 }
