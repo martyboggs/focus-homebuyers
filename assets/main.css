@@ -82,7 +82,9 @@ footer a:visited {
 .nav2 > div {
 	display: flex;
 }
-footer .nav1 {
+header .nav1,
+footer .nav1,
+footer .nav2 {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
