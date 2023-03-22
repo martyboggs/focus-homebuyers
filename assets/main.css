@@ -4,6 +4,7 @@
 :root {
 	--bg-base: #f5f7f8;
 	--primary: #0000af;
+	--gray: #495057;
 	--spacing: 30px;
 }
 h1:empty {
@@ -144,7 +145,7 @@ img {
 	padding: 10px;
 	margin: 5px 0;
 	border-radius: 5px;
-	color: #495057;
+	color: var(--gray);
 }
 .homepage-form button {
 	background: #ff09d5;
@@ -154,7 +155,7 @@ img {
 	flex: 1;
 }
 .homepage-form #my-form-status {
-	color: black;
+	color: var(--gray);
 }
 .calculator label {
 	display: inline-block;
