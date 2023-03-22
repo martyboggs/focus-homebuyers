@@ -8,20 +8,15 @@ sellspark
 offerzen
 homeoffer
 
+highligher effect
+	box-shadow: inset 0 -0.7em 0 0 rgba(0, 102, 204, 0.2)
+
 homeselloffer.com
 Cumulus Homebuyers  cumulushomebuyers.com is available.
-Open Property Sales  openpropertysales.com is available.
 Open Home Deals  openhomedeals.com is available.
 Buy My Home Offers  buymyhomeoffers.com is available.
 First Call Home Sale  firstcallhomesale.com is available.
 House Of The West  houseofthewest.com is available.
-House Sell Solution  housesellsolution.com is available.
-The House Divas  thehousedivas.com is available.
-Homesick Homes  homesickhomes.com is available.
-House Of 1000 Homes  houseof1000homes.com is available.
-House Affordably  houseaffordably.com is available.
-The Financing House  thefinancinghouse.com is available.
-House Of Home Buyers  houseofhomebuyers.com is available.
 
 
 
@@ -63,8 +58,18 @@ carrot
 		Andy Kolodgie & Liz Hutz, not in BBB
 	https://www.mustsellmyhousefast.com/
 		Harvey Gronwald, not in BBB
-	https://www.ezhomebuyers.com/
+	https://www.ezhomebuyers.com/ - basic template
+	https://www.mvphomeoffer.com/ - basic template
 
-https://balsamohomes.com/where-we-buy-houses/
-	brothers own it, flip houses
-	BBB 4/5 stars lol
+REI toolbox
+	https://zenhomeoffer.com/
+
+?
+	https://balsamohomes.com/where-we-buy-houses/
+		brothers own it, flip houses
+		BBB 4/5 stars lol
+	https://www.homeofferheroes.com/
+		Mr. John David Schardt, Owner, BBB 4.6/5
+	https://socalhomebuyers.com/
+		Doug & Andrea Van Soest, MURRIETA, CA 92562
+	
