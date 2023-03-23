@@ -194,9 +194,15 @@ img {
 .homepage-form button {
 	background: #ff09d5;
 	color: white;
+	flex: 0 0 100%;
+	max-width: 100%;
 	border: 0;
-	padding: 10px 20px;	
-	flex: 1;
+	padding: 10px 20px;
+}
+.homepage-form #my-form-status {
+	flex: 0 0 100%;
+	max-width: 100%;
+	margin: 0;
 }
 .calculator label {
 	display: inline-block;
