@@ -45,10 +45,6 @@ a, a:visited, a:active {
 	text-underline-position: under;
 }
 header, 
-footer {
-	padding: 2em 0;
-}
-header, 
 footer,
 .full {
 	background: var(--primary);
@@ -80,14 +76,31 @@ footer a:visited {
 }
 .nav1 > div,
 .nav2 > div {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
 }
 header .nav1,
 footer .nav1,
 footer .nav2 {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
 	justify-content: space-between;
 	align-items: center;
+}
+footer .nav2 {
+	font-size: 14px;
+}
+.social {
+	justify-content: flex-end;
+}
+.copyright {
+	font-size: 12px;
 }
 .nav1 a:hover,
 .nav2 a:hover {
@@ -97,6 +110,17 @@ footer .nav2 {
 .nav2 a:not(:last-child) {
 	display: inline-block;
 	margin: 0 15px 0px 0;
+}
+header .nav1,
+header .nav2 {
+	padding: 16px 0;
+}
+footer .nav1,
+footer .nav2 {
+	padding: 36px 0;
+}
+.nav2 {
+	border-top: 1px solid gray;
 }
 
 li {
@@ -164,7 +188,10 @@ img {
 	background: white;
 	padding: 15px;
 	text-align: center;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-ms-flex-wrap: wrap;
 	flex-wrap: wrap;
 	box-shadow: 0 2px 3px 0 rgb(29 29 29 / 50%);
 	border: solid 1px #c9c9c9;
@@ -222,9 +249,14 @@ img {
 }
 .social a {
 	border-radius: 50%;
-	background: green;
+	background: gray;
 	width: 40px;
 	height: 40px;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex !important;
+	justify-content: center;
+	align-items: center;
 }
 .social svg {
 	fill: black;
