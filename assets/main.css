@@ -204,6 +204,19 @@ img {
 	text-align: right;
 	margin-right: 5px;
 }
+.visually-hidden {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+}
+.social svg {
+	fill: black;
+}
 @media (max-width: 767px) {
 	.col-4,
 	.col-6,
