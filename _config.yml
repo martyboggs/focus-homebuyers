@@ -4,4 +4,4 @@ description: Bookmark this to keep an eye on my project updates!
 exclude: notes.txt
 collections:
   locations:
-    ventura: true
+    output: true
