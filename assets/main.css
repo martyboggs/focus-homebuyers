@@ -89,8 +89,8 @@ footer .nav2 {
 	justify-content: space-between;
 	align-items: center;
 }
-header::selection,
-footer::selection {
+header *::selection,
+footer *::selection {
 	background: blue;
 }
 footer .nav2 {
