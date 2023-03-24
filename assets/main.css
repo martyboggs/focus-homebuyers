@@ -231,6 +231,54 @@ img {
 	max-width: 100%;
 	margin: 0;
 }
+
+.cell.is-selected {
+    opacity: 1;
+}
+@media (min-width: 56.25em) {
+	.testimonial--card {
+	    padding-right: 40px;
+	    padding-left: 40px;
+	}
+}
+.testimonial--card {
+    border-top: 8px solid;
+    border-radius: 8px;
+    box-shadow: 0 16px 40px 0 rgb(31 36 38 / 18%);
+    background-color: #fff;
+    padding: 32px 16px;
+}
+.testimonial {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    color: #1f2426;
+}
+.cell {
+    opacity: .3;
+    margin-right: 72px;
+    width: 100%;
+    min-width: 240px;
+    max-width: 480px;
+}
+@media (min-width: 56.25em) {
+	.cell {
+	    margin-right: 96px;
+	    max-width: 640px;
+	}
+}
+.testimonial-attribution {
+    margin-left: auto;
+    margin-right: auto;
+    border-left: 4px solid;
+    border-color: inherit;
+    padding: 4px 8px;
+    text-align: left;
+    font-size: 16px;
+}
+.testimonial-attribution p {
+	margin-bottom: 0;
+}
 .calculator label {
 	display: inline-block;
 	min-width: 165px;
