@@ -106,9 +106,6 @@ footer .nav2 {
 .nav2 a:hover {
 	text-decoration: underline;
 }
-.site-title {
-	text-decoration: none;
-}
 .nav1 a:not(:last-child),
 .nav2 a:not(:last-child) {
 	display: inline-block;
@@ -254,6 +251,7 @@ img {
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
     padding-left: 16px;
+    bottom: 0;
     list-style: none;
 }
 .carousel .flickity-page-dot {
