@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>creative financing - {{ page.title }}</title>
+<title>{{ site.title }} - {{ page.title }}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
@@ -17,7 +17,7 @@
 <header>
 	<div class="container">
 		<div class="nav1">
-			<a href=""><h1 class="site-title">Creative Financing</h1></a>
+			<a href=""><h1 class="site-title">{{ site.title }}</h1></a>
 			<!-- search -->
 			<!-- cta -->
 		</div>
@@ -35,7 +35,7 @@
 	<div class="container">
 		<div>
 			<div class="nav1">
-				<a href=""><h1 class="site-title">Creative Financing</h1></a>
+				<a href=""><h1 class="site-title">{{ site.title }}</h1></a>
 				<div>
 					<a href="/articles.html">Articles</a>
 					<a href="/calculator.html">Calculator</a>
@@ -54,7 +54,7 @@
 					<a href="/terms.html">Terms</a>
 				</div>
 				<div class="copyright">
-					©{{ site.time | date: '%Y' }} Creative-finance. All rights reserved.
+					©{{ site.time | date: '%Y' }} {{ site.title }}. All rights reserved.
 				</div>
 			</div>
 		</div>
