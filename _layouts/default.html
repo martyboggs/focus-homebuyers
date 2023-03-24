@@ -23,9 +23,9 @@
 	<div class="container">
 		<div class="nav1">
 			{% if page.collection == "locations" %}
-				<a href="{{ page.url }}">
+				<a class="site-title" href="{{ page.url }}">
 			{% else %}
-				<a href="/">
+				<a class="site-title" href="/">
 			{% endif %}
 				<h1 class="site-title">{{ site.title }}</h1>
 			</a>
@@ -47,11 +47,11 @@
 		<div>
 			<div class="nav1">
 				{% if page.collection == "locations" %}
-					<a href="{{ page.url }}">
+					<a class="site-title" href="{{ page.url }}">
 				{% else %}
-					<a href="/">
+					<a class="site-title" href="/">
 				{% endif %}
-					<h1 class="site-title">{{ site.title }}</h1>
+					<h1>{{ site.title }}</h1>
 				</a>
 				<div>
 					<a href="/articles.html">Articles</a>

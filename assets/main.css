@@ -60,10 +60,6 @@ footer,
 	background: white;
 }
 
-header a,
-footer a {
-	text-decoration: none;
-}
 header h1,
 footer h1 {
 	margin: 0;
@@ -109,6 +105,9 @@ footer .nav2 {
 .nav1 a:hover,
 .nav2 a:hover {
 	text-decoration: underline;
+}
+a.site-title {
+	text-decoration: none;
 }
 .nav1 a:not(:last-child),
 .nav2 a:not(:last-child) {
