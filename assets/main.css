@@ -102,11 +102,15 @@ footer .nav2 {
 .copyright {
 	font-size: 12px;
 }
+header a,
+footer a {
+	text-decoration: none;
+}
 .nav1 a:hover,
 .nav2 a:hover {
 	text-decoration: underline;
 }
-a.site-title {
+.site-title:hover {
 	text-decoration: none;
 }
 .nav1 a:not(:last-child),
