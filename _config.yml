@@ -5,3 +5,4 @@ exclude: notes.txt
 collections:
   locations:
     output: true
+    collection: locations
