@@ -1,3 +1,4 @@
 ---
+layout: marketing
 title: Lompoc
 ---

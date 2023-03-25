@@ -6,4 +6,3 @@ collections:
   locations:
     output: true
     collection: locations
-    layout: marketing
