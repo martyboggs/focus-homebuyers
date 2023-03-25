@@ -1,4 +1,0 @@
----
-layout: marketing
-title: Cuyama
----
