@@ -53,7 +53,7 @@ footer,
 
 .full {
 	padding: 250px 0;
-	background: url('background-gray-10-bottom-lines-2.png') bottom center / 100% no-repeat, url('background-gray-10-top-4.png') top center / 100% no-repeat, fixed url('https://cdn.ramseysolutions.net/cms/sites/daveramsey-com/elp/differences-between-realtors-and-agents/ramsey-trusted-background.jpg') top right / cover no-repeat, #fff;
+	background: url('background-gray-10-bottom-lines-2.png') bottom center / 100% no-repeat, url('background-gray-10-top-4.png') top center / 100% no-repeat, fixed url('trusted-background.jpg') top right / cover no-repeat, #fff;
 }
 
 .full-white {
@@ -91,7 +91,7 @@ footer .nav2 {
 }
 header *::selection,
 footer *::selection {
-	background: blue;
+	background: #0b2143;
 }
 footer .nav2 {
 	font-size: 14px;
@@ -226,7 +226,7 @@ img {
 	color: #495057;
 }
 .homepage-form button {
-	background: #ff09d5;
+	background: #214477;
 	color: white;
 	flex: 0 0 100%;
 	max-width: 100%;
