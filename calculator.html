@@ -4,23 +4,30 @@ title: Calculator
 ---
 <section>
 <div class="container">
-<div class="calculator">
-<div><label>Purchase Price</label><input type="number" name="purchase-price"></div>
-<div><label>Down Payment</label><input type="number" name="down-payment"></div>
-<div><label>Finance Amount</label><input type="number" name="finance-amount">
-<button class="finance-amount">calculate</button></div>
-<div><label>Annual Interest Rate</label><input type="number" name="interest-rate" value="0">
-<button class="interest-rate">calculate</button></div>
-<div><label>Amortized Months</label><input type="number" name="amortized-months" value="360">
-<button class="amortized-months">calculate</button></div>
-<div><label>Term Months</label><input type="number" name="term-months" value="96">
-<button class="term-months">calculate</button></div>
-<div><label>Payment</label><input type="number" name="payment">
-<button class="payment">calculate</button></div>
-<div><label>Balloon</label><input type="number" name="balloon">
-<button class="balloon">calculate</button></div>
-<div><label>Net</label><input readonly type="number" name="net"></div>
-</div>
+	<div class="calculator">
+		<div class="left">
+			<div><label>Purchase Price</label><input type="number" name="purchase-price"></div>
+			<div><label>Down Payment</label><input type="number" name="down-payment"></div>
+			<div><label>Finance Amount</label><input type="number" name="finance-amount">
+			<button class="finance-amount">calculate</button></div>
+			<div><label>Annual Interest Rate</label><input type="number" name="interest-rate" value="0">
+			<button class="interest-rate">calculate</button></div>
+			<div><label>Amortized Months</label><input type="number" name="amortized-months" value="360">
+			<button class="amortized-months">calculate</button></div>
+			<div><label>Term Months</label><input type="number" name="term-months" value="96">
+			<button class="term-months">calculate</button></div>
+			<div><label>Payment</label><input type="number" name="payment">
+			<button class="payment">calculate</button></div>
+			<div><label>Balloon</label><input type="number" name="balloon">
+			<button class="balloon">calculate</button></div>
+			<div><label>Total</label><input readonly type="number" name="net"></div>
+		</div>
+		<div class="right">
+			<div clas="progress-bar">
+				<!-- bad deal, break even,  -->
+			</div>
+		</div>
+	</div>
 <script>
 document.querySelectorAll('[name="purchase-price"], [name="down-payment"], [name="finance-amount"]').forEach(function (field) {
 	field.addEventListener('input', function (e) {
@@ -81,7 +88,9 @@ document.querySelectorAll('button').forEach(function (button) {
 				// what if no payment?
 			break;
 		}
-		document.querySelector('[name="net"]').value = Number(document.querySelector('[name="down-payment"]').value) + termMonths * Number(pmt.value) + Number(balloon.value);
+		if (termMonths === amortMonths || balloon.value) {
+			document.querySelector('[name="net"]').value = Number(document.querySelector('[name="down-payment"]').value) + termMonths * Number(pmt.value) + Number(balloon.value);
+		}
 	});
 });
 </script>
