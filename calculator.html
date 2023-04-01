@@ -23,7 +23,7 @@ title: Calculator
 				<label style="min-width: 37px;">LTV</label><input style="max-width: 100px;" readonly type="text" name="ltv">
 				<button class="balloon">calculate</button>
 			</div>
-			<div><label>Total</label><input readonly type="number" name="net"></div>
+			<div><label>Total</label><input readonly type="number" name="total"></div>
 			<hr>
 			<div><label>Monthly Rents</label><input type="number" name="rents"></div>
 			<div><label>Monthly Expenses</label><input type="number" name="expenses"></div>
@@ -108,7 +108,7 @@ console.log(monthRate, termMonths, amortMonths, Number(balloon.value));
 			break;
 		}
 		if (termMonths === amortMonths || balloon.value) {
-			document.querySelector('[name="net"]').value = Number(downPayment.value) + termMonths * Number(pmt.value) + Number(balloon.value);
+			document.querySelector('[name="total"]').value = (Number(downPayment.value) + termMonths * Number(pmt.value) + Number(balloon.value)).toFixed(2);
 		}
 	});
 });
