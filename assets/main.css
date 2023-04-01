@@ -334,6 +334,12 @@ img {
 .calculator .left > div {
 	display: flex;
 }
+.progress-bar {
+}
+.progress-container {
+}
+.progress {
+}
 .visually-hidden {
 	border: 0;
 	clip: rect(0 0 0 0);
