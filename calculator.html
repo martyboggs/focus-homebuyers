@@ -39,7 +39,7 @@ title: Calculator
 <script>
 document.querySelectorAll('[type="range"]').forEach(function (field) {
 	field.addEventListener('change', function (e) {
-		e.target.previousChild.value = e.target.value;
+		e.target.previousSibling.value = e.target.value;
 	});
 });
 document.querySelectorAll('[name="purchase-price"], [name="down-payment"], [name="finance-amount"]').forEach(function (field) {
