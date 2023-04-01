@@ -320,7 +320,7 @@ img {
 }
 .calculator label {
 	display: inline-block;
-	min-width: 165px;
+	min-width: 182px;
 	text-align: right;
 	margin-right: 5px;
 }
