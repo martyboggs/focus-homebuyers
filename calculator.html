@@ -83,6 +83,7 @@ document.querySelectorAll('button').forEach(function (button) {
 			case 'finance-amount':
 				if (balloon.value) {
 					fa.value = (!monthRate ? (Number(balloon.value) / ((amortMonths - termMonths) / amortMonths)) : (((Math.pow(1 + monthRate, amortMonths) - Math.pow(1 + monthRate, termMonths))/(Math.pow(1 + monthRate, amortMonths) - 1)) / Number(balloon.value)).toFixed(2));
+console.log(monthRate, termMonths, amortMonths, Number(balloon.value));
 				}
 			break;
 			case 'interest-rate':
