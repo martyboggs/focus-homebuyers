@@ -9,13 +9,17 @@ title: Calculator
 			<div><label>Purchase Price</label><input type="number" name="purchase-price"></div>
 			<div><label>Down Payment</label><input type="number" name="down-payment"></div>
 			<div><label>Finance Amount</label><input type="number" name="finance-amount">
-			<button class="finance-amount">calculate</button></div>
+			<!-- <button class="finance-amount">calculate</button> -->
+			</div>
 			<div><label>Annual Interest Rate</label><input style="width: 50px;" type="number" name="interest-rate" value="0"><input type="range" min="0" max="10" value="0" step="0.25">
-			<!--<button class="interest-rate">calculate</button>--></div>
+			<!--<button class="interest-rate">calculate</button>-->
+			</div>
 			<div><label>Amortized Months</label><input type="number" name="amortized-months" value="360">
-			<!--<button class="amortized-months">calculate</button>--></div>
+			<!--<button class="amortized-months">calculate</button>-->
+			</div>
 			<div><label>Term Months</label><input type="number" name="term-months" value="96">
-			<!--<button class="term-months">calculate</button>--></div>
+			<!--<button class="term-months">calculate</button>-->
+			</div>
 			<div><label>Payment</label><input type="number" name="payment">
 			<button class="payment">calculate</button></div>
 			<div>
@@ -40,6 +44,8 @@ title: Calculator
 document.querySelectorAll('[type="range"]').forEach(function (field) {
 	field.addEventListener('input', function (e) {
 		e.target.previousSibling.value = Number(e.target.value).toFixed(2);
+		calculate({className: 'payment'});
+		calculate({className: 'balloon'});
 	});
 });
 document.querySelectorAll('[name="purchase-price"], [name="down-payment"], [name="finance-amount"]').forEach(function (field) {
@@ -66,52 +72,56 @@ document.querySelectorAll('[name="purchase-price"], [name="down-payment"], [name
 		}
 	});
 });
+
 document.querySelectorAll('button').forEach(function (button) {
 	button.addEventListener('click', function (e) {
-		var fa = document.querySelector('[name="finance-amount"]');
-		var int = document.querySelector('[name="interest-rate"]');
-		var term = document.querySelector('[name="term-months"]');
-		var amort = document.querySelector('[name="amortized-months"]');
-		var pmt = document.querySelector('[name="payment"]');
-		var balloon = document.querySelector('[name="balloon"]');
-		var monthRate = Number(int.value) / 100 / 12;
-		var termMonths = Number(term.value);
-		var amortMonths = Number(amort.value);
-		var downPayment = document.querySelector('[name="down-payment"]');
-
-		switch (button.className) {
-			case 'finance-amount':
-				if (balloon.value) {
-					fa.value = (!monthRate ? Number(balloon.value) / ((amortMonths - termMonths) / amortMonths) : Number(balloon.value) / ((Math.pow(1 + monthRate, amortMonths) - Math.pow(1 + monthRate, termMonths))/(Math.pow(1 + monthRate, amortMonths) - 1))).toFixed(2);
-console.log(monthRate, termMonths, amortMonths, Number(balloon.value));
-				}
-			break;
-			case 'interest-rate':
-			break;
-			case 'term-months':
-			break;
-			case 'payment':
-				pmt.value = (!monthRate ? Number(fa.value) / amortMonths : Number(fa.value) * monthRate * Math.pow(1 + monthRate, amortMonths) / (Math.pow(1 + monthRate, amortMonths) - 1)).toFixed(2);
-				// what if no fa?
-				// what if no amort?
-				// what if no term?
-				// what if no future?
-			break;
-			case 'balloon':
-				var balloonPayment = !monthRate ? Number(fa.value) * (amortMonths - termMonths) / amortMonths : Number(fa.value) * (Math.pow(1 + monthRate, amortMonths)-Math.pow(1 + monthRate, termMonths))/(Math.pow(1 + monthRate, amortMonths) - 1);
-				balloon.value = balloonPayment.toFixed(2);
-				document.querySelector('[name="ltv"]').value = Math.round(balloonPayment / Number(fa.value) * 100) + '%';
-				// what if no fa?
-				// what if no amort?
-				// what if no term?
-				// what if no payment?
-			break;
-		}
-		if (termMonths === amortMonths || balloon.value) {
-			document.querySelector('[name="total"]').value = (Number(downPayment.value) + termMonths * Number(pmt.value) + Number(balloon.value)).toFixed(2);
-		}
+		calculate(button);
 	});
 });
+
+function calculate(button) {
+	var fa = document.querySelector('[name="finance-amount"]');
+	var int = document.querySelector('[name="interest-rate"]');
+	var term = document.querySelector('[name="term-months"]');
+	var amort = document.querySelector('[name="amortized-months"]');
+	var pmt = document.querySelector('[name="payment"]');
+	var balloon = document.querySelector('[name="balloon"]');
+	var monthRate = Number(int.value) / 100 / 12;
+	var termMonths = Number(term.value);
+	var amortMonths = Number(amort.value);
+	var downPayment = document.querySelector('[name="down-payment"]');
+
+	switch (button.className) {
+		case 'finance-amount':
+			if (balloon.value) {
+				fa.value = (!monthRate ? Number(balloon.value) / ((amortMonths - termMonths) / amortMonths) : Number(balloon.value) / ((Math.pow(1 + monthRate, amortMonths) - Math.pow(1 + monthRate, termMonths))/(Math.pow(1 + monthRate, amortMonths) - 1))).toFixed(2);
+			}
+		break;
+		case 'interest-rate':
+		break;
+		case 'term-months':
+		break;
+		case 'payment':
+			pmt.value = (!monthRate ? Number(fa.value) / amortMonths : Number(fa.value) * monthRate * Math.pow(1 + monthRate, amortMonths) / (Math.pow(1 + monthRate, amortMonths) - 1)).toFixed(2);
+			// what if no fa?
+			// what if no amort?
+			// what if no term?
+			// what if no future?
+		break;
+		case 'balloon':
+			var balloonPayment = !monthRate ? Number(fa.value) * (amortMonths - termMonths) / amortMonths : Number(fa.value) * (Math.pow(1 + monthRate, amortMonths)-Math.pow(1 + monthRate, termMonths))/(Math.pow(1 + monthRate, amortMonths) - 1);
+			balloon.value = balloonPayment.toFixed(2);
+			document.querySelector('[name="ltv"]').value = Math.round(balloonPayment / Number(fa.value) * 100) + '%';
+			// what if no fa?
+			// what if no amort?
+			// what if no term?
+			// what if no payment?
+		break;
+	}
+	if (termMonths === amortMonths || balloon.value) {
+		document.querySelector('[name="total"]').value = (Number(downPayment.value) + termMonths * Number(pmt.value) + Number(balloon.value)).toFixed(2);
+	}
+}
 </script>
 </div>
 </section>
