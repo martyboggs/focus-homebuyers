@@ -328,7 +328,7 @@ img {
 	max-width: 100%;
 	min-width: 217px;
 }
-.calculator > div {
+.calculator .left > div {
 	display: flex;
 }
 .visually-hidden {
