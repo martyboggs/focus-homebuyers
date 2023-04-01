@@ -10,7 +10,7 @@ title: Calculator
 			<div><label>Down Payment</label><input type="number" name="down-payment"></div>
 			<div><label>Finance Amount</label><input type="number" name="finance-amount">
 			<button class="finance-amount">calculate</button></div>
-			<div><label>Annual Interest Rate</label><input type="number" name="interest-rate" value="0">
+			<div><label>Annual Interest Rate</label><input type="number" name="interest-rate" value="0"><input type="range" min="0" max="10" name="interest-rate" value="0" step="0.25">
 			<!--<button class="interest-rate">calculate</button>--></div>
 			<div><label>Amortized Months</label><input type="number" name="amortized-months" value="360">
 			<!--<button class="amortized-months">calculate</button>--></div>
@@ -37,6 +37,11 @@ title: Calculator
 		<!-- how is time valued? use 2x over 30 years as benchmark -->
 	</div>
 <script>
+document.querySelectorAll('[type="range"]').forEach(function (field) {
+	field.addEventListener('change', function (e) {
+		e.target.previousChild.value = e.target.value;
+	});
+});
 document.querySelectorAll('[name="purchase-price"], [name="down-payment"], [name="finance-amount"]').forEach(function (field) {
 	field.addEventListener('input', function (e) {
 		var pp = document.querySelector('[name="purchase-price"]');
