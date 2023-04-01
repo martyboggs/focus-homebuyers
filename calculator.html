@@ -100,7 +100,7 @@ document.querySelectorAll('button').forEach(function (button) {
 		if (termMonths === amortMonths || balloon.value) {
 			var balloonPayment = Number(downPayment.value) + termMonths * Number(pmt.value) + Number(balloon.value);
 			document.querySelector('[name="net"]').value = balloonPayment;
-			document.querySelector('[name="ltv"]').value = Number(balloonPayment / Number(fa.value) * 100) + '%';
+			document.querySelector('[name="ltv"]').value = Math.round(balloonPayment / Number(fa.value) * 100) + '%';
 		}
 	});
 });
