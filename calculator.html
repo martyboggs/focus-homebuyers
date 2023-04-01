@@ -9,7 +9,7 @@ title: Calculator
 			<div><label>Purchase Price</label><input type="number" name="purchase-price"></div>
 			<div><label>Down Payment</label><input type="number" name="down-payment"></div>
 			<div><label>Finance Amount</label><input type="number" name="finance-amount">
-			<!--<button class="finance-amount">calculate</button>--></div>
+			<button class="finance-amount">calculate</button></div>
 			<div><label>Annual Interest Rate</label><input type="number" name="interest-rate" value="0">
 			<!--<button class="interest-rate">calculate</button>--></div>
 			<div><label>Amortized Months</label><input type="number" name="amortized-months" value="360">
@@ -31,6 +31,7 @@ title: Calculator
 				<!-- bad deal, break even,  -->
 			</div>
 		</div>
+		<!-- how is time valued? use 2x over 30 years as benchmark -->
 	</div>
 <script>
 document.querySelectorAll('[name="purchase-price"], [name="down-payment"], [name="finance-amount"]').forEach(function (field) {
@@ -68,6 +69,7 @@ document.querySelectorAll('button').forEach(function (button) {
 		var monthRate = Number(int.value) / 100 / 12;
 		var termMonths = Number(term.value);
 		var amortMonths = Number(amort.value);
+		var downPayment = document.querySelector('[name="down-payment"]');
 
 		switch (button.className) {
 			case 'finance-amount':
@@ -93,7 +95,9 @@ document.querySelectorAll('button').forEach(function (button) {
 			break;
 		}
 		if (termMonths === amortMonths || balloon.value) {
-			document.querySelector('[name="net"]').value = Number(document.querySelector('[name="down-payment"]').value) + termMonths * Number(pmt.value) + Number(balloon.value);
+			var balloonPayment = Number(downPayment.value) + termMonths * Number(pmt.value) + Number(balloon.value);
+			document.querySelector('[name="net"]').value = balloonPayment;
+			document.querySelector('[name="ltv"]').value = Number(balloonPayment / Number(fa.value) * 100) + '%';
 		}
 	});
 });
