@@ -90,7 +90,9 @@ document.querySelectorAll('button').forEach(function (button) {
 				// what if no future?
 			break;
 			case 'balloon':
-				balloon.value = (!monthRate ? Number(fa.value) * (amortMonths - termMonths) / amortMonths : Number(fa.value) * (Math.pow(1 + monthRate, amortMonths)-Math.pow(1 + monthRate, termMonths))/(Math.pow(1 + monthRate, amortMonths) - 1)).toFixed(2);
+				var balloonPayment = !monthRate ? Number(fa.value) * (amortMonths - termMonths) / amortMonths : Number(fa.value) * (Math.pow(1 + monthRate, amortMonths)-Math.pow(1 + monthRate, termMonths))/(Math.pow(1 + monthRate, amortMonths) - 1);
+				balloon.value = balloonPayment.toFixed(2);
+				document.querySelector('[name="ltv"]').value = Math.round(balloonPayment / Number(fa.value) * 100) + '%';
 				// what if no fa?
 				// what if no amort?
 				// what if no term?
@@ -98,9 +100,7 @@ document.querySelectorAll('button').forEach(function (button) {
 			break;
 		}
 		if (termMonths === amortMonths || balloon.value) {
-			var balloonPayment = Number(downPayment.value) + termMonths * Number(pmt.value) + Number(balloon.value);
-			document.querySelector('[name="net"]').value = balloonPayment;
-			document.querySelector('[name="ltv"]').value = Math.round(balloonPayment / Number(fa.value) * 100) + '%';
+			document.querySelector('[name="net"]').value = Number(downPayment.value) + termMonths * Number(pmt.value) + Number(balloon.value);
 		}
 	});
 });
