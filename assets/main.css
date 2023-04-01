@@ -318,6 +318,9 @@ img {
 .testimonial-attribution p {
 	margin-bottom: 0;
 }
+.calculator {
+	display: flex;
+}
 .calculator label {
 	display: inline-block;
 	min-width: 182px;
