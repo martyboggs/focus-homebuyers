@@ -334,11 +334,27 @@ img {
 .calculator .left > div {
 	display: flex;
 }
+.calculator .right {
+	margin-left: 20px;
+	display: flex;
+}
 .progress-bar {
+	padding: 5px;
+	border: 1px solid black;
+	height: 100%;
 }
 .progress-container {
+	padding: 5px;
+	border: 1px solid black;
+	height: 100%;
+	display: flex;
+	align-items: flex-end;
 }
 .progress {
+	padding: 5px;
+	background: var(--primary);
+	width: 20px;
+	height: 50%;
 }
 .visually-hidden {
 	border: 0;

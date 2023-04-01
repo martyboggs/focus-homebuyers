@@ -34,7 +34,7 @@ title: Calculator
 			<div><label>Cashflow</label><input type="number" name="cashflow"></div>
 		</div>
 		<div class="right">
-			<div clas="progress-bar">
+			<div class="progress-bar">
 				<div class="progress-container">
 					<div class="progress"></div>
 				</div>
@@ -114,7 +114,9 @@ function calculate(button) {
 		case 'balloon':
 			var balloonPayment = !monthRate ? Number(fa.value) * (amortMonths - termMonths) / amortMonths : Number(fa.value) * (Math.pow(1 + monthRate, amortMonths)-Math.pow(1 + monthRate, termMonths))/(Math.pow(1 + monthRate, amortMonths) - 1);
 			balloon.value = balloonPayment.toFixed(2);
-			document.querySelector('[name="ltv"]').value = Math.round(balloonPayment / Number(fa.value) * 100) + '%';
+			if (balloonPayment && fa.value) {
+				document.querySelector('[name="ltv"]').value = Math.round(balloonPayment / Number(fa.value) * 100) + '%';
+			}
 			// what if no fa?
 			// what if no amort?
 			// what if no term?
