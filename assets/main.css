@@ -324,6 +324,10 @@ img {
 	text-align: right;
 	margin-right: 5px;
 }
+.calculator input[type="range"] {
+	max-width: 100%;
+	min-width: 270px;
+}
 .visually-hidden {
 	border: 0;
 	clip: rect(0 0 0 0);
