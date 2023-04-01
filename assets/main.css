@@ -326,7 +326,10 @@ img {
 }
 .calculator input[type="range"] {
 	max-width: 100%;
-	min-width: 270px;
+	min-width: 217px;
+}
+.calculator > div {
+	display: flex;
 }
 .visually-hidden {
 	border: 0;
