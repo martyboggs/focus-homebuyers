@@ -20,14 +20,14 @@ title: Calculator
 			<button class="payment">calculate</button></div>
 			<div>
 				<label>Balloon</label><input type="number" name="balloon">
-				<label>LTV</label><input readonly type="number" name="ltv">
+				<label>LTV</label><input readonly type="text" name="ltv">
 				<button class="balloon">calculate</button>
 			</div>
 			<div><label>Total</label><input readonly type="number" name="net"></div>
 			<hr>
-			<div><label>Monthly Rents</label><input readonly type="number" name="rents"></div>
-			<div><label>Monthly Expenses</label><input readonly type="number" name="expenses"></div>
-			<div><label>Cashflow</label><input readonly type="number" name="cashflow"></div>
+			<div><label>Monthly Rents</label><input type="number" name="rents"></div>
+			<div><label>Monthly Expenses</label><input type="number" name="expenses"></div>
+			<div><label>Cashflow</label><input type="number" name="cashflow"></div>
 		</div>
 		<div class="right">
 			<div clas="progress-bar">
@@ -76,7 +76,9 @@ document.querySelectorAll('button').forEach(function (button) {
 
 		switch (button.className) {
 			case 'finance-amount':
-				fa.value = (!monthRate ? Number(balloon.value) / ((amortMonths - termMonths) / amortMonths) : ((Math.pow(1 + monthRate, amortMonths) - Math.pow(1 + monthRate, termMonths))/(Math.pow(1 + monthRate, amortMonths) - 1)) / Number(balloon.value)).toFixed(2);
+				if (balloon.value) {
+					fa.value = (!monthRate ? Number(balloon.value) / ((amortMonths - termMonths) / amortMonths) : ((Math.pow(1 + monthRate, amortMonths) - Math.pow(1 + monthRate, termMonths))/(Math.pow(1 + monthRate, amortMonths) - 1)) / Number(balloon.value)).toFixed(2);
+				}
 			break;
 			case 'interest-rate':
 			break;
