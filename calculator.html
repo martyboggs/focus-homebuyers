@@ -63,15 +63,13 @@ document.querySelectorAll('[name="purchase-price"], [name="down-payment"], [name
 			break;
 			case 'down-payment':
 				fa.value = ppVal - dpVal;
-				calculate({className: 'payment'});
-				calculate({className: 'balloon'});
 			break;
 			case 'finance-amount':
 				pp.value = faVal + dpVal;
-				calculate({className: 'payment'});
-				calculate({className: 'balloon'});
 			break;
 		}
+		calculate({className: 'payment'});
+		calculate({className: 'balloon'});
 	});
 });
 
@@ -91,7 +89,7 @@ document.querySelectorAll('[type="range"]').forEach(function (field) {
 	});
 });
 
-document.querySelectorAll('[name="finance-amount"], [name="amortized-months"], [name="term-months"]').forEach(function (field) {
+document.querySelectorAll('[name="amortized-months"], [name="term-months"]').forEach(function (field) {
 	field.addEventListener('input', function (e) {
 		calculate({className: 'payment'});
 		calculate({className: 'balloon'});
