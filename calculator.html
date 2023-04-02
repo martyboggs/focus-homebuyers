@@ -73,7 +73,9 @@ document.querySelectorAll('[name="purchase-price"], [name="down-payment"], [name
 
 document.querySelectorAll('[name="interest-type"]').forEach(function (field) {
 	field.addEventListener('change', function (e) {
-		console.log(field, e);
+		document.querySelector('.amortized-months').style.display = field.value === 'simple' ? 'none' : 'block';
+		calculate({className: 'payment'});
+		calculate({className: 'balloon'});
 	});
 });
 
