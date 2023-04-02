@@ -44,13 +44,6 @@ title: Calculator
 		<!-- how is time valued? use 2x over 30 years as benchmark -->
 	</div>
 <script>
-document.querySelectorAll('[type="range"]').forEach(function (field) {
-	field.addEventListener('input', function (e) {
-		e.target.previousSibling.value = Number(e.target.value).toFixed(2);
-		calculate({className: 'payment'});
-		calculate({className: 'balloon'});
-	});
-});
 document.querySelectorAll('[name="purchase-price"], [name="down-payment"], [name="finance-amount"]').forEach(function (field) {
 	field.addEventListener('input', function (e) {
 		var pp = document.querySelector('[name="purchase-price"]');
@@ -73,6 +66,21 @@ document.querySelectorAll('[name="purchase-price"], [name="down-payment"], [name
 				pp.value = faVal + dpVal;
 			break;
 		}
+	});
+});
+
+document.querySelectorAll('[type="range"]').forEach(function (field) {
+	field.addEventListener('input', function (e) {
+		e.target.previousSibling.value = Number(e.target.value).toFixed(2);
+		calculate({className: 'payment'});
+		calculate({className: 'balloon'});
+	});
+});
+
+document.querySelectorAll('[name="amortized-months"], [name="term-months"]').forEach(function (field) {
+	field.addEventListener('input', function (e) {
+		calculate({className: 'payment'});
+		calculate({className: 'balloon'});
 	});
 });
 
