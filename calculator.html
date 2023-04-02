@@ -63,9 +63,13 @@ document.querySelectorAll('[name="purchase-price"], [name="down-payment"], [name
 			break;
 			case 'down-payment':
 				fa.value = ppVal - dpVal;
+				calculate({className: 'payment'});
+				calculate({className: 'balloon'});
 			break;
 			case 'finance-amount':
 				pp.value = faVal + dpVal;
+				calculate({className: 'payment'});
+				calculate({className: 'balloon'});
 			break;
 		}
 	});
