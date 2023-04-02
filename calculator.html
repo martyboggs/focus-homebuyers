@@ -11,12 +11,12 @@ title: Calculator
 			<div><label>Finance Amount</label><input type="number" name="finance-amount">
 			<!-- <button class="finance-amount">calculate</button> -->
 			</div>
-			<div><label>Interest Type</label><input type="radio" name="interest-type" value="simple" for="simple"><label id="simple" style="min-width: 63px;">Simple</label><input type="radio" name="interest-type" value="amortized" for="amortized"><label id="amortized" style="min-width: 101px;">Amortized</label>
+			<div><label>Interest Type</label><input type="radio" name="interest-type" value="simple" id="simple" checked><label for="simple" style="min-width: 63px;">Simple</label><input type="radio" name="interest-type" value="amortized" id="amortized"><label for="amortized" style="min-width: 101px;">Amortized</label>
 			</div>
 			<div><label>Annual Interest Rate</label><input style="width: 50px;" type="number" name="interest-rate" step="0.25" value="0"><input type="range" min="0" max="10" value="0" step="0.25">
 			<!--<button class="interest-rate">calculate</button>-->
 			</div>
-			<div><label>Amortized Months</label><input type="number" name="amortized-months" value="360">
+			<div style="display: none;" class="amortized-months"><label>Amortized Months</label><input type="number" name="amortized-months" value="360">
 			<!--<button class="amortized-months">calculate</button>-->
 			</div>
 			<div><label>Term Months</label><input type="number" name="term-months" value="96">
@@ -68,6 +68,12 @@ document.querySelectorAll('[name="purchase-price"], [name="down-payment"], [name
 				pp.value = faVal + dpVal;
 			break;
 		}
+	});
+});
+
+document.querySelectorAll('[name="interest-type"]').forEach(function (field) {
+	field.addEventListener('change', function (e) {
+		console.log(field, e);
 	});
 });
 
