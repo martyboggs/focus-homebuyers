@@ -90,7 +90,7 @@ document.querySelectorAll('[type="range"]').forEach(function (field) {
 	});
 });
 
-document.querySelectorAll('[name="amortized-months"], [name="term-months"]').forEach(function (field) {
+document.querySelectorAll('[name="interest-rate"], [name="amortized-months"], [name="term-months"]').forEach(function (field) {
 	field.addEventListener('input', function (e) {
 		calculate({className: 'payment'});
 		calculate({className: 'balloon'});
