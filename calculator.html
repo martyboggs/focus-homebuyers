@@ -19,6 +19,8 @@ title: Calculator
 			</div>
 			<div style="display: none;" class="amortized-months"><label>Amortized Months</label><input type="number" name="amortized-months" value="360">
 			</div>
+			<div class="principal-percentage"><label>Principal Percentage</label><input type="number" name="principal-percentage" value="0"><input type="range" min="0" max="100" value="0" step="5" class="principal-percentage-range">
+			</div>
 			<div><label>Term Months</label><input type="number" name="term-months" value="96">
 			</div>
 			<div>
@@ -73,7 +75,8 @@ document.querySelectorAll('[name="purchase-price"], [name="down-payment"], [name
 document.querySelectorAll('[name="interest-type"]').forEach(function (field) {
 	field.addEventListener('change', function (e) {
 		interestType = field.value;
-		document.querySelector('.amortized-months').style.display = field.value === 'simple' ? 'none' : 'flex';
+		document.querySelector('.amortized-months').style.display = field.value === 'amortized' ? 'flex' : 'none';
+		document.querySelector('.principal-percentage').style.display = field.value === 'simple' ? 'flex' : 'none';
 		calculate({className: 'payment'});
 		calculate({className: 'balloon'});
 	});
@@ -82,7 +85,9 @@ document.querySelectorAll('[name="interest-type"]').forEach(function (field) {
 document.querySelectorAll('[type="range"]').forEach(function (field) {
 	field.addEventListener('input', function (e) {
 		e.target.previousSibling.value = Number(e.target.value).toFixed(2);
-		calculate({className: 'payment'});
+		if (field.name !== 'principal-percentage-range') {
+			calculate({className: 'payment'});
+		}
 		calculate({className: 'balloon'});
 	});
 });
@@ -94,7 +99,7 @@ document.querySelectorAll('[name="interest-rate"]').forEach(function (field) {
 	});
 });
 
-document.querySelectorAll('[name="payment"], [name="amortized-months"], [name="term-months"]').forEach(function (field) {
+document.querySelectorAll('[name="payment"], [name="amortized-months"], [name="term-months"], [name="principal-percentage"]').forEach(function (field) {
 	field.addEventListener('input', function (e) {
 		calculate({className: 'balloon'});
 	});
