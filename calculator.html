@@ -72,6 +72,33 @@ document.querySelectorAll('[name="purchase-price"], [name="down-payment"], [name
 	});
 });
 
+document.querySelectorAll('[name="rents"], [name="expenses"], [name="cashflow"]').forEach(function (field) {
+	field.addEventListener('input', function (e) {
+		var rs = document.querySelector('[name="rents"]');
+		var ex = document.querySelector('[name="expenses"]');
+		var cf = document.querySelector('[name="cashflow"]');
+		var rsVal = Number(rs.value);
+		var exVal = Number(ex.value);
+		var cfVal = Number(cf.value);
+		if (!rsVal && rs !== field) rs.value = rsVal;
+		if (!exVal && ex !== field) ex.value = exVal;
+		if (!cfVal && cf !== field) cf.value = cfVal;
+		switch (field.name) {
+			case 'rents':
+				cf.value = rsVal - exVal;
+			break;
+			case 'expenses':
+				cf.value = rsVal - exVal;
+			break;
+			case 'cashflow':
+				rs.value = cfVal + exVal;
+			break;
+		}
+		calculate({className: 'payment'});
+		calculate({className: 'balloon'});
+	});
+});
+
 document.querySelectorAll('[name="interest-type"]').forEach(function (field) {
 	field.addEventListener('change', function (e) {
 		interestType = field.value;
