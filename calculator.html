@@ -77,6 +77,7 @@ document.querySelectorAll('[name="rents"], [name="expenses"], [name="cashflow"]'
 		var rs = document.querySelector('[name="rents"]');
 		var ex = document.querySelector('[name="expenses"]');
 		var cf = document.querySelector('[name="cashflow"]');
+		var payment = document.querySelector('[name="payment"]');
 		var rsVal = Number(rs.value);
 		var exVal = Number(ex.value);
 		var cfVal = Number(cf.value);
@@ -85,10 +86,10 @@ document.querySelectorAll('[name="rents"], [name="expenses"], [name="cashflow"]'
 		if (!cfVal && cf !== field) cf.value = cfVal;
 		switch (field.name) {
 			case 'rents':
-				cf.value = rsVal - exVal;
+				cf.value = rsVal - exVal - Number(payment.value);
 			break;
 			case 'expenses':
-				cf.value = rsVal - exVal;
+				cf.value = rsVal - exVal - Number(payment.value);
 			break;
 			case 'cashflow':
 				rs.value = cfVal + exVal;
