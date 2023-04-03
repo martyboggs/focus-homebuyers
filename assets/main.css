@@ -352,7 +352,7 @@ img {
 }
 .progress {
 	padding: 5px;
-	background: var(--primary);
+	background: #4b75ff;
 	width: 20px;
 	height: 50%;
 }
