@@ -21,6 +21,9 @@ select,
 input {
 	font-family: 'Poppins', sans-serif;
 }
+input[type="radio"] {
+	margin: 3px;
+}
 p {
 	margin-top: 0;
 }
@@ -333,6 +336,7 @@ img {
 }
 .calculator .left > div {
 	display: flex;
+	align-items: center;
 }
 .calculator .right {
 	margin-left: 20px;
