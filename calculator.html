@@ -13,13 +13,13 @@ title: Calculator
 			</div>
 			<div><label>Interest Type</label><input type="radio" name="interest-type" value="simple" id="simple" checked><label for="simple" style="min-width: 63px;">Simple</label><input type="radio" name="interest-type" value="amortized" id="amortized"><label for="amortized" style="min-width: 101px;">Amortized</label>
 			</div>
-			<div><label>Annual Interest Rate</label><input style="width: 50px;" type="number" name="interest-rate" step="0.25" value="0"><input type="range" min="0" max="10" value="0" step="0.25">
+			<div><label>Annual Interest Rate</label><input style="width: 50px;" type="number" name="interest-rate" step="0.25" value="0"><input type="range" min="0" max="10" value="0" step="0.25" class="interest-rate-range">
 			</div>
 			<div><label>Payment</label><input type="number" name="payment">
 			</div>
 			<div style="display: none;" class="amortized-months"><label>Amortized Months</label><input type="number" name="amortized-months" value="360">
 			</div>
-			<div class="principal-percentage"><label>Principal %</label><input style="width: 50px;" type="number" name="principal-percentage" step="5" value="0"><input type="range" min="0" max="100" value="0" step="5" class="principal-percentage-range">
+			<div class="principal-percentage"><label>Principal %</label><input style="width: 50px;" type="number" name="principal-percentage" step="5" value="50"><input type="range" min="0" max="100" value="50" step="5" class="principal-percentage-range">
 			</div>
 			<div><label>Term Months</label><input type="number" name="term-months" value="96">
 			</div>
@@ -85,9 +85,7 @@ document.querySelectorAll('[name="interest-type"]').forEach(function (field) {
 document.querySelectorAll('[type="range"]').forEach(function (field) {
 	field.addEventListener('input', function (e) {
 		e.target.previousSibling.value = Number(e.target.value).toFixed(2);
-		if (field.name !== 'principal-percentage-range') {
-			calculate({className: 'payment'});
-		}
+		calculate({className: 'payment'});
 		calculate({className: 'balloon'});
 	});
 });
@@ -117,6 +115,7 @@ function calculate(button) {
 	var term = document.querySelector('[name="term-months"]');
 	var amort = document.querySelector('[name="amortized-months"]');
 	var pmt = document.querySelector('[name="payment"]');
+	var principalPerc = document.querySelector('[name="principal-percentage"]');
 	var balloon = document.querySelector('[name="balloon"]');
 	var monthRate = Number(int.value) / 100 / 12;
 	var termMonths = Number(term.value);
@@ -135,8 +134,7 @@ function calculate(button) {
 		break;
 		case 'payment':
 			if (interestType === 'simple') {
-				// assume interest only payments
-				pmt.value = (Number(fa.value) * monthRate).toFixed(2);
+				pmt.value = (Number(fa.value) * monthRate + Number(principalPerc) / 100 * Number(fa.value) * monthRate).toFixed(2);
 			} else {
 				if (monthRate) {
 					pmt.value = (Number(fa.value) * monthRate * Math.pow(1 + monthRate, amortMonths) / (Math.pow(1 + monthRate, amortMonths) - 1)).toFixed(2);
