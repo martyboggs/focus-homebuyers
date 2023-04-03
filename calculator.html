@@ -94,7 +94,7 @@ document.querySelectorAll('[name="rents"], [name="expenses"], [name="cashflow"]'
 				cf.value = rsVal - exVal - Number(payment.value);
 			break;
 			case 'cashflow':
-				rs.value = cfVal + exVal;
+				rs.value = cfVal + exVal + Number(payment.value);
 			break;
 		}
 		calculate({className: 'payment'});
@@ -149,9 +149,9 @@ function calculate(button) {
 	var pmt = document.querySelector('[name="payment"]');
 	var principalPerc = document.querySelector('[name="principal-percentage"]');
 	var balloon = document.querySelector('[name="balloon"]');
-	var rents = document.querySelector('[name="rents"]');
-	var expenses = document.querySelector('[name="expenses"]');
-	var cashflow = document.querySelector('[name="cashflow"]');
+	var rs = document.querySelector('[name="rents"]');
+	var ex = document.querySelector('[name="expenses"]');
+	var cf = document.querySelector('[name="cashflow"]');
 	var monthRate = Number(int.value) / 100 / 12;
 	var termMonths = Number(term.value);
 	var amortMonths = Number(amort.value);
@@ -198,6 +198,12 @@ function calculate(button) {
 	}
 	if (termMonths === amortMonths || balloon.value) {
 		document.querySelector('[name="total"]').value = (Number(downPayment.value) + termMonths * Number(pmt.value) + Number(balloon.value)).toFixed(2);
+	}
+	if (rs.value) {
+		cf.value = Number(rs.value) - Number(ex.value) - Number(payment.value);
+	}
+	if (cf.value) {
+		document.querySelector('.progress').style.height = (Number(cf.value) / 350) + '%';
 	}
 }
 </script>
