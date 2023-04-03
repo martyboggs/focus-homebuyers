@@ -97,8 +97,7 @@ document.querySelectorAll('[name="rents"], [name="expenses"], [name="cashflow"]'
 				rs.value = cfVal + exVal + Number(pmt.value);
 			break;
 		}
-		calculate({className: 'payment'});
-		calculate({className: 'balloon'});
+		calculate({className: ''});
 	});
 });
 
@@ -206,6 +205,7 @@ function calculate(button) {
 		var goodCashflow = 350;
 		var height = Number(cf.value) / goodCashflow * 100;
 		height = height > 100 ? 100 : height;
+		height = height < 0 ? 0 : height;
 		document.querySelector('.progress').style.height = height + '%';
 	}
 }
