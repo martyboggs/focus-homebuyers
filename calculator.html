@@ -40,7 +40,7 @@ title: Calculator
 				<div class="progress-container">
 					<div class="progress"></div>
 				</div>
-				<!-- bad deal, break even, 1% rule, 2% rule, cashflow > 350 -->
+				<!-- bad deal, break even, cashflow > 350, cashflow > 700 -->
 			</div>
 		</div>
 		<!-- how is time valued? use 2x over 30 years as benchmark -->
@@ -203,7 +203,7 @@ function calculate(button) {
 	}
 	if (cf.value) {
 		var goodCashflow = 350;
-		var height = Number(cf.value) / goodCashflow * 100;
+		var height = Number(cf.value) / goodCashflow / 2 * 100;
 		height = height > 100 ? 100 : height;
 		height = height < 0 ? 0 : height;
 		document.querySelector('.progress').style.height = height + '%';
