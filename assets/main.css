@@ -368,7 +368,7 @@ img {
 }
 .social a {
 	border-radius: 50%;
-	background: gray;
+	background: #e8e8e8;
 	width: 40px;
 	height: 40px;
 	display: -webkit-box;
@@ -378,7 +378,7 @@ img {
 	align-items: center;
 }
 .social svg {
-	fill: black;
+	fill: var(--primary);
 	width: 1em;
 	height: 1em;
 }
