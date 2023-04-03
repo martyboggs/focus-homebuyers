@@ -15,11 +15,11 @@ title: Calculator
 			</div>
 			<div><label>Annual Interest Rate</label><input style="width: 50px;" type="number" name="interest-rate" step="0.25" value="0"><input type="range" min="0" max="10" value="0" step="0.25">
 			</div>
+			<div><label>Payment</label><input type="number" name="payment">
+			</div>
 			<div style="display: none;" class="amortized-months"><label>Amortized Months</label><input type="number" name="amortized-months" value="360">
 			</div>
 			<div><label>Term Months</label><input type="number" name="term-months" value="96">
-			</div>
-			<div><label>Payment</label><input type="number" name="payment">
 			</div>
 			<div>
 				<label>Balloon</label><input readonly style="max-width: 128px;" type="number" name="balloon">
@@ -89,7 +89,6 @@ document.querySelectorAll('[type="range"]').forEach(function (field) {
 
 document.querySelectorAll('[name="interest-rate"], [name="amortized-months"], [name="term-months"]').forEach(function (field) {
 	field.addEventListener('input', function (e) {
-		calculate({className: 'payment'});
 		calculate({className: 'balloon'});
 	});
 });
