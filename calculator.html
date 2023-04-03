@@ -14,21 +14,16 @@ title: Calculator
 			<div><label>Interest Type</label><input type="radio" name="interest-type" value="simple" id="simple" checked><label for="simple" style="min-width: 63px;">Simple</label><input type="radio" name="interest-type" value="amortized" id="amortized"><label for="amortized" style="min-width: 101px;">Amortized</label>
 			</div>
 			<div><label>Annual Interest Rate</label><input style="width: 50px;" type="number" name="interest-rate" step="0.25" value="0"><input type="range" min="0" max="10" value="0" step="0.25">
-			<!--<button class="interest-rate">calculate</button>-->
 			</div>
 			<div style="display: none;" class="amortized-months"><label>Amortized Months</label><input type="number" name="amortized-months" value="360">
-			<!--<button class="amortized-months">calculate</button>-->
 			</div>
 			<div><label>Term Months</label><input type="number" name="term-months" value="96">
-			<!--<button class="term-months">calculate</button>-->
 			</div>
 			<div><label>Payment</label><input type="number" name="payment">
-			<!-- <button class="payment">calculate</button> -->
 			</div>
 			<div>
 				<label>Balloon</label><input readonly style="max-width: 128px;" type="number" name="balloon">
 				<label style="min-width: 37px;">LTV</label><input style="max-width: 100px;" readonly type="text" name="ltv">
-				<!-- <button class="balloon">calculate</button> -->
 			</div>
 			<div><label>Total</label><input readonly type="number" name="total"></div>
 			<hr>
@@ -47,6 +42,7 @@ title: Calculator
 		<!-- how is time valued? use 2x over 30 years as benchmark -->
 	</div>
 <script>
+var interestType = 'simple';
 document.querySelectorAll('[name="purchase-price"], [name="down-payment"], [name="finance-amount"]').forEach(function (field) {
 	field.addEventListener('input', function (e) {
 		var pp = document.querySelector('[name="purchase-price"]');
@@ -76,6 +72,7 @@ document.querySelectorAll('[name="purchase-price"], [name="down-payment"], [name
 
 document.querySelectorAll('[name="interest-type"]').forEach(function (field) {
 	field.addEventListener('change', function (e) {
+		interestType = field.value;
 		document.querySelector('.amortized-months').style.display = field.value === 'simple' ? 'none' : 'flex';
 		calculate({className: 'payment'});
 		calculate({className: 'balloon'});
@@ -126,22 +123,33 @@ function calculate(button) {
 		case 'term-months':
 		break;
 		case 'payment':
-			pmt.value = (!monthRate ? Number(fa.value) / amortMonths : Number(fa.value) * monthRate * Math.pow(1 + monthRate, amortMonths) / (Math.pow(1 + monthRate, amortMonths) - 1)).toFixed(2);
-			// what if no fa?
-			// what if no amort?
-			// what if no term?
-			// what if no future?
+			if (interestType === 'simple') {
+				// assume interest only payments
+				pmt.value = (Number(fa.value) * monthRate).toFixed(2);
+			} else {
+				if (monthRate) {
+					pmt.value = (Number(fa.value) * monthRate * Math.pow(1 + monthRate, amortMonths) / (Math.pow(1 + monthRate, amortMonths) - 1)).toFixed(2);
+				} else {
+					pmt.value = (Number(fa.value) / amortMonths).toFixed(2);
+				}
+			}
 		break;
 		case 'balloon':
-			var balloonPayment = !monthRate ? Number(fa.value) * (amortMonths - termMonths) / amortMonths : Number(fa.value) * (Math.pow(1 + monthRate, amortMonths)-Math.pow(1 + monthRate, termMonths))/(Math.pow(1 + monthRate, amortMonths) - 1);
+			var balloonPayment;
+			if (interestType === 'simple') {
+				// interest only
+				if (pmt.value) {
+					balloonPayment = Number(fa.value);
+				} else {
+					balloonPayment = Number(fa.value) - (Number(pmt.value) - Number(fa.value) * monthRate) * termMonths;
+				}
+			} else {
+				balloonPayment = !monthRate ? Number(fa.value) * (amortMonths - termMonths) / amortMonths : Number(fa.value) * (Math.pow(1 + monthRate, amortMonths)-Math.pow(1 + monthRate, termMonths))/(Math.pow(1 + monthRate, amortMonths) - 1);
+			}
 			balloon.value = balloonPayment.toFixed(2);
 			if (balloonPayment && fa.value) {
 				document.querySelector('[name="ltv"]').value = Math.round(balloonPayment / Number(fa.value) * 100) + '%';
 			}
-			// what if no fa?
-			// what if no amort?
-			// what if no term?
-			// what if no payment?
 		break;
 	}
 	if (termMonths === amortMonths || balloon.value) {
