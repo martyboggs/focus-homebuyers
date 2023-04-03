@@ -23,11 +23,12 @@ title: Calculator
 			<!--<button class="term-months">calculate</button>-->
 			</div>
 			<div><label>Payment</label><input type="number" name="payment">
-			<button class="payment">calculate</button></div>
+			<!-- <button class="payment">calculate</button> -->
+			</div>
 			<div>
-				<label>Balloon</label><input style="max-width: 128px;" type="number" name="balloon">
+				<label>Balloon</label><input readonly style="max-width: 128px;" type="number" name="balloon">
 				<label style="min-width: 37px;">LTV</label><input style="max-width: 100px;" readonly type="text" name="ltv">
-				<button class="balloon">calculate</button>
+				<!-- <button class="balloon">calculate</button> -->
 			</div>
 			<div><label>Total</label><input readonly type="number" name="total"></div>
 			<hr>
@@ -75,7 +76,7 @@ document.querySelectorAll('[name="purchase-price"], [name="down-payment"], [name
 
 document.querySelectorAll('[name="interest-type"]').forEach(function (field) {
 	field.addEventListener('change', function (e) {
-		document.querySelector('.amortized-months').style.display = field.value === 'simple' ? 'none' : 'block';
+		document.querySelector('.amortized-months').style.display = field.value === 'simple' ? 'none' : 'flex';
 		calculate({className: 'payment'});
 		calculate({className: 'balloon'});
 	});
