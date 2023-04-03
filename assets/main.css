@@ -353,8 +353,9 @@ img {
 	height: 100%;
 }
 .progress-container {
-	padding: 5px;
+	padding: 0;
 	border: 1px solid var(--border);
+	background: white;
 	height: 100%;
 	display: flex;
 	align-items: flex-end;
