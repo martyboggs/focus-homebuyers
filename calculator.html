@@ -19,7 +19,7 @@ title: Calculator
 			</div>
 			<div style="display: none;" class="amortized-months"><label>Amortized Months</label><input type="number" name="amortized-months" value="360">
 			</div>
-			<div class="principal-percentage"><label>Principal %</label><input readonly style="width: 50px;" type="text" value="50%"><input type="range" min="0" max="100" value="50" name="principal-percentage" class="principal-percentage-range">
+			<div class="principal-percentage"><label>Principal %</label><input readonly style="width: 50px;" type="text" value="50%"><input type="range" min="0" max="99" value="50" name="principal-percentage" class="principal-percentage-range">
 			</div>
 			<div><label>Term Months</label><input type="number" name="term-months" value="96">
 			</div>
@@ -142,7 +142,7 @@ function calculate(button) {
 // payment = -interest / (percent - 1)
 			if (interestType === 'simple') {
 				var interest = Number(fa.value) * monthRate;
-				pmt.value = (interest / (Number(principalPerc.value) / 100 - 1)).toFixed(2);
+				pmt.value = (-interest / (Number(principalPerc.value) / 100 - 1)).toFixed(2);
 			} else {
 				if (monthRate) {
 					pmt.value = (Number(fa.value) * monthRate * Math.pow(1 + monthRate, amortMonths) / (Math.pow(1 + monthRate, amortMonths) - 1)).toFixed(2);
