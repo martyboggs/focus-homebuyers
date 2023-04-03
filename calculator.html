@@ -135,7 +135,7 @@ function calculate(button) {
 		break;
 		case 'payment':
 			if (interestType === 'simple') {
-				pmt.value = (Number(fa.value) * monthRate + Number(principalPerc) / 100 * Number(fa.value) * monthRate).toFixed(2);
+				pmt.value = (Number(fa.value) * monthRate + Number(principalPerc.value) / 100 * Number(fa.value) * monthRate).toFixed(2);
 			} else {
 				if (monthRate) {
 					pmt.value = (Number(fa.value) * monthRate * Math.pow(1 + monthRate, amortMonths) / (Math.pow(1 + monthRate, amortMonths) - 1)).toFixed(2);
