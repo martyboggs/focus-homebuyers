@@ -19,7 +19,7 @@ title: Calculator
 			</div>
 			<div style="display: none;" class="amortized-months"><label>Amortized Months</label><input type="number" name="amortized-months" value="360">
 			</div>
-			<div><label>Payment</label><input type="number" name="payment">
+			<div><label>Payment</label><input readonly type="number" name="payment">
 			</div>
 			<div><label>Term Months</label><input type="number" name="term-months" value="96">
 			</div>
@@ -99,6 +99,7 @@ document.querySelectorAll('[name="interest-rate"], [name="amortized-months"]').f
 });
 
 document.querySelectorAll('[name="payment"], [name="term-months"], [name="principal-percentage"]').forEach(function (field) {
+	// principalPercent = (-interest / payment) + 1
 	field.addEventListener('input', function (e) {
 		calculate({className: 'balloon'});
 	});
@@ -134,12 +135,6 @@ function calculate(button) {
 		case 'term-months':
 		break;
 		case 'payment':
-// percent * payment = principal
-// principal + interest = payment
-// percent * payment + interest = payment
-// percent * payment - payment = -interest
-// payment (percent - 1) = -interest
-// payment = -interest / (percent - 1)
 			if (interestType === 'simple') {
 				var interest = Number(fa.value) * monthRate;
 				pmt.value = (-interest / (Number(principalPerc.value) / 100 - 1)).toFixed(2);
@@ -154,14 +149,13 @@ function calculate(button) {
 		case 'balloon':
 			var balloonPayment;
 			if (interestType === 'simple') {
-				// interest only
 				if (pmt.value) {
 					balloonPayment = Number(fa.value) - (Number(pmt.value) - Number(fa.value) * monthRate) * termMonths;
 				} else {
 					balloonPayment = Number(fa.value);
 				}
 			} else {
-				balloonPayment = !monthRate ? Number(fa.value) * (amortMonths - termMonths) / amortMonths : Number(fa.value) * (Math.pow(1 + monthRate, amortMonths)-Math.pow(1 + monthRate, termMonths))/(Math.pow(1 + monthRate, amortMonths) - 1);
+				balloonPayment = !monthRate ? Number(fa.value) * (amortMonths - termMonths) / amortMonths : Number(fa.value) * (Math.pow(1 + monthRate, amortMonths) - Math.pow(1 + monthRate, termMonths)) / (Math.pow(1 + monthRate, amortMonths) - 1);
 			}
 			balloon.value = balloonPayment.toFixed(2);
 			if (balloonPayment && fa.value) {
