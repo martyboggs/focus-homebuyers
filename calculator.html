@@ -79,7 +79,7 @@ document.querySelectorAll('[name="rents"], [name="expenses"], [name="cashflow"]'
 		var rs = document.querySelector('[name="rents"]');
 		var ex = document.querySelector('[name="expenses"]');
 		var cf = document.querySelector('[name="cashflow"]');
-		var payment = document.querySelector('[name="payment"]');
+		var pmt = document.querySelector('[name="payment"]');
 		var rsVal = Number(rs.value);
 		var exVal = Number(ex.value);
 		var cfVal = Number(cf.value);
@@ -88,13 +88,13 @@ document.querySelectorAll('[name="rents"], [name="expenses"], [name="cashflow"]'
 		if (!cfVal && cf !== field) cf.value = cfVal;
 		switch (field.name) {
 			case 'rents':
-				cf.value = rsVal - exVal - Number(payment.value);
+				cf.value = rsVal - exVal - Number(pmt.value);
 			break;
 			case 'expenses':
-				cf.value = rsVal - exVal - Number(payment.value);
+				cf.value = rsVal - exVal - Number(pmt.value);
 			break;
 			case 'cashflow':
-				rs.value = cfVal + exVal + Number(payment.value);
+				rs.value = cfVal + exVal + Number(pmt.value);
 			break;
 		}
 		calculate({className: 'payment'});
@@ -200,10 +200,13 @@ function calculate(button) {
 		document.querySelector('[name="total"]').value = (Number(downPayment.value) + termMonths * Number(pmt.value) + Number(balloon.value)).toFixed(2);
 	}
 	if (rs.value) {
-		cf.value = Number(rs.value) - Number(ex.value) - Number(payment.value);
+		cf.value = Number(rs.value) - Number(ex.value) - Number(pmt.value);
 	}
 	if (cf.value) {
-		document.querySelector('.progress').style.height = (Number(cf.value) / 350) + '%';
+		var goodCashflow = 350;
+		var height = Number(cf.value) / goodCashflow * 100;
+		height = height > 100 ? 100 : height;
+		document.querySelector('.progress').style.height = height + '%';
 	}
 }
 </script>
