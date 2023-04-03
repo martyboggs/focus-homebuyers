@@ -145,9 +145,9 @@ function calculate(button) {
 			if (interestType === 'simple') {
 				// interest only
 				if (pmt.value) {
-					balloonPayment = Number(fa.value);
-				} else {
 					balloonPayment = Number(fa.value) - (Number(pmt.value) - Number(fa.value) * monthRate) * termMonths;
+				} else {
+					balloonPayment = Number(fa.value);
 				}
 			} else {
 				balloonPayment = !monthRate ? Number(fa.value) * (amortMonths - termMonths) / amortMonths : Number(fa.value) * (Math.pow(1 + monthRate, amortMonths)-Math.pow(1 + monthRate, termMonths))/(Math.pow(1 + monthRate, amortMonths) - 1);
