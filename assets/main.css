@@ -369,6 +369,7 @@ img {
 	background: #4b75ff;
 	width: 20px;
 	height: 50%;
+	transition: height 1s ease-out;
 }
 .visually-hidden {
 	border: 0;
