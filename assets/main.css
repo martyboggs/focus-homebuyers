@@ -334,6 +334,7 @@ img {
 	min-width: 182px;
 	text-align: right;
 	margin-right: 5px;
+	line-height: 1.2;
 }
 .calculator input[type="range"] {
 	max-width: 100%;
@@ -342,6 +343,9 @@ img {
 .calculator .left > div {
 	display: flex;
 	align-items: center;
+}
+.calculator .left > *:not(:last-child) {
+	margin-bottom: 8px;
 }
 .calculator .right {
 	margin-left: 20px;
