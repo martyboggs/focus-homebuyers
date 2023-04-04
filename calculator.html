@@ -174,10 +174,7 @@ function calculate(button, e) {
 		break;
 		case 'payment':
 			if (Number(fa.value)) {
-				if (interestType === 'simple') {
-					var interest = Number(fa.value) * monthRate;
-					pmt.value = (-interest / (Number(principalPerc.value) / 100 - 1)).toFixed(2);
-				} else {
+				if (interestType === 'amortized') {
 					if (amortMonths) {
 						if (monthRate) {
 							pmt.value = (Number(fa.value) * monthRate * Math.pow(1 + monthRate, amortMonths) / (Math.pow(1 + monthRate, amortMonths) - 1)).toFixed(2);
@@ -185,23 +182,26 @@ function calculate(button, e) {
 							pmt.value = (Number(fa.value) / amortMonths).toFixed(2);
 						}
 					}
+				} else {
+					var interest = Number(fa.value) * monthRate;
+					pmt.value = (-interest / (Number(principalPerc.value) / 100 - 1)).toFixed(2);
 				}
 			}
 		break;
 		case 'balloon':
 			var balloonPayment;
-			if (interestType === 'simple') {
-				if (pmt.value) {
-					balloonPayment = Number(fa.value) - (Number(pmt.value) - Number(fa.value) * monthRate) * termMonths;
-				} else {
-					balloonPayment = Number(fa.value);
-				}
-			} else {
+			if (interestType === 'amortized') {
 				// balloonPayment = !monthRate ? Number(fa.value) * (amortMonths - termMonths) / amortMonths : Number(fa.value) * (Math.pow(1 + monthRate, amortMonths) - Math.pow(1 + monthRate, termMonths)) / (Math.pow(1 + monthRate, amortMonths) - 1);
 				if (monthRate) {
 					balloonPayment = Number(fa.value) * Math.pow(1 + monthRate, termMonths) - Number(pmt.value) / monthRate * (Math.pow(1 + monthRate, termMonths) - 1);
 				} else {
 					balloonPayment = Number(fa.value) - Number(pmt.value) * termMonths;
+				}
+			} else {
+				if (pmt.value) {
+					balloonPayment = Number(fa.value) - (Number(pmt.value) - Number(fa.value) * monthRate) * termMonths;
+				} else {
+					balloonPayment = Number(fa.value);
 				}
 			}
 			balloon.value = balloonPayment.toFixed(2);
