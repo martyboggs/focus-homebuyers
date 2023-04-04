@@ -207,7 +207,7 @@ function calculate(button, e) {
 		break;
 	}
 
-	if (e && e.target.name === 'payment') {
+	if (pmt.value && e && e.target.name === 'payment') {
 		if (interestType === 'amortized') {
 			if (monthRate) {
 				amort.value = (Math.log(Number(pmt.value)/(Number(pmt.value) - Number(fa.value) * monthRate)) / Math.log(1 + monthRate)).toFixed(2);
