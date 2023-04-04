@@ -207,8 +207,10 @@ function calculate(button, e) {
 		break;
 	}
 
-	if (fa.value && e && e.target.name === 'payment') {
+	if (e && e.target.name === 'payment') {
 		if (interestType === 'amortized') {
+// what if interest is 0?
+// what if finance amount is 0?
 			amort.value = (Math.log(Number(pmt.value)/(Number(pmt.value) - Number(fa.value) * monthRate)) / Math.log(1 + monthRate)).toFixed(2);
 		}
 	}
