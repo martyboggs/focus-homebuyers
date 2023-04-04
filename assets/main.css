@@ -352,8 +352,9 @@ img {
 	display: flex;
 }
 .progress-bar {
-	padding: 5px;
-	border: 1px solid var(--border);
+	/* padding: 5px; */
+	display: flex;
+	/* border: 1px solid var(--border); */
 	height: 100%;
 }
 .progress-container {
@@ -369,6 +370,14 @@ img {
 	width: 20px;
 	height: 0%;
 	transition: height 1s ease-out;
+}
+.progress-labels {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+.progress-labels label {
+	text-align: left;
 }
 .visually-hidden {
 	border: 0;
