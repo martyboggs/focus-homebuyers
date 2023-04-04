@@ -178,10 +178,12 @@ function calculate(button, e) {
 					var interest = Number(fa.value) * monthRate;
 					pmt.value = (-interest / (Number(principalPerc.value) / 100 - 1)).toFixed(2);
 				} else {
-					if (monthRate) {
-						pmt.value = (Number(fa.value) * monthRate * Math.pow(1 + monthRate, amortMonths) / (Math.pow(1 + monthRate, amortMonths) - 1)).toFixed(2);
-					} else {
-						pmt.value = (Number(fa.value) / amortMonths).toFixed(2);
+					if (amortMonths) {
+						if (monthRate) {
+							pmt.value = (Number(fa.value) * monthRate * Math.pow(1 + monthRate, amortMonths) / (Math.pow(1 + monthRate, amortMonths) - 1)).toFixed(2);
+						} else {
+							pmt.value = (Number(fa.value) / amortMonths).toFixed(2);
+						}
 					}
 				}
 			}
