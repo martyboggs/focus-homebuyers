@@ -208,7 +208,7 @@ function calculate(button) {
 		cf.value = Math.round(Number(rs.value) - Number(ex.value) - Number(pmt.value));
 	}
 	if (cf.value) {
-		var height = (Number(cf.value) + 350) / 1000  * 100;
+		var height = (Number(cf.value) + 350) / 1050  * 100;
 		height = height > 100 ? 100 : height;
 		height = height < 0 ? 0 : height;
 		document.querySelector('.progress').style.height = height + '%';
