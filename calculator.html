@@ -194,6 +194,7 @@ function calculate(button) {
 				}
 			} else {
 				balloonPayment = !monthRate ? Number(fa.value) * (amortMonths - termMonths) / amortMonths : Number(fa.value) * (Math.pow(1 + monthRate, amortMonths) - Math.pow(1 + monthRate, termMonths)) / (Math.pow(1 + monthRate, amortMonths) - 1);
+				balloonPayment = Number(pmt.value) * (Math.pow(1 + monthRate, termMonths) - 1) / monthRate;
 			}
 			balloon.value = balloonPayment.toFixed(2);
 			if (balloonPayment && fa.value) {
