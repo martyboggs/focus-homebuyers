@@ -173,14 +173,16 @@ function calculate(button, e) {
 		case 'term-months':
 		break;
 		case 'payment':
-			if (interestType === 'simple') {
-				var interest = Number(fa.value) * monthRate;
-				pmt.value = (-interest / (Number(principalPerc.value) / 100 - 1)).toFixed(2);
-			} else {
-				if (monthRate) {
-					pmt.value = (Number(fa.value) * monthRate * Math.pow(1 + monthRate, amortMonths) / (Math.pow(1 + monthRate, amortMonths) - 1)).toFixed(2);
+			if (Number(fa.value)) {
+				if (interestType === 'simple') {
+					var interest = Number(fa.value) * monthRate;
+					pmt.value = (-interest / (Number(principalPerc.value) / 100 - 1)).toFixed(2);
 				} else {
-					pmt.value = (Number(fa.value) / amortMonths).toFixed(2);
+					if (monthRate) {
+						pmt.value = (Number(fa.value) * monthRate * Math.pow(1 + monthRate, amortMonths) / (Math.pow(1 + monthRate, amortMonths) - 1)).toFixed(2);
+					} else {
+						pmt.value = (Number(fa.value) / amortMonths).toFixed(2);
+					}
 				}
 			}
 		break;
@@ -214,6 +216,8 @@ function calculate(button, e) {
 			} else {
 				amort.value = (Number(fa.value) / Number(pmt.value)).toFixed(2);
 			}
+		} else {
+			/// simple? set principal %
 		}
 	}
 
