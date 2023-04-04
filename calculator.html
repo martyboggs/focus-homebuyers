@@ -6,9 +6,9 @@ title: Calculator
 <div class="container">
 	<div class="calculator">
 		<div class="left">
-			<div><label>Purchase Price</label><input type="number" name="purchase-price"></div>
-			<div><label>Down Payment</label><input type="number" name="down-payment"></div>
-			<div><label>Finance Amount</label><input type="number" name="finance-amount">
+			<div><label>Purchase Price</label><input type="number" name="purchase-price" min="1"></div>
+			<div><label>Down Payment</label><input type="number" name="down-payment" min="0"></div>
+			<div><label>Finance Amount</label><input type="number" name="finance-amount" min="1">
 			<!-- <button class="finance-amount">calculate</button> -->
 			</div>
 			<div><label>Interest Type</label>
@@ -17,13 +17,13 @@ title: Calculator
 			</div>
 			<div><label>Annual Interest Rate</label><input readonly style="width: 50px;" type="text" value="2.50%"><input type="range" min="0" max="10" value="2.5" step="0.25" name="interest-rate" class="interest-rate-range">
 			</div>
-			<div class="amortized-months"><label>Amortized Months</label><input type="number" name="amortized-months" value="360">
+			<div class="amortized-months"><label>Amortized Months</label><input type="number" name="amortized-months" value="360" min="1">
 			</div>
 			<div style="display: none;" class="principal-percentage"><label>Principal %</label><input readonly style="width: 50px;" type="text" value="50%"><input type="range" min="0" max="99" value="50" name="principal-percentage" class="principal-percentage-range">
 			</div>
-			<div><label>Payment</label><input type="number" name="payment">
+			<div><label>Payment</label><input type="number" name="payment" min="1">
 			</div>
-			<div><label>Term Months</label><input type="number" name="term-months" value="96">
+			<div><label>Term Months</label><input type="number" name="term-months" value="96" min="1">
 			</div>
 			<div>
 				<label>Balloon</label><input readonly style="max-width: 128px;" type="number" name="balloon">
