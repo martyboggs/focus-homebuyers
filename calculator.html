@@ -136,7 +136,7 @@ document.querySelectorAll('[name="interest-rate"], [name="amortized-months"]').f
 document.querySelectorAll('[name="payment"], [name="term-months"], [name="principal-percentage"]').forEach(function (field) {
 	// principalPercent = (-interest / payment) + 1
 	field.addEventListener('input', function (e) {
-		calculate({className: 'balloon'});
+		calculate({className: 'balloon'}, e);
 	});
 });
 
@@ -146,7 +146,7 @@ document.querySelectorAll('button').forEach(function (button) {
 	});
 });
 
-function calculate(button) {
+function calculate(button, e) {
 	var fa = document.querySelector('[name="finance-amount"]');
 	var int = document.querySelector('[name="interest-rate"]');
 	var term = document.querySelector('[name="term-months"]');
@@ -193,8 +193,8 @@ function calculate(button) {
 					balloonPayment = Number(fa.value);
 				}
 			} else {
-				balloonPayment = !monthRate ? Number(fa.value) * (amortMonths - termMonths) / amortMonths : Number(fa.value) * (Math.pow(1 + monthRate, amortMonths) - Math.pow(1 + monthRate, termMonths)) / (Math.pow(1 + monthRate, amortMonths) - 1);
-				balloonPayment = Number(pmt.value) * (Math.pow(1 + monthRate, termMonths) - 1) / monthRate;
+				// balloonPayment = !monthRate ? Number(fa.value) * (amortMonths - termMonths) / amortMonths : Number(fa.value) * (Math.pow(1 + monthRate, amortMonths) - Math.pow(1 + monthRate, termMonths)) / (Math.pow(1 + monthRate, amortMonths) - 1);
+				balloonPayment = Number(fa.value) * Math.pow(1 + monthRate, termMonths) - Number(pmt.value) / monthRate * (Math.pow(1 + monthRate, termMonths) - 1);
 			}
 			balloon.value = balloonPayment.toFixed(2);
 			if (balloonPayment && fa.value) {
@@ -202,6 +202,20 @@ function calculate(button) {
 			}
 		break;
 	}
+console.log(e.target.name);
+	if (e.target.name === 'payment') {
+		if (interestType === 'amortized') {
+			var amort = document.querySelector('[name="amortized-months"]');
+				// p = a * r * (1+r)^t / ((1+r)^t - 1)
+				// p / (a * r) = (1+r)^t / ((1+r)^t - 1)
+				// (a*r) / p = -1 / (1+r)^t
+				// (1+r)^t = -p / (a*r)
+				// t = log(1+r)(-p / (a*r))
+			amort.value = Math.log(1 + monthRate, -Number(pmt.value) / Number(fa.value) / monthRate).toFixed(2);
+		}
+	}
+
+
 	if (termMonths === amortMonths || balloon.value) {
 		document.querySelector('[name="total"]').value = (Number(downPayment.value) + termMonths * Number(pmt.value) + Number(balloon.value)).toFixed(2);
 	}
@@ -215,6 +229,9 @@ function calculate(button) {
 		document.querySelector('.progress').style.height = height + '%';
 	}
 }
+// it's better to make payments on an amortized loan vs simple. balloon is smaller, net is smaller
+// balloon payment doesn't include future interest
+// balloon = future value?
 </script>
 </div>
 </section>
