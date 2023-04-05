@@ -15,7 +15,7 @@ title: Calculator
 <script>
 class Calculator {
 	constructor(name) {
-		this.calc = document.querySelector(name);
+		this.calc = document.querySelector('.' + name);
 		this.calc.innerHTML = `<div class="left">
 			<div><label>Purchase Price</label><input type="number" name="purchase-price" min="1"></div>
 			<div><label>Down Payment</label><input type="number" name="down-payment" min="0"></div>
@@ -23,8 +23,8 @@ class Calculator {
 			<!-- <button class="finance-amount">calculate</button> -->
 			</div>
 			<div><label>Interest Type</label>
-			<input type="radio" name="interest-type" value="amortized" id="amortized" checked><label for="amortized" style="min-width: 0px;">Amortized</label>
-			<input type="radio" name="interest-type" value="simple" id="simple"><label for="simple" style="min-width: 0px;">Simple</label>
+			<input type="radio" name="interest-type-${name}" value="amortized" id="amortized" checked><label for="amortized" style="min-width: 0px;">Amortized</label>
+			<input type="radio" name="interest-type-${name}" value="simple" id="simple"><label for="simple" style="min-width: 0px;">Simple</label>
 			</div>
 			<div><label>Annual Interest Rate</label><input readonly style="width: 50px;" type="text" value="2.50%"><input type="range" min="0" max="10" value="2.5" step="0.25" name="interest-rate" class="interest-rate-range">
 			</div>
@@ -125,7 +125,7 @@ class Calculator {
 			});
 		});
 
-		this.calc.querySelectorAll('[name="interest-type"]').forEach(field => {
+		this.calc.querySelectorAll('[name="interest-type-' + name + '"]').forEach(field => {
 			field.addEventListener('change', e => {
 				this.interestType = field.value;
 				this.calc.querySelector('.amortized-months').style.display = field.value === 'amortized' ? 'flex' : 'none';
@@ -247,8 +247,8 @@ class Calculator {
 	}
 }
 
-new Calculator('.calc-1');
-new Calculator('.calc-2');
+new Calculator('calc-1');
+new Calculator('calc-2');
 
 
 
