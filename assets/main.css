@@ -338,6 +338,10 @@ img {
 	margin-right: 5px;
 	line-height: 1.2;
 }
+.calculator label[for="amortized"],
+.calculator label [for="simple"] {
+	min-width: 0;
+}
 .calculator input[type="range"] {
 	max-width: 100%;
 	min-width: 148px;
