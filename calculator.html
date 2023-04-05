@@ -174,7 +174,8 @@ class Calculator {
 		switch (button.className) {
 			case 'finance-amount':
 				if (balloonAmt) {
-					this.fa.value = (!monthRate ? balloonAmt / ((amortMonths - termMonths) / amortMonths) : balloonAmt / ((Math.pow(1 + monthRate, amortMonths) - Math.pow(1 + monthRate, termMonths))/(Math.pow(1 + monthRate, amortMonths) - 1))).toFixed(2);
+					finAmt = !monthRate ? balloonAmt / ((amortMonths - termMonths) / amortMonths) : balloonAmt / ((Math.pow(1 + monthRate, amortMonths) - Math.pow(1 + monthRate, termMonths))/(Math.pow(1 + monthRate, amortMonths) - 1));
+					this.fa.value = finAmt.toFixed(2);
 				}
 			break;
 			case 'interest-rate':
@@ -186,36 +187,39 @@ class Calculator {
 					if (this.interestType === 'amortized') {
 						if (amortMonths) {
 							if (monthRate) {
-								this.pmt.value = (finAmt * monthRate * Math.pow(1 + monthRate, amortMonths) / (Math.pow(1 + monthRate, amortMonths) - 1)).toFixed(2);
+								pmtAmt = finAmt * monthRate * Math.pow(1 + monthRate, amortMonths) / (Math.pow(1 + monthRate, amortMonths) - 1);
 							} else {
-								this.pmt.value = (finAmt / amortMonths).toFixed(2);
+								pmtAmt = finAmt / amortMonths;
 							}
 						}
 					} else {
 						var interest = finAmt * monthRate;
-						this.pmt.value = (-interest / (Number(this.principalPerc.value) / 100 - 1)).toFixed(2);
+						pmtAmt = -interest / (Number(this.principalPerc.value) / 100 - 1);
 					}
+					this.pmt.value = pmtAmt.toFixed(2);
 				}
 			break;
 			case 'balloon':
-				var balloonPayment;
-				if (this.interestType === 'amortized') {
-					// balloonPayment = !monthRate ? finAmt * (amortMonths - termMonths) / amortMonths : finAmt * (Math.pow(1 + monthRate, amortMonths) - Math.pow(1 + monthRate, termMonths)) / (Math.pow(1 + monthRate, amortMonths) - 1);
+				console.log(termMonths, amortMonths);
+				if (termMonths === amortMonths) {
+					balloonAmt = 0;
+				} else if (this.interestType === 'amortized') {
+					// balloonAmt = !monthRate ? finAmt * (amortMonths - termMonths) / amortMonths : finAmt * (Math.pow(1 + monthRate, amortMonths) - Math.pow(1 + monthRate, termMonths)) / (Math.pow(1 + monthRate, amortMonths) - 1);
 					if (monthRate) {
-						balloonPayment = finAmt * Math.pow(1 + monthRate, termMonths) - pmtAmt / monthRate * (Math.pow(1 + monthRate, termMonths) - 1);
+						balloonAmt = finAmt * Math.pow(1 + monthRate, termMonths) - pmtAmt / monthRate * (Math.pow(1 + monthRate, termMonths) - 1);
 					} else {
-						balloonPayment = finAmt - pmtAmt * termMonths;
+						balloonAmt = finAmt - pmtAmt * termMonths;
 					}
 				} else {
 					if (pmtAmt) {
-						balloonPayment = finAmt - (pmtAmt - finAmt * monthRate) * termMonths;
+						balloonAmt = finAmt - (pmtAmt - finAmt * monthRate) * termMonths;
 					} else {
-						balloonPayment = finAmt;
+						balloonAmt = finAmt;
 					}
 				}
-				this.balloon.value = balloonPayment.toFixed(2);
-				if (balloonPayment && finAmt) {
-					this.ltv.value = Math.round(balloonPayment / finAmt * 100) + '%';
+				this.balloon.value = balloonAmt.toFixed(2);
+				if (balloonAmt && finAmt) {
+					this.ltv.value = Math.round(balloonAmt / finAmt * 100) + '%';
 				}
 			break;
 		}
@@ -223,10 +227,11 @@ class Calculator {
 		if (pmtAmt && e && e.target.name === 'payment') {
 			if (this.interestType === 'amortized') {
 				if (monthRate) {
-					this.amort.value = (Math.log(pmtAmt/(pmtAmt - finAmt * monthRate)) / Math.log(1 + monthRate)).toFixed(2);
+					amortMonths = Math.log(pmtAmt/(pmtAmt - finAmt * monthRate)) / Math.log(1 + monthRate);
 				} else {
-					this.amort.value = (finAmt / pmtAmt).toFixed(2);
+					amortMonths = finAmt / pmtAmt;
 				}
+				this.amort.value = amortMonths.toFixed(2);
 			} else {
 				/// simple? set principal %
 			}
@@ -236,7 +241,7 @@ class Calculator {
 			this.total.value = (Number(this.dp.value) + termMonths * pmtAmt + balloonAmt).toFixed(2);
 		}
 		if (Number(this.rs.value)) {
-			this.cf.value = Math.round(Number(this.rs.value) - Number(this.ex.value) - Number(this.pmt.value));
+			this.cf.value = Math.round(Number(this.rs.value) - Number(this.ex.value) - pmtAmt);
 		}
 		if (Number(this.cf.value)) {
 			var height = (Number(this.cf.value) + 350) / 1050  * 100;
