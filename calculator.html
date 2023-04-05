@@ -4,16 +4,27 @@ title: Calculator
 ---
 <section>
 <div class="container">
-	<div class="calculator">
-		<div class="left">
+	<div class="row">
+		<div class="col-6">
+			<div class="calculator calc-1"></div>
+		</div>
+		<div class="col-6">
+			<div class="calculator calc-2"></div>	
+		</div>
+	</div>
+<script>
+class Calculator {
+	constructor(name) {
+		this.calc = document.querySelector(name);
+		this.calc.innerHTML = `<div class="left">
 			<div><label>Purchase Price</label><input type="number" name="purchase-price" min="1"></div>
 			<div><label>Down Payment</label><input type="number" name="down-payment" min="0"></div>
 			<div><label>Finance Amount</label><input type="number" name="finance-amount" min="1">
 			<!-- <button class="finance-amount">calculate</button> -->
 			</div>
 			<div><label>Interest Type</label>
-			<input type="radio" name="interest-type" value="amortized" id="amortized" checked><label for="amortized" style="min-width: 93px;">Amortized</label>
-			<input type="radio" name="interest-type" value="simple" id="simple"><label for="simple" style="min-width: 64px;">Simple</label>
+			<input type="radio" name="interest-type" value="amortized" id="amortized" checked><label for="amortized" style="min-width: 0px;">Amortized</label>
+			<input type="radio" name="interest-type" value="simple" id="simple"><label for="simple" style="min-width: 0px;">Simple</label>
 			</div>
 			<div><label>Annual Interest Rate</label><input readonly style="width: 50px;" type="text" value="2.50%"><input type="range" min="0" max="10" value="2.5" step="0.25" name="interest-rate" class="interest-rate-range">
 			</div>
@@ -49,193 +60,198 @@ title: Calculator
 				<!-- bad deal, break even, cfashflow > 350, cashflow > 700 -->
 			</div>
 		</div>
-		<!-- how is time valued? use 2x over 30 years as benchmark -->
-	</div>
-<script>
-var interestType = 'amortized';
-document.querySelectorAll('[name="purchase-price"], [name="down-payment"], [name="finance-amount"]').forEach(function (field) {
-	field.addEventListener('input', function (e) {
-		var pp = document.querySelector('[name="purchase-price"]');
-		var dp = document.querySelector('[name="down-payment"]');
-		var fa = document.querySelector('[name="finance-amount"]');
-		var ppVal = Number(pp.value);
-		var dpVal = Number(dp.value);
-		var faVal = Number(fa.value);
-		if (!ppVal && pp !== field) pp.value = ppVal;
-		if (!dpVal && dp !== field) dp.value = dpVal;
-		if (!faVal && fa !== field) fa.value = faVal;
-		switch (field.name) {
-			case 'purchase-price':
-				fa.value = ppVal - dpVal;
-			break;
-			case 'down-payment':
-				fa.value = ppVal - dpVal;
-			break;
+		<!-- how is time valued? use 2x over 30 years as benchmark -->`;
+		this.interestType = 'amortized';
+		this.pp = this.calc.querySelector('[name="purchase-price"]');
+		this.dp = this.calc.querySelector('[name="down-payment"]');
+		this.fa = this.calc.querySelector('[name="finance-amount"]');
+		this.int = this.calc.querySelector('[name="interest-rate"]');
+		this.term = this.calc.querySelector('[name="term-months"]');
+		this.amort = this.calc.querySelector('[name="amortized-months"]');
+		this.pmt = this.calc.querySelector('[name="payment"]');
+		this.principalPerc = this.calc.querySelector('[name="principal-percentage"]');
+		this.balloon = this.calc.querySelector('[name="balloon"]');
+		this.ltv = this.calc.querySelector('[name="ltv"]');
+		this.total = this.calc.querySelector('[name="total"]');
+		this.rs = this.calc.querySelector('[name="rents"]');
+		this.ex = this.calc.querySelector('[name="expenses"]');
+		this.cf = this.calc.querySelector('[name="cashflow"]');
+		this.progress = this.calc.querySelector('.progress');
+
+		this.calc.querySelectorAll('[name="purchase-price"], [name="down-payment"], [name="finance-amount"]').forEach(field => {
+			field.addEventListener('input', e => {
+				var ppVal = Number(this.pp.value);
+				var dpVal = Number(this.dp.value);
+				var faVal = Number(this.fa.value);
+				if (!ppVal && this.pp !== field) this.pp.value = ppVal;
+				if (!dpVal && this.dp !== field) this.dp.value = dpVal;
+				if (!faVal && this.fa !== field) this.fa.value = faVal;
+				switch (field.name) {
+					case 'purchase-price':
+						this.fa.value = ppVal - dpVal;
+					break;
+					case 'down-payment':
+						this.fa.value = ppVal - dpVal;
+					break;
+					case 'finance-amount':
+						this.pp.value = faVal + dpVal;
+					break;
+				}
+				this.calculate({className: 'payment'});
+				this.calculate({className: 'balloon'});
+			});
+		});
+		this.calc.querySelectorAll('[name="rents"], [name="expenses"], [name="cashflow"]').forEach(field => {
+			field.addEventListener('input', e => {
+				var rsVal = Number(this.rs.value);
+				var exVal = Number(this.ex.value);
+				var cfVal = Number(this.cf.value);
+				var pmtAmt = Number(this.pmt.value);
+				if (!rsVal && this.rs !== field) this.rs.value = rsVal;
+				if (!exVal && this.ex !== field) this.ex.value = exVal;
+				if (!cfVal && this.cf !== field) this.cf.value = cfVal;
+				switch (field.name) {
+					case 'rents':
+						this.cf.value = rsVal - exVal - pmtAmt;
+					break;
+					case 'expenses':
+						this.cf.value = rsVal - exVal - pmtAmt;
+					break;
+					case 'cashflow':
+						this.rs.value = cfVal + exVal + pmtAmt;
+					break;
+				}
+				this.calculate({className: ''});
+			});
+		});
+
+		this.calc.querySelectorAll('[name="interest-type"]').forEach(field => {
+			field.addEventListener('change', e => {
+				this.interestType = field.value;
+				this.calc.querySelector('.amortized-months').style.display = field.value === 'amortized' ? 'flex' : 'none';
+				this.calc.querySelector('.principal-percentage').style.display = field.value === 'simple' ? 'flex' : 'none';
+				this.calculate({className: 'payment'});
+				this.calculate({className: 'balloon'});
+			});
+		});
+		this.calc.querySelectorAll('[type="range"]').forEach(field => {
+			field.addEventListener('input', e => {
+				var number = Number(e.target.value);
+				e.target.previousSibling.value = field.className === 'interest-rate-range' ? (number).toFixed(2) + '%' : number + '%';
+				this.calculate({className: 'payment'});
+				this.calculate({className: 'balloon'});
+			});
+		});
+
+		this.calc.querySelectorAll('[name="interest-rate"], [name="amortized-months"]').forEach(field => {
+			field.addEventListener('input', e => {
+				this.calculate({className: 'payment'});
+				this.calculate({className: 'balloon'});
+			});
+		});
+		this.calc.querySelectorAll('[name="payment"], [name="term-months"], [name="principal-percentage"]').forEach(field => {
+			// this.principalPerc = (-interest / payment) + 1
+			field.addEventListener('input', e => {
+				this.calculate({className: 'balloon'}, e);
+			});
+		});
+
+		this.calc.querySelectorAll('button').forEach(button => {
+			button.addEventListener('click', e => {
+				this.calculate(button);
+			});
+		});
+	}
+
+	calculate(button, e) {
+		var finAmt = Number(this.fa.value);
+		var monthRate = Number(this.int.value) / 100 / 12;
+		var termMonths = Number(this.term.value);
+		var amortMonths = Number(this.amort.value);
+		var pmtAmt = Number(this.pmt.value);
+		var balloonAmt = Number(this.balloon.value);
+
+		switch (button.className) {
 			case 'finance-amount':
-				pp.value = faVal + dpVal;
+				if (balloonAmt) {
+					this.fa.value = (!monthRate ? balloonAmt / ((amortMonths - termMonths) / amortMonths) : balloonAmt / ((Math.pow(1 + monthRate, amortMonths) - Math.pow(1 + monthRate, termMonths))/(Math.pow(1 + monthRate, amortMonths) - 1))).toFixed(2);
+				}
 			break;
-		}
-		calculate({className: 'payment'});
-		calculate({className: 'balloon'});
-	});
-});
-
-document.querySelectorAll('[name="rents"], [name="expenses"], [name="cashflow"]').forEach(function (field) {
-	field.addEventListener('input', function (e) {
-		var rs = document.querySelector('[name="rents"]');
-		var ex = document.querySelector('[name="expenses"]');
-		var cf = document.querySelector('[name="cashflow"]');
-		var pmt = document.querySelector('[name="payment"]');
-		var rsVal = Number(rs.value);
-		var exVal = Number(ex.value);
-		var cfVal = Number(cf.value);
-		if (!rsVal && rs !== field) rs.value = rsVal;
-		if (!exVal && ex !== field) ex.value = exVal;
-		if (!cfVal && cf !== field) cf.value = cfVal;
-		switch (field.name) {
-			case 'rents':
-				cf.value = rsVal - exVal - Number(pmt.value);
+			case 'interest-rate':
 			break;
-			case 'expenses':
-				cf.value = rsVal - exVal - Number(pmt.value);
+			case 'term-months':
 			break;
-			case 'cashflow':
-				rs.value = cfVal + exVal + Number(pmt.value);
-			break;
-		}
-		calculate({className: ''});
-	});
-});
-
-document.querySelectorAll('[name="interest-type"]').forEach(function (field) {
-	field.addEventListener('change', function (e) {
-		interestType = field.value;
-		document.querySelector('.amortized-months').style.display = field.value === 'amortized' ? 'flex' : 'none';
-		document.querySelector('.principal-percentage').style.display = field.value === 'simple' ? 'flex' : 'none';
-		calculate({className: 'payment'});
-		calculate({className: 'balloon'});
-	});
-});
-
-document.querySelectorAll('[type="range"]').forEach(function (field) {
-	field.addEventListener('input', function (e) {
-		var number = Number(e.target.value);
-		e.target.previousSibling.value = field.className === 'interest-rate-range' ? (number).toFixed(2) + '%' : number + '%';
-		calculate({className: 'payment'});
-		calculate({className: 'balloon'});
-	});
-});
-
-document.querySelectorAll('[name="interest-rate"], [name="amortized-months"]').forEach(function (field) {
-	field.addEventListener('input', function (e) {
-		calculate({className: 'payment'});
-		calculate({className: 'balloon'});
-	});
-});
-
-document.querySelectorAll('[name="payment"], [name="term-months"], [name="principal-percentage"]').forEach(function (field) {
-	// principalPercent = (-interest / payment) + 1
-	field.addEventListener('input', function (e) {
-		calculate({className: 'balloon'}, e);
-	});
-});
-
-document.querySelectorAll('button').forEach(function (button) {
-	button.addEventListener('click', function (e) {
-		calculate(button);
-	});
-});
-
-function calculate(button, e) {
-	var fa = document.querySelector('[name="finance-amount"]');
-	var int = document.querySelector('[name="interest-rate"]');
-	var term = document.querySelector('[name="term-months"]');
-	var amort = document.querySelector('[name="amortized-months"]');
-	var pmt = document.querySelector('[name="payment"]');
-	var principalPerc = document.querySelector('[name="principal-percentage"]');
-	var balloon = document.querySelector('[name="balloon"]');
-	var rs = document.querySelector('[name="rents"]');
-	var ex = document.querySelector('[name="expenses"]');
-	var cf = document.querySelector('[name="cashflow"]');
-	var monthRate = Number(int.value) / 100 / 12;
-	var termMonths = Number(term.value);
-	var amortMonths = Number(amort.value);
-	var downPayment = document.querySelector('[name="down-payment"]');
-
-	switch (button.className) {
-		case 'finance-amount':
-			if (balloon.value) {
-				fa.value = (!monthRate ? Number(balloon.value) / ((amortMonths - termMonths) / amortMonths) : Number(balloon.value) / ((Math.pow(1 + monthRate, amortMonths) - Math.pow(1 + monthRate, termMonths))/(Math.pow(1 + monthRate, amortMonths) - 1))).toFixed(2);
-			}
-		break;
-		case 'interest-rate':
-		break;
-		case 'term-months':
-		break;
-		case 'payment':
-			if (Number(fa.value)) {
-				if (interestType === 'amortized') {
-					if (amortMonths) {
-						if (monthRate) {
-							pmt.value = (Number(fa.value) * monthRate * Math.pow(1 + monthRate, amortMonths) / (Math.pow(1 + monthRate, amortMonths) - 1)).toFixed(2);
-						} else {
-							pmt.value = (Number(fa.value) / amortMonths).toFixed(2);
+			case 'payment':
+				if (finAmt) {
+					if (this.interestType === 'amortized') {
+						if (amortMonths) {
+							if (monthRate) {
+								this.pmt.value = (finAmt * monthRate * Math.pow(1 + monthRate, amortMonths) / (Math.pow(1 + monthRate, amortMonths) - 1)).toFixed(2);
+							} else {
+								this.pmt.value = (finAmt / amortMonths).toFixed(2);
+							}
 						}
+					} else {
+						var interest = finAmt * monthRate;
+						this.pmt.value = (-interest / (Number(this.principalPerc.value) / 100 - 1)).toFixed(2);
+					}
+				}
+			break;
+			case 'balloon':
+				var balloonPayment;
+				if (this.interestType === 'amortized') {
+					// balloonPayment = !monthRate ? finAmt * (amortMonths - termMonths) / amortMonths : finAmt * (Math.pow(1 + monthRate, amortMonths) - Math.pow(1 + monthRate, termMonths)) / (Math.pow(1 + monthRate, amortMonths) - 1);
+					if (monthRate) {
+						balloonPayment = finAmt * Math.pow(1 + monthRate, termMonths) - pmtAmt / monthRate * (Math.pow(1 + monthRate, termMonths) - 1);
+					} else {
+						balloonPayment = finAmt - pmtAmt * termMonths;
 					}
 				} else {
-					var interest = Number(fa.value) * monthRate;
-					pmt.value = (-interest / (Number(principalPerc.value) / 100 - 1)).toFixed(2);
+					if (pmtAmt) {
+						balloonPayment = finAmt - (pmtAmt - finAmt * monthRate) * termMonths;
+					} else {
+						balloonPayment = finAmt;
+					}
 				}
-			}
-		break;
-		case 'balloon':
-			var balloonPayment;
-			if (interestType === 'amortized') {
-				// balloonPayment = !monthRate ? Number(fa.value) * (amortMonths - termMonths) / amortMonths : Number(fa.value) * (Math.pow(1 + monthRate, amortMonths) - Math.pow(1 + monthRate, termMonths)) / (Math.pow(1 + monthRate, amortMonths) - 1);
-				if (monthRate) {
-					balloonPayment = Number(fa.value) * Math.pow(1 + monthRate, termMonths) - Number(pmt.value) / monthRate * (Math.pow(1 + monthRate, termMonths) - 1);
-				} else {
-					balloonPayment = Number(fa.value) - Number(pmt.value) * termMonths;
+				this.balloon.value = balloonPayment.toFixed(2);
+				if (balloonPayment && finAmt) {
+					this.ltv.value = Math.round(balloonPayment / finAmt * 100) + '%';
 				}
-			} else {
-				if (pmt.value) {
-					balloonPayment = Number(fa.value) - (Number(pmt.value) - Number(fa.value) * monthRate) * termMonths;
-				} else {
-					balloonPayment = Number(fa.value);
-				}
-			}
-			balloon.value = balloonPayment.toFixed(2);
-			if (balloonPayment && fa.value) {
-				document.querySelector('[name="ltv"]').value = Math.round(balloonPayment / Number(fa.value) * 100) + '%';
-			}
-		break;
-	}
+			break;
+		}
 
-	if (Number(pmt.value) && e && e.target.name === 'payment') {
-		if (interestType === 'amortized') {
-			if (monthRate) {
-				amort.value = (Math.log(Number(pmt.value)/(Number(pmt.value) - Number(fa.value) * monthRate)) / Math.log(1 + monthRate)).toFixed(2);
+		if (pmtAmt && e && e.target.name === 'payment') {
+			if (this.interestType === 'amortized') {
+				if (monthRate) {
+					this.amort.value = (Math.log(pmtAmt/(pmtAmt - finAmt * monthRate)) / Math.log(1 + monthRate)).toFixed(2);
+				} else {
+					this.amort.value = (finAmt / pmtAmt).toFixed(2);
+				}
 			} else {
-				amort.value = (Number(fa.value) / Number(pmt.value)).toFixed(2);
+				/// simple? set principal %
 			}
-		} else {
-			/// simple? set principal %
+		}
+
+		if (termMonths === amortMonths || balloonAmt) {
+			this.total.value = (Number(this.dp.value) + termMonths * pmtAmt + balloonAmt).toFixed(2);
+		}
+		if (Number(this.rs.value)) {
+			this.cf.value = Math.round(Number(this.rs.value) - Number(this.ex.value) - Number(this.pmt.value));
+		}
+		if (Number(this.cf.value)) {
+			var height = (Number(this.cf.value) + 350) / 1050  * 100;
+			height = height > 100 ? 100 : height;
+			height = height < 0 ? 0 : height;
+			this.progress.style.height = height + '%';
 		}
 	}
-
-	if (termMonths === amortMonths || balloon.value) {
-		document.querySelector('[name="total"]').value = (Number(downPayment.value) + termMonths * Number(pmt.value) + Number(balloon.value)).toFixed(2);
-	}
-	if (rs.value) {
-		cf.value = Math.round(Number(rs.value) - Number(ex.value) - Number(pmt.value));
-	}
-	if (cf.value) {
-		var height = (Number(cf.value) + 350) / 1050  * 100;
-		height = height > 100 ? 100 : height;
-		height = height < 0 ? 0 : height;
-		document.querySelector('.progress').style.height = height + '%';
-	}
 }
+
+new Calculator('.calc-1');
+new Calculator('.calc-2');
+
+
+
 // it's better to make payments on an amortized loan vs simple. balloon is smaller, net is smaller
 // balloon payment doesn't include future interest
 // balloon = future value?
