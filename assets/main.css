@@ -28,6 +28,7 @@ input[type="radio"] {
 input[type="text"],
 input[type="number"] {
 	border: 1px solid var(--border);
+	max-width: 200px;
 }
 p {
 	margin-top: 0;
@@ -328,17 +329,18 @@ img {
 }
 .calculator {
 	display: flex;
+	font-size: 14px;
 }
 .calculator label {
 	display: inline-block;
-	min-width: 182px;
+	min-width: 140px;
 	text-align: right;
 	margin-right: 5px;
 	line-height: 1.2;
 }
 .calculator input[type="range"] {
 	max-width: 100%;
-	min-width: 217px;
+	min-width: 148px;
 }
 .calculator .left > div {
 	display: flex;
