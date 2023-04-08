@@ -7,7 +7,7 @@
 {% if page.collection == "locations" %}
 	<title>Best home cash offers near me in {{ page.title }}, California</title>
 {% else %}
-	<title>{{ site.title }} - {{ page.title }}</title>
+	<title>{{ site.title }}{% if page.title != "" %} - {% endif %}{{ page.title }}</title>
 {% endif %}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
