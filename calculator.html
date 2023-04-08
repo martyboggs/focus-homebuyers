@@ -232,6 +232,14 @@ class Calculator {
 				}
 				this.amort.value = amortMonths.toFixed(2);
 			} else {
+				var interest = finAmt * monthRate;
+				var pp = -100 * interest / pmtAmt + 100;
+				this.principalPerc.value = pp.toFixed(2);
+				this.principalPerc.previousSibling.value = Math.round(pp) + '%';
+				// pmtAmt = -interest / (Number(this.principalPerc.value) / 100 - 1);
+				// pmtAmt * ((this.principalPerc.value / 100) - 1)= -interest;
+				// ((this.principalPerc.value / 100) - 1)= -interest / pmtAmt;
+				// this.principalPerc.value / 100 =  (-interest / pmtAmt) + 1;
 				/// simple? set principal %
 			}
 		}
