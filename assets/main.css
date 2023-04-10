@@ -330,6 +330,7 @@ img {
 .calculator {
 	display: flex;
 	font-size: 14px;
+	flex-direction: column;
 }
 .calculator label {
 	display: inline-block;
@@ -345,13 +346,6 @@ img {
 .calculator input[type="range"] {
 	max-width: 100%;
 	min-width: 148px;
-}
-.calculator .left > div {
-	display: flex;
-	align-items: center;
-}
-.calculator .left > *:not(:last-child) {
-	margin-bottom: 8px;
 }
 .calculator .right {
 	margin-left: 20px;

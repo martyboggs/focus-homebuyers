@@ -16,7 +16,20 @@ title: Calculator
 class Calculator {
 	constructor(name) {
 		this.calc = document.querySelector('.' + name);
-		this.calc.innerHTML = `<div class="left">
+		this.calc.innerHTML = `
+		<div><label>Entrance</label>
+			<select name="entrance">
+				<option value="wholesale">Wholesale</option>
+				<option value="seller-finance">Seller Finance</option>
+				<option value="lease-option">Lease Option</option>
+				<option value="purchase">Purchase</option>
+			</select>
+		</div>
+
+		<div class="wholesale">
+			<div><label>Purchase Price</label><input type="number" name="purchase-price" min="1"></div>
+		</div>
+		<div class="seller-finance">
 			<div><label>Purchase Price</label><input type="number" name="purchase-price" min="1"></div>
 			<div><label>Down Payment</label><input type="number" name="down-payment" min="0"></div>
 			<div><label>Finance Amount</label><input type="number" name="finance-amount" min="1">
@@ -41,26 +54,12 @@ class Calculator {
 				<label style="min-width: 37px;">LTV</label><input style="max-width: 63px;" readonly type="text" name="ltv">
 			</div>
 			<div><label>Total</label><input readonly type="number" name="total"></div>
-			<hr>
+		</div>
+		<div class="rent">
 			<div><label>Monthly Rents</label><input type="number" name="rents" min="0"></div>
 			<div><label>Monthly Expenses</label><input type="number" name="expenses" min="0"></div>
 			<div><label>Cashflow</label><input type="number" name="cashflow"></div>
-		</div>
-		<div class="right">
-			<div class="progress-bar">
-				<div class="progress-container">
-					<div class="progress"></div>
-				</div>
-				<div class="progress-labels">
-					<label>cashflow 700</label>
-					<label>cashflow 350</label>
-					<label>break even</label>
-					<label>bad deal</label>
-				</div>
-				<!-- bad deal, break even, cfashflow > 350, cashflow > 700 -->
-			</div>
-		</div>
-		<!-- how is time valued? use 2x over 30 years as benchmark -->`;
+		</div>`;
 		this.interestType = 'amortized';
 		this.pp = this.calc.querySelector('[name="purchase-price"]');
 		this.dp = this.calc.querySelector('[name="down-payment"]');
@@ -77,6 +76,11 @@ class Calculator {
 		this.ex = this.calc.querySelector('[name="expenses"]');
 		this.cf = this.calc.querySelector('[name="cashflow"]');
 		this.progress = this.calc.querySelector('.progress');
+
+		this.calc.querySelector('[name="entrance"]').addEventListener('change', e => {
+			$(this.calc).find('.wholesale, .purchase, .lease-option, .seller-finance"').hide();
+			this.calc.querySelector('.' + e.target.value).style.display = 'block';
+		});
 
 		this.calc.querySelectorAll('[name="purchase-price"], [name="down-payment"], [name="finance-amount"]').forEach(field => {
 			field.addEventListener('input', e => {
@@ -217,7 +221,7 @@ class Calculator {
 					}
 				}
 				this.balloon.value = balloonAmt.toFixed(2);
-				if (balloonAmt && finAmt) {
+				if (finAmt) {
 					this.ltv.value = Math.round(balloonAmt / finAmt * 100) + '%';
 				}
 			break;
@@ -245,7 +249,7 @@ class Calculator {
 		}
 
 		if (termMonths === amortMonths || balloonAmt) {
-			this.total.value = (Number(this.dp.value) + termMonths * pmtAmt + balloonAmt).toFixed(2);
+			this.total.value = (balloonAmt + Number(this.dp.value) + (termMonths * pmtAmt)).toFixed(2);
 		}
 		if (Number(this.rs.value)) {
 			this.cf.value = Math.round(Number(this.rs.value) - Number(this.ex.value) - pmtAmt);
