@@ -15,6 +15,8 @@ title: Calculator
 <script>
 class Calculator {
 	constructor(name, entrance) {
+		this.name = name;
+		this.strategy = entrance ? 'seller-finance' : 'seller-finance';
 		this.strategyNames = {
 			wholesale: 'Wholesale',
 			'seller-finance': 'Seller Finance',
@@ -25,150 +27,94 @@ class Calculator {
 			retail: 'Retail'
 		};
 		this.strategies = entrance ? ['wholesale', 'purchase', 'seller-finance', 'lease-option'] : ['wholesale', 'sell-flip', 'rent', 'lease-option', 'seller-finance'];
-		this.strategyFields = {
-			wholesale: `<div><label>Purchase Price</label><input type="number" name="purchase-price" min="1"></div>`, 
-			'seller-finance': `<div><label>Purchase Price</label><input type="number" name="purchase-price" min="1"></div>
-			<div><label>Down Payment</label><input type="number" name="down-payment" min="0"></div>
-			<div><label>Finance Amount</label><input type="number" name="finance-amount" min="1">
-			<!-- <button class="finance-amount">calculate</button> -->
-			</div>
-			<div><label>Interest Type</label>
-			<input type="radio" name="interest-type-${name}" value="amortized" id="amortized" checked><label for="amortized" style="min-width: 0px;">Amortized</label>
-			<input type="radio" name="interest-type-${name}" value="simple" id="simple"><label for="simple" style="min-width: 0px;">Simple</label>
-			</div>
-			<div><label>Annual Interest Rate</label><input readonly style="width: 50px;" type="text" value="2.50%"><input type="range" min="0" max="10" value="2.5" step="0.25" name="interest-rate" class="interest-rate-range">
-			</div>
-			<div class="amortized-months"><label>Amortized Months</label><input type="number" name="amortized-months" value="360" min="1">
-			</div>
-			<div style="display: none;" class="principal-percentage"><label>Principal %</label><input readonly style="width: 50px;" type="text" value="50%"><input type="range" min="0" max="99" value="50" name="principal-percentage" class="principal-percentage-range">
-			</div>
-			<div><label>Payment</label><input type="number" name="payment" min="1">
-			</div>
-			<div><label>Term Months</label><input type="number" name="term-months" value="96" min="1">
-			</div>
-			<div>
-				<label>Balloon</label><input readonly style="max-width: 95px;" type="number" name="balloon">
-				<label style="min-width: 37px;">LTV</label><input style="max-width: 63px;" readonly type="text" name="ltv">
-			</div>
-			<div><label>Total</label><input readonly type="number" name="total"></div>`, 
-			rent: `<div><label>Monthly Rents</label><input type="number" name="rents" min="0"></div>
-			<div><label>Monthly Expenses</label><input type="number" name="expenses" min="0"></div>
-			<div><label>Cashflow</label><input type="number" name="cashflow"></div>`,
-			'lease-option': `<div><label>Purchase Price</label><input type="number" name="purchase-price" min="1"></div>
-			<div><label>Option Payment</label><input type="number" name="down-payment" min="0"></div>
-			<div><label>Finance Amount</label><input type="number" name="finance-amount" min="1">
-			<!-- <button class="finance-amount">calculate</button> -->
-			</div>
-			<div><label>Interest Type</label>
-			<input type="radio" name="interest-type-${name}" value="amortized" id="amortized" checked><label for="amortized" style="min-width: 0px;">Amortized</label>
-			<input type="radio" name="interest-type-${name}" value="simple" id="simple"><label for="simple" style="min-width: 0px;">Simple</label>
-			</div>
-			<div><label>Annual Interest Rate</label><input readonly style="width: 50px;" type="text" value="2.50%"><input type="range" min="0" max="10" value="2.5" step="0.25" name="interest-rate" class="interest-rate-range">
-			</div>
-			<div class="amortized-months"><label>Amortized Months</label><input type="number" name="amortized-months" value="360" min="1">
-			</div>
-			<div style="display: none;" class="principal-percentage"><label>Principal %</label><input readonly style="width: 50px;" type="text" value="50%"><input type="range" min="0" max="99" value="50" name="principal-percentage" class="principal-percentage-range">
-			</div>
-			<div><label>Payment</label><input type="number" name="payment" min="1">
-			</div>
-			<div><label>Term Months</label><input type="number" name="term-months" value="96" min="1">
-			</div>
-			<div>
-				<label>Balloon</label><input readonly style="max-width: 95px;" type="number" name="balloon">
-				<label style="min-width: 37px;">LTV</label><input style="max-width: 63px;" readonly type="text" name="ltv">
-			</div>
-			<div><label>Total</label><input readonly type="number" name="total"></div>`
-		};
-		this.calc = document.querySelector('.' + name);
-		this.calc.innerHTML = `
+
+		this.calc = $('.' + name);
+		this.calc.html(`
 		<div><label>${entrance ? 'Entrance' : 'Exit'}</label>
 			<select name="strategy">
 				${this.strategies.reduce((t, v, i) => t + `<option value="${v}">${this.strategyNames[v]}</option>`, '')}
 			</select>
 		</div>
 
-		${this.strategies.reduce((t, v, i) => t + `<div class="${v}">${this.strategyFields[v]}</div>`, '')}
-		`;
+		${this.strategies.reduce((t, v, i) => t + `<div class="${v}">${this.getHtml(v)}</div>`, '')}
+		`);
 		this.interestType = 'amortized';
-		this.pp = this.calc.querySelector('[name="purchase-price"]');
-		this.dp = this.calc.querySelector('[name="down-payment"]');
-		this.fa = this.calc.querySelector('[name="finance-amount"]');
-		this.int = this.calc.querySelector('[name="interest-rate"]');
-		this.term = this.calc.querySelector('[name="term-months"]');
-		this.amort = this.calc.querySelector('[name="amortized-months"]');
-		this.pmt = this.calc.querySelector('[name="payment"]');
-		this.principalPerc = this.calc.querySelector('[name="principal-percentage"]');
-		this.balloon = this.calc.querySelector('[name="balloon"]');
-		this.ltv = this.calc.querySelector('[name="ltv"]');
-		this.total = this.calc.querySelector('[name="total"]');
-		this.rs = this.calc.querySelector('[name="rents"]');
-		this.ex = this.calc.querySelector('[name="expenses"]');
-		this.cf = this.calc.querySelector('[name="cashflow"]');
-		this.progress = this.calc.querySelector('.progress');
 
-		this.calc.querySelector('[name="strategy"]').addEventListener('change', e => {
+		this.calc.find('[name="strategy"]').change(e => {
 			$(this.calc).find('.wholesale, .rent, .purchase, .lease-option, .seller-finance, .flip, .retail').hide();
-			this.calc.querySelector('.' + e.target.value).style.display = 'block';
+			this.strategyEl = this.calc.find('.' + e.target.value);
+			this.strategyEl.css({display: 'block'});
+			this.pp = this.strategyEl.find('[name="purchase-price"]');
+			this.dp = this.strategyEl.find('[name="down-payment"]');
+			this.fa = this.strategyEl.find('[name="finance-amount"]');
+			this.int = this.strategyEl.find('[name="interest-rate"]');
+			this.term = this.strategyEl.find('[name="term-months"]');
+			this.amort = this.strategyEl.find('[name="amortized-months"]');
+			this.pmt = this.strategyEl.find('[name="payment"]');
+			this.principalPerc = this.strategyEl.find('[name="principal-percentage"]');
+			this.balloon = this.strategyEl.find('[name="balloon"]');
+			this.ltv = this.strategyEl.find('[name="ltv"]');
+			this.total = this.strategyEl.find('[name="total"]');
+			this.rs = this.strategyEl.find('[name="rents"]');
+			this.ex = this.strategyEl.find('[name="expenses"]');
+			this.cf = this.strategyEl.find('[name="cashflow"]');
 		});
-		this.calc.querySelector('[name="strategy"]').dispatchEvent(new Event('change'));
+		this.calc.find('[name="strategy"]').val(this.strategy);
+		this.calc.find('[name="strategy"]').change();
 
-		this.calc.querySelectorAll('[name="purchase-price"], [name="down-payment"], [name="finance-amount"]').forEach(field => {
-			field.addEventListener('input', e => {
-				var ppVal = Number(this.pp.value);
-				var dpVal = Number(this.dp.value);
-				var faVal = Number(this.fa.value);
-				if (!ppVal && this.pp !== field) this.pp.value = ppVal;
-				if (!dpVal && this.dp !== field) this.dp.value = dpVal;
-				if (!faVal && this.fa !== field) this.fa.value = faVal;
-				switch (field.name) {
-					case 'purchase-price':
-						this.fa.value = ppVal - dpVal;
-					break;
-					case 'down-payment':
-						this.fa.value = ppVal - dpVal;
-					break;
-					case 'finance-amount':
-						this.pp.value = faVal + dpVal;
-					break;
-				}
-				this.calculate({className: 'payment'});
-				this.calculate({className: 'balloon'});
-			});
+		this.calc.find('[name="purchase-price"], [name="down-payment"], [name="finance-amount"]').on('input', e => {
+			var ppVal = Number(this.pp.value);
+			var dpVal = Number(this.dp.value);
+			var faVal = Number(this.fa.value);
+			if (!ppVal && this.pp !== e.target) this.pp.value = ppVal;
+			if (!dpVal && this.dp !== e.target) this.dp.value = dpVal;
+			if (!faVal && this.fa !== e.target) this.fa.value = faVal;
+			switch (e.target.name) {
+				case 'purchase-price':
+					this.fa.value = ppVal - dpVal;
+				break;
+				case 'down-payment':
+					this.fa.value = ppVal - dpVal;
+				break;
+				case 'finance-amount':
+					this.pp.value = faVal + dpVal;
+				break;
+			}
+			this.calculate({className: 'payment'});
+			this.calculate({className: 'balloon'});
 		});
-		this.calc.querySelectorAll('[name="rents"], [name="expenses"], [name="cashflow"]').forEach(field => {
-			field.addEventListener('input', e => {
-				var rsVal = Number(this.rs.value);
-				var exVal = Number(this.ex.value);
-				var cfVal = Number(this.cf.value);
-				var pmtAmt = Number(this.pmt.value);
-				if (!rsVal && this.rs !== field) this.rs.value = rsVal;
-				if (!exVal && this.ex !== field) this.ex.value = exVal;
-				if (!cfVal && this.cf !== field) this.cf.value = cfVal;
-				switch (field.name) {
-					case 'rents':
-						this.cf.value = rsVal - exVal - pmtAmt;
-					break;
-					case 'expenses':
-						this.cf.value = rsVal - exVal - pmtAmt;
-					break;
-					case 'cashflow':
-						this.rs.value = cfVal + exVal + pmtAmt;
-					break;
-				}
-				this.calculate({className: ''});
-			});
-		});
+		// this.calc.find('[name="rents"], [name="expenses"], [name="cashflow"]').each((i, field) => {
+		// 	field.addEventListener('input', e => {
+		// 		var rsVal = Number(this.rs.value);
+		// 		var exVal = Number(this.ex.value);
+		// 		var cfVal = Number(this.cf.value);
+		// 		var pmtAmt = Number(this.pmt.value);
+		// 		if (!rsVal && this.rs !== field) this.rs.value = rsVal;
+		// 		if (!exVal && this.ex !== field) this.ex.value = exVal;
+		// 		if (!cfVal && this.cf !== field) this.cf.value = cfVal;
+		// 		switch (field.name) {
+		// 			case 'rents':
+		// 				this.cf.value = rsVal - exVal - pmtAmt;
+		// 			break;
+		// 			case 'expenses':
+		// 				this.cf.value = rsVal - exVal - pmtAmt;
+		// 			break;
+		// 			case 'cashflow':
+		// 				this.rs.value = cfVal + exVal + pmtAmt;
+		// 			break;
+		// 		}
+		// 		this.calculate({className: ''});
+		// 	});
+		// });
 
-		this.calc.querySelectorAll('[name="interest-type-' + name + '"]').forEach(field => {
-			field.addEventListener('change', e => {
-				this.interestType = field.value;
-				this.calc.querySelector('.amortized-months').style.display = field.value === 'amortized' ? 'flex' : 'none';
-				this.calc.querySelector('.principal-percentage').style.display = field.value === 'simple' ? 'flex' : 'none';
-				this.calculate({className: 'payment'});
-				this.calculate({className: 'balloon'});
-			});
+		this.calc.find('[name^="interest-type-"]').change(e => {
+			this.interestType = e.target.value;
+			this.strategyEl.find('.amortized-months').css({display: e.target.value === 'amortized' ? 'flex' : 'none'});
+			this.strategyEl.find('.principal-percentage').css({display: e.target.value === 'simple' ? 'flex' : 'none'});
+			this.calculate({className: 'payment'});
+			this.calculate({className: 'balloon'});
 		});
-		this.calc.querySelectorAll('[type="range"]').forEach(field => {
+		this.calc.find('[type="range"]').each((i, field) => {
 			field.addEventListener('input', e => {
 				var number = Number(e.target.value);
 				e.target.previousSibling.value = field.className === 'interest-rate-range' ? (number).toFixed(2) + '%' : number + '%';
@@ -177,20 +123,20 @@ class Calculator {
 			});
 		});
 
-		this.calc.querySelectorAll('[name="interest-rate"], [name="amortized-months"]').forEach(field => {
+		this.calc.find('[name="interest-rate"], [name="amortized-months"]').each((i, field) => {
 			field.addEventListener('input', e => {
 				this.calculate({className: 'payment'});
 				this.calculate({className: 'balloon'});
 			});
 		});
-		this.calc.querySelectorAll('[name="payment"], [name="term-months"], [name="principal-percentage"]').forEach(field => {
+		this.calc.find('[name="payment"], [name="term-months"], [name="principal-percentage"]').each((i, field) => {
 			// this.principalPerc = (-interest / payment) + 1
 			field.addEventListener('input', e => {
 				this.calculate({className: 'balloon'}, e);
 			});
 		});
 
-		this.calc.querySelectorAll('button').forEach(button => {
+		this.calc.find('button').each((i, button) => {
 			button.addEventListener('click', e => {
 				this.calculate(button);
 			});
@@ -288,13 +234,70 @@ class Calculator {
 			var height = (Number(this.cf.value) + 350) / 1050  * 100;
 			height = height > 100 ? 100 : height;
 			height = height < 0 ? 0 : height;
-			this.progress.style.height = height + '%';
 		}
+	}
+
+	getHtml(strategy) {
+		return {
+			wholesale: `<div><label>Purchase Price</label><input type="number" name="purchase-price" min="1"></div>`, 
+			'seller-finance': `<div><label>Purchase Price</label><input type="number" name="purchase-price" min="1"></div>
+			<div><label>Down Payment</label><input type="number" name="down-payment" min="0"></div>
+			<div><label>Finance Amount</label><input type="number" name="finance-amount" min="1">
+			<!-- <button class="finance-amount">calculate</button> -->
+			</div>
+			<div><label>Interest Type</label>
+			<input type="radio" name="interest-type-${this.name + '-' + strategy}" value="amortized" id="amortized" checked><label for="amortized" style="min-width: 0px;">Amortized</label>
+			<input type="radio" name="interest-type-${this.name + '-' + strategy}" value="simple" id="simple"><label for="simple" style="min-width: 0px;">Simple</label>
+			</div>
+			<div><label>Annual Interest Rate</label><input readonly style="width: 50px;" type="text" value="2.50%"><input type="range" min="0" max="10" value="2.5" step="0.25" name="interest-rate" class="interest-rate-range">
+			</div>
+			<div class="amortized-months"><label>Amortized Months</label><input type="number" name="amortized-months" value="360" min="1">
+			</div>
+			<div style="display: none;" class="principal-percentage"><label>Principal %</label><input readonly style="width: 50px;" type="text" value="50%"><input type="range" min="0" max="99" value="50" name="principal-percentage" class="principal-percentage-range">
+			</div>
+			<div><label>Payment</label><input type="number" name="payment" min="1">
+			</div>
+			<div><label>Term Months</label><input type="number" name="term-months" value="96" min="1">
+			</div>
+			<div>
+				<label>Balloon</label><input readonly style="max-width: 95px;" type="number" name="balloon">
+				<label style="min-width: 37px;">LTV</label><input style="max-width: 63px;" readonly type="text" name="ltv">
+			</div>
+			<div><label>Total</label><input readonly type="number" name="total"></div>`, 
+			'sell-flip': ``,
+			rent: `<div><label>Monthly Rents</label><input type="number" name="rents" min="0"></div>
+			<div><label>Monthly Expenses</label><input type="number" name="expenses" min="0"></div>
+			<div><label>Cashflow</label><input type="number" name="cashflow"></div>`,
+			'lease-option': `<div><label>Purchase Price</label><input type="number" name="purchase-price" min="1"></div>
+			<div><label>Option Payment</label><input type="number" name="down-payment" min="0"></div>
+			<div><label>Finance Amount</label><input type="number" name="finance-amount" min="1">
+			<!-- <button class="finance-amount">calculate</button> -->
+			</div>
+			<div><label>Interest Type</label>
+			<input type="radio" name="interest-type-${this.name + '-' + strategy}" value="amortized" id="amortized" checked><label for="amortized" style="min-width: 0px;">Amortized</label>
+			<input type="radio" name="interest-type-${this.name + '-' + strategy}" value="simple" id="simple"><label for="simple" style="min-width: 0px;">Simple</label>
+			</div>
+			<div><label>Annual Interest Rate</label><input readonly style="width: 50px;" type="text" value="2.50%"><input type="range" min="0" max="10" value="2.5" step="0.25" name="interest-rate" class="interest-rate-range">
+			</div>
+			<div class="amortized-months"><label>Amortized Months</label><input type="number" name="amortized-months" value="360" min="1">
+			</div>
+			<div style="display: none;" class="principal-percentage"><label>Principal %</label><input readonly style="width: 50px;" type="text" value="50%"><input type="range" min="0" max="99" value="50" name="principal-percentage" class="principal-percentage-range">
+			</div>
+			<div><label>Payment</label><input type="number" name="payment" min="1">
+			</div>
+			<div><label>Term Months</label><input type="number" name="term-months" value="96" min="1">
+			</div>
+			<div>
+				<label>Balloon</label><input readonly style="max-width: 95px;" type="number" name="balloon">
+				<label style="min-width: 37px;">LTV</label><input style="max-width: 63px;" readonly type="text" name="ltv">
+			</div>
+			<div><label>Total</label><input readonly type="number" name="total"></div>`
+		}[strategy];
 	}
 }
 
-new Calculator('calc-1', true);
-new Calculator('calc-2', false);
+var calc1 = new Calculator('calc-1', true);
+var calc2 = new Calculator('calc-2', false);
 
 
 
