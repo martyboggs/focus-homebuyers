@@ -21,10 +21,10 @@ class Calculator {
 			'lease-option': 'Lease Option',
 			purchase: 'Purchase',
 			rent: 'Rent',
-			'sell/flip': 'Sell/Flip',
+			'sell-flip': 'Sell/Flip',
 			retail: 'Retail'
 		};
-		this.strategies = entrance ? ['wholesale', 'purchase', 'seller-finance', 'lease-option'] : ['wholesale', 'sell/flip', 'rent', 'lease-option', 'seller-finance'];
+		this.strategies = entrance ? ['wholesale', 'purchase', 'seller-finance', 'lease-option'] : ['wholesale', 'sell-flip', 'rent', 'lease-option', 'seller-finance'];
 		this.strategyFields = {
 			wholesale: `<div><label>Purchase Price</label><input type="number" name="purchase-price" min="1"></div>`, 
 			'seller-finance': `<div><label>Purchase Price</label><input type="number" name="purchase-price" min="1"></div>
@@ -110,6 +110,7 @@ class Calculator {
 			$(this.calc).find('.wholesale, .rent, .purchase, .lease-option, .seller-finance, .flip, .retail').hide();
 			this.calc.querySelector('.' + e.target.value).style.display = 'block';
 		});
+		this.calc.querySelector('[name="strategy"]').dispatchEvent(new Event('change'));
 
 		this.calc.querySelectorAll('[name="purchase-price"], [name="down-payment"], [name="finance-amount"]').forEach(field => {
 			field.addEventListener('input', e => {
