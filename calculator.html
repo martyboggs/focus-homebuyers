@@ -39,7 +39,58 @@ class Calculator {
 		${this.strategies.reduce((t, v, i) => t + `<div class="${v}">${this.getHtml(v)}</div>`, '')}
 		`);
 		this.interestType = 'amortized';
+// flip
+// asking price
+// months to sell
+// marketing costs (staging, advertising, selling costs (attorney fee, recording, transfer fees, realtor))
+// $4k
 
+// analysis
+// total loan amt
+// cash required
+// total loan payments
+// term with seller (length)
+// balance after 3 months
+// purchase price
+// total repairs
+// total holding time
+// total other cost
+// total marketing cost
+// --
+// asking price
+// balance at sell
+// cash required
+// total selling cost
+
+// rent
+// monthly operating income
+// estimated vacancy percentage
+// monthly operating expenses
+// analysis is different
+// $4k/year for 5 years
+
+// lease option
+// sale price
+// option payment (non refundable, credited to down payment)
+// monthly rental payment
+// monthly credits
+// lease option term length (12 months)
+// analysis is different
+// $37k (if they don't buy)
+
+// seller finance
+// estimated sales price
+// estimated months to sell
+// loan amount
+// down payjent
+// interest rate
+// amort term
+// balloon term (3 yrs) (shorter than buying terms in case a new tenant is needed)
+// prop insurance
+// prop taxes
+// hoa dues
+// loan payment
+// $23k
 		this.calc.find('[name="strategy"]').change(e => {
 			$(this.calc).find('.wholesale, .rent, .purchase, .lease-option, .seller-finance, .flip, .retail').hide();
 			this.strategyEl = this.calc.find('.' + e.target.value);
@@ -63,21 +114,21 @@ class Calculator {
 		this.calc.find('[name="strategy"]').change();
 
 		this.calc.find('[name="purchase-price"], [name="down-payment"], [name="finance-amount"]').on('input', e => {
-			var ppVal = Number(this.pp.value);
-			var dpVal = Number(this.dp.value);
-			var faVal = Number(this.fa.value);
-			if (!ppVal && this.pp !== e.target) this.pp.value = ppVal;
-			if (!dpVal && this.dp !== e.target) this.dp.value = dpVal;
-			if (!faVal && this.fa !== e.target) this.fa.value = faVal;
+			var ppVal = Number(this.pp.val());
+			var dpVal = Number(this.dp.val());
+			var faVal = Number(this.fa.val());
+			if (!ppVal && this.pp !== e.target) this.pp.val(ppVal);
+			if (!dpVal && this.dp !== e.target) this.dp.val(dpVal);
+			if (!faVal && this.fa !== e.target) this.fa.val(faVal);
 			switch (e.target.name) {
 				case 'purchase-price':
-					this.fa.value = ppVal - dpVal;
+					this.fa.val(ppVal - dpVal);
 				break;
 				case 'down-payment':
-					this.fa.value = ppVal - dpVal;
+					this.fa.val(ppVal - dpVal);
 				break;
 				case 'finance-amount':
-					this.pp.value = faVal + dpVal;
+					this.pp.val(faVal + dpVal);
 				break;
 			}
 			this.calculate({className: 'payment'});
@@ -144,18 +195,17 @@ class Calculator {
 	}
 
 	calculate(button, e) {
-		var finAmt = Number(this.fa.value);
-		var monthRate = Number(this.int.value) / 100 / 12;
-		var termMonths = Number(this.term.value);
-		var amortMonths = Number(this.amort.value);
-		var pmtAmt = Number(this.pmt.value);
-		var balloonAmt = Number(this.balloon.value);
-
+		var finAmt = Number(this.fa.val());
+		var monthRate = Number(this.int.val()) / 100 / 12;
+		var termMonths = Number(this.term.val());
+		var amortMonths = Number(this.amort.val());
+		var pmtAmt = Number(this.pmt.val());
+		var balloonAmt = Number(this.balloon.val());
 		switch (button.className) {
 			case 'finance-amount':
 				if (balloonAmt) {
 					finAmt = !monthRate ? balloonAmt / ((amortMonths - termMonths) / amortMonths) : balloonAmt / ((Math.pow(1 + monthRate, amortMonths) - Math.pow(1 + monthRate, termMonths))/(Math.pow(1 + monthRate, amortMonths) - 1));
-					this.fa.value = finAmt.toFixed(2);
+					this.fa.val(finAmt.toFixed(2));
 				}
 			break;
 			case 'interest-rate':
@@ -174,9 +224,9 @@ class Calculator {
 						}
 					} else {
 						var interest = finAmt * monthRate;
-						pmtAmt = -interest / (Number(this.principalPerc.value) / 100 - 1);
+						pmtAmt = -interest / (Number(this.principalPerc.val()) / 100 - 1);
 					}
-					this.pmt.value = pmtAmt.toFixed(2);
+					this.pmt.val(pmtAmt.toFixed(2));
 				}
 			break;
 			case 'balloon':
@@ -196,9 +246,9 @@ class Calculator {
 						balloonAmt = finAmt;
 					}
 				}
-				this.balloon.value = balloonAmt.toFixed(2);
+				this.balloon.val(balloonAmt.toFixed(2));
 				if (finAmt) {
-					this.ltv.value = Math.round(balloonAmt / finAmt * 100) + '%';
+					this.ltv.val(Math.round(balloonAmt / finAmt * 100) + '%');
 				}
 			break;
 		}
@@ -210,12 +260,12 @@ class Calculator {
 				} else {
 					amortMonths = finAmt / pmtAmt;
 				}
-				this.amort.value = amortMonths.toFixed(2);
+				this.amort.val(amortMonths.toFixed(2));
 			} else {
 				var interest = finAmt * monthRate;
 				var pp = -100 * interest / pmtAmt + 100;
-				this.principalPerc.value = pp.toFixed(2);
-				this.principalPerc.previousSibling.value = Math.round(pp) + '%';
+				this.principalPerc.val(pp.toFixed(2));
+				this.principalPerc.previousSibling.val(Math.round(pp) + '%');
 				// pmtAmt = -interest / (Number(this.principalPerc.value) / 100 - 1);
 				// pmtAmt * ((this.principalPerc.value / 100) - 1)= -interest;
 				// ((this.principalPerc.value / 100) - 1)= -interest / pmtAmt;
@@ -225,13 +275,13 @@ class Calculator {
 		}
 
 		if (termMonths === amortMonths || balloonAmt) {
-			this.total.value = (balloonAmt + Number(this.dp.value) + (termMonths * pmtAmt)).toFixed(2);
+			this.total.val((balloonAmt + Number(this.dp.val()) + (termMonths * pmtAmt)).toFixed(2));
 		}
-		if (Number(this.rs.value)) {
-			this.cf.value = Math.round(Number(this.rs.value) - Number(this.ex.value) - pmtAmt);
+		if (Number(this.rs.val())) {
+			this.cf.val(Math.round(Number(this.rs.val()) - Number(this.ex.val()) - pmtAmt));
 		}
-		if (Number(this.cf.value)) {
-			var height = (Number(this.cf.value) + 350) / 1050  * 100;
+		if (Number(this.cf.val())) {
+			var height = (Number(this.cf.val()) + 350) / 1050  * 100;
 			height = height > 100 ? 100 : height;
 			height = height < 0 ? 0 : height;
 		}
@@ -246,8 +296,8 @@ class Calculator {
 			<!-- <button class="finance-amount">calculate</button> -->
 			</div>
 			<div><label>Interest Type</label>
-			<input type="radio" name="interest-type-${this.name + '-' + strategy}" value="amortized" id="amortized" checked><label for="amortized" style="min-width: 0px;">Amortized</label>
-			<input type="radio" name="interest-type-${this.name + '-' + strategy}" value="simple" id="simple"><label for="simple" style="min-width: 0px;">Simple</label>
+			<input type="radio" name="interest-type-${this.name + '-' + strategy}" value="amortized" id="amortized-${this.name + '-' + strategy}" checked><label for="amortized-${this.name + '-' + strategy}" style="min-width: 0px;">Amortized</label>
+			<input type="radio" name="interest-type-${this.name + '-' + strategy}" value="simple" id="simple-${this.name + '-' + strategy}"><label for="simple-${this.name + '-' + strategy}" style="min-width: 0px;">Simple</label>
 			</div>
 			<div><label>Annual Interest Rate</label><input readonly style="width: 50px;" type="text" value="2.50%"><input type="range" min="0" max="10" value="2.5" step="0.25" name="interest-rate" class="interest-rate-range">
 			</div>
