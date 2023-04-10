@@ -14,23 +14,20 @@ title: Calculator
 	</div>
 <script>
 class Calculator {
-	constructor(name) {
-		this.calc = document.querySelector('.' + name);
-		this.calc.innerHTML = `
-		<div><label>Entrance</label>
-			<select name="strategy">
-				<option value="wholesale">Wholesale</option>
-				<option value="seller-finance">Seller Finance</option>
-				<option value="lease-option">Lease Option</option>
-				<option value="purchase">Purchase</option>
-			</select>
-		</div>
-
-		<div class="wholesale">
-			<div><label>Purchase Price</label><input type="number" name="purchase-price" min="1"></div>
-		</div>
-		<div class="seller-finance">
-			<div><label>Purchase Price</label><input type="number" name="purchase-price" min="1"></div>
+	constructor(name, entrance) {
+		this.strategyNames = {
+			wholesale: 'Wholesale',
+			'seller-finance': 'Seller Finance',
+			'lease-option': 'Lease Option',
+			purchase: 'Purchase',
+			rent: 'Rent',
+			'sell/flip': 'Sell/Flip',
+			retail: 'Retail'
+		};
+		this.strategies = entrance ? ['wholesale', 'purchase', 'seller-finance', 'lease-option'] : ['wholesale', 'sell/flip', 'rent', 'lease-option', 'seller-finance'];
+		this.strategyFields = {
+			wholesale: `<div><label>Purchase Price</label><input type="number" name="purchase-price" min="1"></div>`, 
+			'seller-finance': `<div><label>Purchase Price</label><input type="number" name="purchase-price" min="1"></div>
 			<div><label>Down Payment</label><input type="number" name="down-payment" min="0"></div>
 			<div><label>Finance Amount</label><input type="number" name="finance-amount" min="1">
 			<!-- <button class="finance-amount">calculate</button> -->
@@ -53,13 +50,45 @@ class Calculator {
 				<label>Balloon</label><input readonly style="max-width: 95px;" type="number" name="balloon">
 				<label style="min-width: 37px;">LTV</label><input style="max-width: 63px;" readonly type="text" name="ltv">
 			</div>
-			<div><label>Total</label><input readonly type="number" name="total"></div>
-		</div>
-		<div class="rent">
-			<div><label>Monthly Rents</label><input type="number" name="rents" min="0"></div>
+			<div><label>Total</label><input readonly type="number" name="total"></div>`, 
+			rent: `<div><label>Monthly Rents</label><input type="number" name="rents" min="0"></div>
 			<div><label>Monthly Expenses</label><input type="number" name="expenses" min="0"></div>
-			<div><label>Cashflow</label><input type="number" name="cashflow"></div>
-		</div>`;
+			<div><label>Cashflow</label><input type="number" name="cashflow"></div>`,
+			'lease-option': `<div><label>Purchase Price</label><input type="number" name="purchase-price" min="1"></div>
+			<div><label>Option Payment</label><input type="number" name="down-payment" min="0"></div>
+			<div><label>Finance Amount</label><input type="number" name="finance-amount" min="1">
+			<!-- <button class="finance-amount">calculate</button> -->
+			</div>
+			<div><label>Interest Type</label>
+			<input type="radio" name="interest-type-${name}" value="amortized" id="amortized" checked><label for="amortized" style="min-width: 0px;">Amortized</label>
+			<input type="radio" name="interest-type-${name}" value="simple" id="simple"><label for="simple" style="min-width: 0px;">Simple</label>
+			</div>
+			<div><label>Annual Interest Rate</label><input readonly style="width: 50px;" type="text" value="2.50%"><input type="range" min="0" max="10" value="2.5" step="0.25" name="interest-rate" class="interest-rate-range">
+			</div>
+			<div class="amortized-months"><label>Amortized Months</label><input type="number" name="amortized-months" value="360" min="1">
+			</div>
+			<div style="display: none;" class="principal-percentage"><label>Principal %</label><input readonly style="width: 50px;" type="text" value="50%"><input type="range" min="0" max="99" value="50" name="principal-percentage" class="principal-percentage-range">
+			</div>
+			<div><label>Payment</label><input type="number" name="payment" min="1">
+			</div>
+			<div><label>Term Months</label><input type="number" name="term-months" value="96" min="1">
+			</div>
+			<div>
+				<label>Balloon</label><input readonly style="max-width: 95px;" type="number" name="balloon">
+				<label style="min-width: 37px;">LTV</label><input style="max-width: 63px;" readonly type="text" name="ltv">
+			</div>
+			<div><label>Total</label><input readonly type="number" name="total"></div>`
+		};
+		this.calc = document.querySelector('.' + name);
+		this.calc.innerHTML = `
+		<div><label>${entrance ? 'Entrance' : 'Exit'}</label>
+			<select name="strategy">
+				${this.strategies.reduce((t, v, i) => t + `<option value="${v}">${this.strategyNames[v]}</option>`, '')}
+			</select>
+		</div>
+
+		${this.strategies.reduce((t, v, i) => t + `<div class="${v}">${this.strategyFields[v]}</div>`, '')}
+		`;
 		this.interestType = 'amortized';
 		this.pp = this.calc.querySelector('[name="purchase-price"]');
 		this.dp = this.calc.querySelector('[name="down-payment"]');
@@ -78,7 +107,7 @@ class Calculator {
 		this.progress = this.calc.querySelector('.progress');
 
 		this.calc.querySelector('[name="strategy"]').addEventListener('change', e => {
-			$(this.calc).find('.wholesale, .rent, .purchase, .lease-option, .seller-finance').hide();
+			$(this.calc).find('.wholesale, .rent, .purchase, .lease-option, .seller-finance, .flip, .retail').hide();
 			this.calc.querySelector('.' + e.target.value).style.display = 'block';
 		});
 
@@ -263,8 +292,8 @@ class Calculator {
 	}
 }
 
-new Calculator('calc-1');
-new Calculator('calc-2');
+new Calculator('calc-1', true);
+new Calculator('calc-2', false);
 
 
 
