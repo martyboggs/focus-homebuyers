@@ -4,7 +4,7 @@ title: Calculator
 ---
 <section>
 <div class="container">
-	<div class="row">
+	<div class="row" style="align-items: flex-start;">
 		<div class="col-6">
 			<div class="calculator calc-1"></div>
 		</div>
@@ -18,7 +18,7 @@ class Calculator {
 		this.calc = document.querySelector('.' + name);
 		this.calc.innerHTML = `
 		<div><label>Entrance</label>
-			<select name="entrance">
+			<select name="strategy">
 				<option value="wholesale">Wholesale</option>
 				<option value="seller-finance">Seller Finance</option>
 				<option value="lease-option">Lease Option</option>
@@ -77,8 +77,8 @@ class Calculator {
 		this.cf = this.calc.querySelector('[name="cashflow"]');
 		this.progress = this.calc.querySelector('.progress');
 
-		this.calc.querySelector('[name="entrance"]').addEventListener('change', e => {
-			$(this.calc).find('.wholesale, .purchase, .lease-option, .seller-finance').hide();
+		this.calc.querySelector('[name="strategy"]').addEventListener('change', e => {
+			$(this.calc).find('.wholesale, .rent, .purchase, .lease-option, .seller-finance').hide();
 			this.calc.querySelector('.' + e.target.value).style.display = 'block';
 		});
 
