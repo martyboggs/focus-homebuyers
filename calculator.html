@@ -39,30 +39,41 @@ title: Calculator
 		</div>
 	</div>
 <script>
+var analysis = $('.analysis');
+var rs = analysis.find('[name="rents"]');
+var ex = analysis.find('[name="expenses"]');
+var cf = analysis.find('[name="cashflow"]');
+
 var calc1 = new Calculator('calc-1', ['wholesale', 'purchase', 'lease-option', 'seller-finance'], 'seller-finance');
 var calc2 = new Calculator('calc-2', ['wholesale', 'sell-flip', 'rent', 'lease-option', 'seller-finance'], 'lease-option');
 
-$('.analysis').find('[name="rents"], [name="expenses"], [name="cashflow"]').on('input', e => {
-	var rsVal = Number(this.rs.value);
-	var exVal = Number(this.ex.value);
-	var cfVal = Number(this.cf.value);
-	var pmtAmt = Number(this.pmt.value);
-	if (!rsVal && !this.rs.is(field)) this.rs.value = rsVal;
-	if (!exVal && !this.ex.is(field)) this.ex.value = exVal;
-	if (!cfVal && !this.cf.is(field)) this.cf.value = cfVal;
+analysis.find('[name="rents"], [name="expenses"], [name="cashflow"]').on('input', e => {
+	// pmt?
+	var rsVal = Number(rs.value);
+	var exVal = Number(ex.value);
+	var cfVal = Number(cf.value);
+	var pmtAmt = Number(pmt.value);
+	if (!rsVal && !rs.is(field)) rs.value = rsVal;
+	if (!exVal && !ex.is(field)) ex.value = exVal;
+	if (!cfVal && !cf.is(field)) cf.value = cfVal;
 	switch (field.name) {
 		case 'rents':
-			this.cf.value = rsVal - exVal - pmtAmt;
+			cf.value = rsVal - exVal - pmtAmt;
 		break;
 		case 'expenses':
-			this.cf.value = rsVal - exVal - pmtAmt;
+			cf.value = rsVal - exVal - pmtAmt;
 		break;
 		case 'cashflow':
-			this.rs.value = cfVal + exVal + pmtAmt;
+			rs.value = cfVal + exVal + pmtAmt;
 		break;
 	}
-	this.calculate({className: ''});
 });
+
+function calculateAnalysis() {
+	if (Number(rs.val())) {
+		cf.val(Math.round(Number(rs.val()) - Number(ex.val()) - pmtAmt));
+	}
+}
 
 // analysis
 // total loan amt

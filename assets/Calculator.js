@@ -41,9 +41,6 @@ class Calculator {
 			this.balloon = this.strategyEl.find('[name="balloon"]');
 			this.ltv = this.strategyEl.find('[name="ltv"]');
 			this.total = this.strategyEl.find('[name="total"]');
-			this.rs = this.strategyEl.find('[name="rents"]');
-			this.ex = this.strategyEl.find('[name="expenses"]');
-			this.cf = this.strategyEl.find('[name="cashflow"]');
 		});
 		this.calc.find('[name="strategy"]').val(this.strategy);
 		this.calc.find('[name="strategy"]').change();
@@ -189,14 +186,7 @@ class Calculator {
 		if (termMonths === amortMonths || balloonAmt) {
 			this.total.val((balloonAmt + Number(this.dp.val()) + (termMonths * pmtAmt)).toFixed(2));
 		}
-		if (Number(this.rs.val())) {
-			this.cf.val(Math.round(Number(this.rs.val()) - Number(this.ex.val()) - pmtAmt));
-		}
-		if (Number(this.cf.val())) {
-			var height = (Number(this.cf.val()) + 350) / 1050  * 100;
-			height = height > 100 ? 100 : height;
-			height = height < 0 ? 0 : height;
-		}
+		calculateAnalysis();
 	}
 
 	getHtml(strategy) {
