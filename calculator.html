@@ -239,6 +239,53 @@ class Calculator {
 
 	getHtml(strategy) {
 		return {
+
+// analysis
+// total loan amt
+// cash required
+// total loan payments
+// term with seller (length)
+// balance after 3 months
+// purchase price
+// total repairs
+// total holding time
+// total other cost
+// total marketing cost
+// --
+// asking price
+// balance at sell
+// cash required
+// total selling cost
+
+// rent
+// monthly operating income
+// estimated vacancy percentage
+// monthly operating expenses
+// analysis is different
+// $4k/year for 5 years
+
+// lease option
+// sale price
+// option payment (non refundable, credited to down payment)
+// monthly rental payment
+// monthly credits
+// lease option term length (12 months)
+// analysis is different
+// $37k (if they don't buy)
+
+// seller finance
+// estimated sales price
+// estimated months to sell
+// loan amount
+// down payjent
+// interest rate
+// amort term
+// balloon term (3 yrs) (shorter than buying terms in case a new tenant is needed)
+// prop insurance
+// prop taxes
+// hoa dues
+// loan payment
+// $23k
 			wholesale: `<div><label>Purchase Price</label><input type="number" name="purchase-price" min="1"></div>`, 
 			'seller-finance': `<div><label>Purchase Price</label><input type="number" name="purchase-price" min="1"></div>
 			<div><label>Down Payment</label><input type="number" name="down-payment" min="0"></div>
@@ -264,7 +311,13 @@ class Calculator {
 				<label style="min-width: 37px;">LTV</label><input style="max-width: 63px;" readonly type="text" name="ltv">
 			</div>
 			<div><label>Total</label><input readonly type="number" name="total"></div>`, 
-			'sell-flip': ``,
+// asking price
+// months to sell
+// marketing costs (staging, advertising, selling costs (attorney fee, recording, transfer fees, realtor))
+// $4k
+			'sell-flip': `<div><label>Purchase Price</label><input type="number" name="purchase-price" min="1"></div>
+			<div><label>Months to Sell</label><input type="number" name="sell-months" min="1" value="1"></div>
+			<div><label>Marketing Costs</label><input type="number" name="marketing-costs" min="0"></div>`,
 			rent: `<div><label>Monthly Rents</label><input type="number" name="rents" min="0"></div>
 			<div><label>Monthly Expenses</label><input type="number" name="expenses" min="0"></div>
 			<div><label>Cashflow</label><input type="number" name="cashflow"></div>`,
