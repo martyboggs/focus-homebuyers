@@ -332,6 +332,14 @@ img {
 	font-size: 14px;
 	flex-direction: column;
 }
+.calculator > div > div {
+	display: flex;
+	flex-wrap: wrap;	
+	align-items: center;
+}
+.calculator > div > *:not(:last-child) {
+	margin-bottom: 8px;
+}
 .calculator label {
 	display: inline-block;
 	min-width: 140px;

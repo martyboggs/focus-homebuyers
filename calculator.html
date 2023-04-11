@@ -30,67 +30,17 @@ class Calculator {
 
 		this.calc = $('.' + name);
 		this.calc.html(`
-		<div><label>${entrance ? 'Entrance' : 'Exit'}</label>
+		<div>
+			<div><label>${entrance ? 'Entrance' : 'Exit'}</label>
 			<select name="strategy">
 				${this.strategies.reduce((t, v, i) => t + `<option value="${v}">${this.strategyNames[v]}</option>`, '')}
-			</select>
+			</select></div>
 		</div>
 
 		${this.strategies.reduce((t, v, i) => t + `<div class="${v}">${this.getHtml(v)}</div>`, '')}
 		`);
 		this.interestType = 'amortized';
-// flip
-// asking price
-// months to sell
-// marketing costs (staging, advertising, selling costs (attorney fee, recording, transfer fees, realtor))
-// $4k
 
-// analysis
-// total loan amt
-// cash required
-// total loan payments
-// term with seller (length)
-// balance after 3 months
-// purchase price
-// total repairs
-// total holding time
-// total other cost
-// total marketing cost
-// --
-// asking price
-// balance at sell
-// cash required
-// total selling cost
-
-// rent
-// monthly operating income
-// estimated vacancy percentage
-// monthly operating expenses
-// analysis is different
-// $4k/year for 5 years
-
-// lease option
-// sale price
-// option payment (non refundable, credited to down payment)
-// monthly rental payment
-// monthly credits
-// lease option term length (12 months)
-// analysis is different
-// $37k (if they don't buy)
-
-// seller finance
-// estimated sales price
-// estimated months to sell
-// loan amount
-// down payjent
-// interest rate
-// amort term
-// balloon term (3 yrs) (shorter than buying terms in case a new tenant is needed)
-// prop insurance
-// prop taxes
-// hoa dues
-// loan payment
-// $23k
 		this.calc.find('[name="strategy"]').change(e => {
 			$(this.calc).find('.wholesale, .rent, .purchase, .lease-option, .seller-finance, .flip, .retail').hide();
 			this.strategyEl = this.calc.find('.' + e.target.value);
