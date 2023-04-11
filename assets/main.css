@@ -327,6 +327,9 @@ img {
 .testimonial-attribution p {
 	margin-bottom: 0;
 }
+.calc-page h2 {
+	text-align: center;
+}
 .calculator {
 	display: flex;
 	font-size: 14px;
