@@ -31,7 +31,7 @@ class Calculator {
 		this.calc = $('.' + name);
 		this.calc.html(`
 		<div>
-			<div><label>${entrance ? 'Entrance' : 'Exit'}</label>
+			<div style="margin-bottom: 8px;"><label>${entrance ? 'Entrance' : 'Exit'}</label>
 			<select name="strategy">
 				${this.strategies.reduce((t, v, i) => t + `<option value="${v}">${this.strategyNames[v]}</option>`, '')}
 			</select></div>
