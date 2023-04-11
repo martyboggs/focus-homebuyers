@@ -332,6 +332,9 @@ img {
 	font-size: 14px;
 	flex-direction: column;
 }
+.calculator, .analysis {
+	margin-bottom: 30px;
+}
 .calculator > div > div {
 	display: flex;
 	flex-wrap: wrap;	
