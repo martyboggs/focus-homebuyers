@@ -332,7 +332,7 @@ img {
 	font-size: 14px;
 	flex-direction: column;
 }
-.calculator, .analysis {
+.calculator {
 	margin-bottom: 30px;
 }
 .calculator > div > div {

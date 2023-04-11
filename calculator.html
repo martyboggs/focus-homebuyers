@@ -6,22 +6,25 @@ title: Calculator
 <div class="container">
 	<div class="row" style="align-items: flex-start;">
 		<div class="col-4">
+			<h2>Entrance</h2>
 			<div class="calculator calc-1"></div>
 		</div>
 		<div class="col-4">
+			<h2>Exit</h2>
 			<div class="calculator calc-2"></div>	
 		</div>
 		<div class="col-4">
-			<div class="analysis">
+			<h2>Analysis</h2>
+			<div class="calculator analysis">
 				<div><label>Purchase Price</label><input type="number" name="purchase-price" min="1"></div>
 			</div>
 		</div>
 	</div>
 <script>
 class Calculator {
-	constructor(name, entrance) {
+	constructor(name, strategies, activeStrategy) {
 		this.name = name;
-		this.strategy = entrance ? 'seller-finance' : 'lease-option';
+		this.strategy = activeStrategy;
 		this.strategyNames = {
 			wholesale: 'Wholesale',
 			'seller-finance': 'Seller Finance',
@@ -31,12 +34,12 @@ class Calculator {
 			'sell-flip': 'Sell/Flip',
 			retail: 'Retail'
 		};
-		this.strategies = entrance ? ['wholesale', 'purchase', 'lease-option', 'seller-finance'] : ['wholesale', 'sell-flip', 'rent', 'lease-option', 'seller-finance', 'analysis'];
+		this.strategies = strategies;
 
 		this.calc = $('.' + name);
 		this.calc.html(`
 		<div>
-			<div style="margin-bottom: 8px;"><label>${entrance ? 'Entrance' : 'Exit'}</label>
+			<div style="margin-bottom: 8px;"><label>Strategy</label>
 			<select name="strategy">
 				${this.strategies.reduce((t, v, i) => t + `<option value="${v}">${this.strategyNames[v]}</option>`, '')}
 			</select></div>
@@ -359,10 +362,8 @@ class Calculator {
 	}
 }
 
-var calc1 = new Calculator('calc-1', true);
-var calc2 = new Calculator('calc-2', false);
-
-
+var calc1 = new Calculator('calc-1', ['wholesale', 'purchase', 'lease-option', 'seller-finance'], 'seller-finance');
+var calc2 = new Calculator('calc-2', ['wholesale', 'sell-flip', 'rent', 'lease-option', 'seller-finance'], 'lease-option');
 
 // it's better to make payments on an amortized loan vs simple. balloon is smaller, net is smaller
 // balloon payment doesn't include future interest
