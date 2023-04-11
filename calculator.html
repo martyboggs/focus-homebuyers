@@ -1,5 +1,4 @@
 ---
-layout: default
 title: Calculator
 ---
 <script src="/assets/Calculator.js"></script>
@@ -20,13 +19,16 @@ title: Calculator
 				<div><label>Months till Exit</label><input type="number" name="months-exit" min="0" value="0"></div>
 				<div><label>Taxes</label><input type="number" name="taxes" min="0" value="0"></div>
 				<div><label>Insurance</label><input type="number" name="insurance" min="0" value="0"></div>
+				<div><label>Utilities</label><input type="number" name="utilities" min="0" value="0"></div>
 				<div><label>Maintenance</label><input type="number" name="maintenance" min="0" value="0"></div>
 				<div><label>Repairs</label><input type="number" name="repairs" min="0" value="0"></div>
+				<div><hr></div>
+				<div><label>Cashflow</label><input type="number" name="cashflow" min="0" value="0"></div>
 			</div>
 		</div>
 	</div>
 <script>
-this.calc.find('[name="rents"], [name="expenses"], [name="cashflow"]').on('input', e => {
+$('.analysis').find('[name="rents"], [name="expenses"], [name="cashflow"]').on('input', e => {
 	var rsVal = Number(this.rs.value);
 	var exVal = Number(this.ex.value);
 	var cfVal = Number(this.cf.value);
