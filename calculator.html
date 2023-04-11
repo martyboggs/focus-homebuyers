@@ -26,7 +26,7 @@ class Calculator {
 			'sell-flip': 'Sell/Flip',
 			retail: 'Retail'
 		};
-		this.strategies = entrance ? ['wholesale', 'purchase', 'lease-option', 'seller-finance'] : ['wholesale', 'sell-flip', 'rent', 'lease-option', 'seller-finance'];
+		this.strategies = entrance ? ['wholesale', 'purchase', 'lease-option', 'seller-finance'] : ['wholesale', 'sell-flip', 'rent', 'lease-option', 'seller-finance', 'analysis'];
 
 		this.calc = $('.' + name);
 		this.calc.html(`
@@ -350,6 +350,10 @@ class Calculator {
 				<label style="min-width: 37px;">LTV</label><input style="max-width: 63px;" readonly type="text" name="ltv">
 			</div>
 			<div><label>Total</label><input readonly type="number" name="total"></div>`,
+
+			analysis: `<div class="analysis">
+				<div><label>Purchase Price</label><input type="number" name="purchase-price" min="1"></div>
+			</div>`
 		}[strategy];
 	}
 }
