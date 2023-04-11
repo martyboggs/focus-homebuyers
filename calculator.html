@@ -42,7 +42,7 @@ class Calculator {
 		this.interestType = 'amortized';
 
 		this.calc.find('[name="strategy"]').change(e => {
-			$(this.calc).find('.wholesale, .rent, .purchase, .lease-option, .seller-finance, .flip, .retail').hide();
+			$(this.calc).find('.wholesale, .rent, .purchase, .lease-option, .seller-finance, .sell-flip, .retail').hide();
 			this.strategyEl = this.calc.find('.' + e.target.value);
 			this.strategyEl.css({display: 'block'});
 			this.pp = this.strategyEl.find('[name="purchase-price"]');
