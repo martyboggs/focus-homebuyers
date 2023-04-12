@@ -175,10 +175,10 @@ class Calculator {
 				var pp = -100 * interest / pmtAmt + 100;
 				this.principalPerc.val(pp.toFixed(2));
 				this.principalPerc.previousSibling.value = Math.round(pp) + '%';
-				// pmtAmt = -interest / (Number(this.principalPerc.value) / 100 - 1);
-				// pmtAmt * ((this.principalPerc.value / 100) - 1)= -interest;
-				// ((this.principalPerc.value / 100) - 1)= -interest / pmtAmt;
-				// this.principalPerc.value / 100 =  (-interest / pmtAmt) + 1;
+				// pmtAmt = -interest / (Number(this.principalPerc.val()) / 100 - 1);
+				// pmtAmt * ((this.principalPerc.val() / 100) - 1)= -interest;
+				// ((this.principalPerc.val() / 100) - 1)= -interest / pmtAmt;
+				// this.principalPerc.val() / 100 =  (-interest / pmtAmt) + 1;
 				/// simple? set principal %
 			}
 		}
