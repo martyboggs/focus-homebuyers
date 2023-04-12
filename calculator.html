@@ -78,7 +78,7 @@ function calculateAnalysis() {
 
 	var pmt1 = $('.calc-1 [name="payment"]:visible');
 	var pmt2 = $('.calc-2 [name="payment"]:visible');
-	var totalPayment = (pmt1.length ? Number(pmt1.val()) : 0) - (pm2.length ? Number(pmt2.val()) : 0);
+	var totalPayment = (pmt1.length ? Number(pmt1.val()) : 0) - (pmt2.length ? Number(pmt2.val()) : 0);
 
 	var holdingMonths = $('.calc-2 [name="holding-months"]:visible');
 
