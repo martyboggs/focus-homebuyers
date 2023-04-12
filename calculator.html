@@ -80,7 +80,7 @@ function calculateAnalysis() {
 	var pmt2 = $('.calc-2 [name="payment"]');
 	var totalPayment = Number(pmt1.val()) - Number(pmt2.val());
 
-	var vacancy = 
+	var vacancyRate = Number($('.calc-2 [name="vacancy-rate"]').val());
 
 	if (Number(rents.val())) {
 		cashflow.val(Math.round(Number(rents.val()) - Number(expenses.val()) - totalPayment));

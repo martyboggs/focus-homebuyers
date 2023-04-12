@@ -224,7 +224,7 @@ class Calculator {
 
 			rent: `<div><label>Monthly Rents</label><input type="number" name="rents" min="0"></div>
 			<div><label>Months to Repair</label><input type="number" name="repair-months" min="0"></div>
-			<div><label>Vacancy Rate</label><input type="number" name="vacancy" min="0"></div>
+			<div><label>Vacancy Rate</label><input type="number" name="vacancy-rate" min="0"></div>
 			<div><label>Cashflow</label><input type="number" name="cashflow"></div>`,
 
 			'lease-option': `<div><label>Purchase Price</label><input type="number" name="purchase-price" min="1"></div>
