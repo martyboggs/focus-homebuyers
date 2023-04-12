@@ -80,7 +80,7 @@ function calculateAnalysis() {
 	var pmt2 = $('.calc-2 [name="payment"]:visible');
 	var totalPayment = (pmt1.length ? Number(pmt1.val()) : 0) - (pmt2.length ? Number(pmt2.val()) : 0);
 
-	var holdingMonths = $('.calc-2 [name="holding-months"]:visible');
+	var holdingMonths = $('.calc-2 [name="holding-months"]:visible, .calc-2 [name="term-months"]:visible');
 
 	monthlyExpenses.val(Number(taxes.val()) + Number(insurance.val()) + Number(utilities.val()) + Number(maintenance.val()));
 

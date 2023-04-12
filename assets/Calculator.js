@@ -41,6 +41,7 @@ class Calculator {
 			this.balloon = this.strategyEl.find('[name="balloon"]');
 			this.ltv = this.strategyEl.find('[name="ltv"]');
 			this.total = this.strategyEl.find('[name="total"]');
+			calculateAnalysis();
 		});
 		this.calc.find('[name="strategy"]').val(this.strategy);
 		this.calc.find('[name="strategy"]').change();
