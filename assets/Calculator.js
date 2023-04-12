@@ -191,8 +191,7 @@ class Calculator {
 
 	getHtml(strategy) {
 		return {
-			wholesale: `<div><label>Purchase Price</label><input type="number" name="purchase-price" min="1"></div>
-			<div><label>Assignment Fee</label><input type="number" name="assignment-fee" min="0" value="10000"></div>`, 
+			wholesale: `<div><label>Assignment Fee</label><input type="number" name="assignment-fee" min="0" value="10000"></div>`, 
 
 			purchase: `<div><label>Purchase Price</label><input type="number" name="purchase-price" min="1"></div>
 			<div><label>Realtor Fees</label><input type="number" name="realtor-fees" min="0"></div>

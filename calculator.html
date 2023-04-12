@@ -43,6 +43,13 @@ title: Calculator
 </section>
 
 <script>
+var monthsSell = $('.calc-2 [name="sell-months"]');
+var assignmentFee = $('.calc-2 [name="assignment-fee"]');
+
+var rents = $('.calc-2 [name="rents"]');
+var repairMonths = $('.calc-2 [name="repair-months"]');
+var vacancyRate = $('.calc-2 [name="vacancy-rate"]');
+
 var analysis = $('.analysis');
 var repairs = analysis.find('[name="repairs"]');
 var expenses = analysis.find('[name="expenses"]');
@@ -68,7 +75,6 @@ repairs.add(expenses.add(taxes.add(insurance.add(utilities.add(maintenance.add(c
 });
 
 function calculateAnalysis() {
-	var rents = $('.calc-2 [name="rents"]:visible');
 console.log(rents);
 	var strategy1 = $('.calc-1 [name="strategy"]').val();
 	var strategy2 = $('.calc-2 [name="strategy"]').val();
@@ -80,11 +86,10 @@ console.log(rents);
 	var pmt2 = $('.calc-2 [name="payment"]');
 	var totalPayment = Number(pmt1.val()) - Number(pmt2.val());
 
-	var vacancyRate = Number($('.calc-2 [name="vacancy-rate"]').val());
 	
 	var oneTimeExp = Number(repairs.val()) + Number(expenses.val()) + Number(closingCosts.val());
-	var repairMonths = Number($('.calc-2 [name="repair-months"]').val());
-	console.log(oneTimeExp, repairMonths);
+	monthlyExpenses.val(Number(taxes.val()) + Number(insurance.val()) + Number(utilities.val()) + Number(maintenance.val()));
+	console.log(oneTimeExp, repairMonths.val());
 
 	if (Number(rents.val())) {
 		cashflow.val(Math.round(Number(rents.val()) - Number(expenses.val()) - totalPayment));
