@@ -80,15 +80,14 @@ function calculateAnalysis() {
 	var pmt2 = $('.calc-2 [name="payment"]');
 	var totalPayment = Number(pmt1.val()) - Number(pmt2.val());
 
-	
-	var oneTimeExp = Number(repairs.val()) + Number(expenses.val()) + Number(closingCosts.val());
 	monthlyExpenses.val(Number(taxes.val()) + Number(insurance.val()) + Number(utilities.val()) + Number(maintenance.val()));
 
 	if (Number(rents.val())) {
 		cashflow.val(Math.round(Number(rents.val()) - Number(monthlyExpenses.val()) - totalPayment));
 	}
 
-	totalExpenses.val(Number(holdingMonths.val()) * Number(monthlyExpenses.val()));
+	var oneTimeExp = Number(repairs.val()) + Number(expenses.val()) + Number(closingCosts.val());
+	totalExpenses.val(Number(holdingMonths.val()) * Number(monthlyExpenses.val()) + oneTimeExp);
 }
 
 // analysis
