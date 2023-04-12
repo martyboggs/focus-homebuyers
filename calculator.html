@@ -68,6 +68,8 @@ repairs.add(expenses.add(taxes.add(insurance.add(utilities.add(maintenance.add(c
 });
 
 function calculateAnalysis() {
+	var rents = $('.calc-2 [name="rents"]:visible');
+console.log(rents);
 	var strategy1 = $('.calc-1 [name="strategy"]').val();
 	var strategy2 = $('.calc-2 [name="strategy"]').val();
 	var rsVal = Number(rents.val());
