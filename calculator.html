@@ -19,8 +19,7 @@ title: Calculator
 			<div class="calculator analysis">
 				<div>
 					<div><label>Repairs</label><input type="number" name="repairs" min="0" value="0"></div>
-					<div><label>Expenses (arrears, liens)</label><input type="number" name="expenses" min="0" value="0"></div>
-					<div><label>Monthly Rents</label><input type="number" name="rents" min="0" value="0"></div>
+					<div><label>Arrears, Liens</label><input type="number" name="expenses" min="0" value="0"></div>
 					<div><label>Monthly Taxes</label><input type="number" name="taxes" min="0" value="0"></div>
 					<div><label>Monthly Insurance</label><input type="number" name="insurance" min="0" value="0"></div>
 					<div><label>Monthly Utilities</label><input type="number" name="utilities" min="0" value="0"></div>
@@ -47,7 +46,6 @@ title: Calculator
 var analysis = $('.analysis');
 var repairs = analysis.find('[name="repairs"]');
 var expenses = analysis.find('[name="expenses"]');
-var rents = analysis.find('[name="rents"]');
 var taxes = analysis.find('[name="taxes"]');
 var insurance = analysis.find('[name="insurance"]');
 var utilities = analysis.find('[name="utilities"]');
@@ -65,7 +63,7 @@ var cashOnCash = analysis.find('[name="cash-on-cash"]');
 var calc1 = new Calculator('calc-1', ['wholesale', 'purchase', 'lease-option', 'seller-finance'], 'seller-finance');
 var calc2 = new Calculator('calc-2', ['wholesale', 'sell-flip', 'rent', 'lease-option', 'seller-finance'], 'lease-option');
 
-repairs.add(expenses.add(rents.add(taxes.add(insurance.add(utilities.add(maintenance.add(closingCosts))))))).on('input', e => {
+repairs.add(expenses.add(taxes.add(insurance.add(utilities.add(maintenance.add(closingCosts)))))).on('input', e => {
 	calculateAnalysis();
 });
 
