@@ -190,8 +190,7 @@ class Calculator {
 
 	getHtml(strategy) {
 		return {
-			wholesale: `<div><label>Holding Months</label><input type="number" name="holding-months" min="0"></div>
-			<div><label>Assignment Fee</label><input type="number" name="assignment-fee" min="0" value="10000"></div>`, 
+			wholesale: `<div><label>Assignment Fee</label><input type="number" name="assignment-fee" min="0" value="10000"></div>`, 
 
 			purchase: `<div><label>Purchase Price</label><input type="number" name="purchase-price" min="1"></div>
 			<div><label>Realtor Fees</label><input type="number" name="realtor-fees" min="0"></div>
@@ -218,11 +217,9 @@ class Calculator {
 			<div><label>Total</label><input readonly type="number" name="total"></div>`, 
 
 			'sell-flip': `<div><label>Purchase Price</label><input type="number" name="purchase-price" min="1"></div>
-			<div><label>Holding Months</label><input type="number" name="holding-months" min="0"></div>
 			<div><label>Marketing Costs</label><input type="number" name="marketing-costs" min="0"></div>`,
 
 			rent: `<div><label>Monthly Rents</label><input type="number" name="rents" min="0"></div>
-			<div><label>Holding Months</label><input type="number" name="holding-months" min="0"></div>
 			<div><label>Vacancy Rate</label><input type="number" name="vacancy-rate" min="0"></div>`,
 
 			'lease-option': `<div><label>Purchase Price</label><input type="number" name="purchase-price" min="1"></div>
