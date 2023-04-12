@@ -195,22 +195,41 @@ class Calculator {
 			<div><label>Assignment Fee</label><input type="number" name="assignment-fee" min="0" value="10000"></div>`, 
 
 			purchase: `<div><label>Purchase Price</label><input type="number" name="purchase-price" min="1"></div>
-			<div><label>Realtor Fees</label><input type="number" name="realtor-fees" min="0"></div>`, 
+			<div><label>Realtor Fees</label><input type="number" name="realtor-fees" min="0"></div>
+			<div><label>Down Payment</label><input type="number" name="down-payment" min="0"></div>
+			<div><label>Finance Amount</label><input type="number" name="finance-amount" min="1"></div>
+			<div><label>Interest Type</label>
+			<input type="radio" name="interest-type-${this.name + '-' + strategy}" value="amortized" id="amortized-${this.name + '-' + strategy}" checked><label for="amortized-${this.name + '-' + strategy}" style="min-width: 0px;">Amortized</label>
+			<input type="radio" name="interest-type-${this.name + '-' + strategy}" value="simple" id="simple-${this.name + '-' + strategy}"><label for="simple-${this.name + '-' + strategy}" style="min-width: 0px;">Simple</label>
+			</div>
+			<div><label>Annual Interest Rate</label><input readonly style="width: 50px;" type="text" value="2.50%"><input type="range" min="0" max="10" value="2.5" step="0.25" name="interest-rate" class="interest-rate-range">
+			</div>
+			<div class="amortized-months"><label>Amortized Months</label><input type="number" name="amortized-months" value="360" min="1">
+			</div>
+			<div style="display: none;" class="principal-percentage"><label>Principal %</label><input readonly style="width: 50px;" type="text" value="50%"><input type="range" min="0" max="99" value="50" name="principal-percentage" class="principal-percentage-range">
+			</div>
+			<div><label>Payment</label><input type="number" name="payment" min="1">
+			</div>
+			<div><label>Term Months</label><input type="number" name="term-months" value="96" min="1">
+			</div>
+			<div>
+				<label>Balloon</label><input readonly style="max-width: 95px;" type="number" name="balloon">
+				<label style="min-width: 37px;">LTV</label><input style="max-width: 63px;" readonly type="text" name="ltv">
+			</div>
+			<div><label>Total</label><input readonly type="number" name="total"></div>`, 
 
 			'sell-flip': `<div><label>Purchase Price</label><input type="number" name="purchase-price" min="1"></div>
 			<div><label>Months to Sell</label><input type="number" name="sell-months" min="1" value="1"></div>
 			<div><label>Marketing Costs</label><input type="number" name="marketing-costs" min="0"></div>`,
 
 			rent: `<div><label>Monthly Rents</label><input type="number" name="rents" min="0"></div>
-			<div><label>Monthly Expenses</label><input type="number" name="expenses" min="0"></div>
+			<div><label>Months to Repair</label><input type="number" name="repair-months" min="0"></div>
 			<div><label>Vacancy Rate</label><input type="number" name="vacancy" min="0"></div>
 			<div><label>Cashflow</label><input type="number" name="cashflow"></div>`,
 
 			'lease-option': `<div><label>Purchase Price</label><input type="number" name="purchase-price" min="1"></div>
 			<div><label>Option Payment</label><input type="number" name="down-payment" min="0"></div>
-			<div><label>Finance Amount</label><input type="number" name="finance-amount" min="1">
-			<!-- <button class="finance-amount">calculate</button> -->
-			</div>
+			<div><label>Finance Amount</label><input type="number" name="finance-amount" min="1"></div>
 			<div><label>Interest Type</label>
 			<input type="radio" name="interest-type-${this.name + '-' + strategy}" value="amortized" id="amortized" checked><label for="amortized" style="min-width: 0px;">Amortized</label>
 			<input type="radio" name="interest-type-${this.name + '-' + strategy}" value="simple" id="simple"><label for="simple" style="min-width: 0px;">Simple</label>
@@ -233,9 +252,7 @@ class Calculator {
 
 			'seller-finance': `<div><label>Purchase Price</label><input type="number" name="purchase-price" min="1"></div>
 			<div><label>Down Payment</label><input type="number" name="down-payment" min="0"></div>
-			<div><label>Finance Amount</label><input type="number" name="finance-amount" min="1">
-			<!-- <button class="finance-amount">calculate</button> -->
-			</div>
+			<div><label>Finance Amount</label><input type="number" name="finance-amount" min="1"></div>
 			<div><label>Interest Type</label>
 			<input type="radio" name="interest-type-${this.name + '-' + strategy}" value="amortized" id="amortized-${this.name + '-' + strategy}" checked><label for="amortized-${this.name + '-' + strategy}" style="min-width: 0px;">Amortized</label>
 			<input type="radio" name="interest-type-${this.name + '-' + strategy}" value="simple" id="simple-${this.name + '-' + strategy}"><label for="simple-${this.name + '-' + strategy}" style="min-width: 0px;">Simple</label>
