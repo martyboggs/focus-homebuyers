@@ -75,9 +75,6 @@ repairs.add(expenses.add(taxes.add(insurance.add(utilities.add(maintenance.add(c
 function calculateAnalysis() {
 	var strategy1 = $('.calc-1 [name="strategy"]').val();
 	var strategy2 = $('.calc-2 [name="strategy"]').val();
-	var rsVal = Number(rents.val());
-	var exVal = Number(expenses.val());
-	var cfVal = Number(cashflow.val());
 
 	var pmt1 = $('.calc-1 [name="payment"]');
 	var pmt2 = $('.calc-2 [name="payment"]');
@@ -88,8 +85,10 @@ function calculateAnalysis() {
 	monthlyExpenses.val(Number(taxes.val()) + Number(insurance.val()) + Number(utilities.val()) + Number(maintenance.val()));
 
 	if (Number(rents.val())) {
-		cashflow.val(Math.round(Number(rents.val()) - Number(expenses.val()) - totalPayment));
+		cashflow.val(Math.round(Number(rents.val()) - Number(monthlyExpenses.val()) - totalPayment));
 	}
+
+	totalExpenses.val(Number(holdingMonths.val()) * Number(monthlyExpenses.val()));
 }
 
 // analysis
