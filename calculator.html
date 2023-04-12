@@ -26,8 +26,9 @@ title: Calculator
 					<div><label>Monthly Maint.</label><input type="number" name="maintenance" min="0" value="0"></div>
 					<div><label>Closing costs</label><input type="number" name="closing-costs" min="0" value="0"></div>
 
-					<div><label>Monthly Expenses</label><input type="number" name="monthly-expenses" readonly min="0" value="0"></div>
-					<div><label>Total Expenses</label><input type="number" name="total-expenses" readonly min="0" value="0"></div>
+					<div><label>Monthly Holding Expenses</label><input type="number" name="monthly-expenses" readonly min="0" value="0"></div>
+					<div><label>One Time Expenses</label><input type="number" name="one-time-expenses" readonly min="0" value="0"></div>
+					<div><label>Holding Expenses</label><input type="number" name="holding-expenses" readonly min="0" value="0"></div>
 					<div><label>Cash required</label><input type="number" name="cash-required" readonly min="0" value="0"></div>
 					<div><label>Monthly Cashflow</label><input type="number" name="cashflow" readonly min="0" value="0"></div>
 					<div><label>Net Income</label><input type="number" name="net-income" readonly min="0" value="0"></div>
@@ -61,7 +62,8 @@ var maintenance = analysis.find('[name="maintenance"]');
 var closingCosts = analysis.find('[name="closing-costs"]');
 
 var monthlyExpenses = analysis.find('[name="monthly-expenses"]');
-var totalExpenses = analysis.find('[name="total-expenses"]');
+var oneTimeExpenses = analysis.find('[name="one-time-expenses"]');
+var holdingExpenses = analysis.find('[name="holding-expenses"]');
 var cashRequired = analysis.find('[name="cash-required"]');
 var cashflow = analysis.find('[name="cashflow"]');
 var netIncome = analysis.find('[name="net-income"]');
@@ -84,12 +86,12 @@ function calculateAnalysis() {
 
 	monthlyExpenses.val(Number(taxes.val()) + Number(insurance.val()) + Number(utilities.val()) + Number(maintenance.val()));
 
+	oneTimeExpenses.val(Number(repairs.val()) + Number(expenses.val()) + Number(closingCosts.val()));
+	holdingExpenses.val((holdingMonths.length ? Number(holdingMonths.val()) : 0) * Number(monthlyExpenses.val()));
+
 	if (Number(rents.val())) {
 		cashflow.val(Math.round(Number(rents.val()) - Number(monthlyExpenses.val()) - totalPayment));
 	}
-
-	var oneTimeExp = Number(repairs.val()) + Number(expenses.val()) + Number(closingCosts.val());
-	totalExpenses.val((holdingMonths.length ? Number(holdingMonths.val()) : 0) * Number(monthlyExpenses.val()) + oneTimeExp);
 }
 
 // analysis
