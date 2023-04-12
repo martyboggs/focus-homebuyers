@@ -69,8 +69,7 @@ var cashOnCash = analysis.find('[name="cash-on-cash"]');
 var calc1 = new Calculator('calc-1', ['wholesale', 'purchase', 'lease-option', 'seller-finance'], 'seller-finance');
 var calc2 = new Calculator('calc-2', ['wholesale', 'sell-flip', 'rent', 'lease-option', 'seller-finance'], 'lease-option');
 
-repairs.add(expenses.add(taxes.add(insurance.add(utilities.add(maintenance.add(closingCosts.add(holdingMonths.add(assignmentFee.add(marketingCosts.add(rents.add(vacancyRate))))
-))))))).on('input', e => {
+$('.calc-page').on('input change', '[name]', e => {
 	calculateAnalysis();
 });
 
