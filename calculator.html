@@ -27,10 +27,10 @@ title: Calculator
 					<div><label>Monthly Maintenance</label><input type="number" name="maintenance" min="0" value="0"></div>
 					<div><label>Months till Exit</label><input type="number" name="months-exit" min="0" value="0"></div>
 					<div><label>Closing costs</label><input type="number" name="closing-costs" min="0" value="0"></div>
-					<div><label>Cashflow</label><input type="number" name="cashflow" min="0" value="0"></div>
-					<div><label>Cash required</label><input type="number" name="cash-required" min="0" value="0"></div>
-					<div><label>Net Income</label><input type="number" name="net-income" min="0" value="0"></div>
-					<div><label>Cash on cash</label><input type="number" name="cashflow" min="0" value="0"></div>
+					<div><label>Cash required</label><input type="number" name="cash-required" readonly min="0" value="0"></div>
+					<div><label>Monthly Cashflow</label><input type="number" name="cashflow" readonly min="0" value="0"></div>
+					<div><label>Net Income</label><input type="number" name="net-income" readonly min="0" value="0"></div>
+					<div><label>Cash on cash</label><input type="number" name="cash-on-cash" readonly min="0" value="0"></div>
 				</div>
 				<!-- principal pay down -->
 				<!-- appreciation -->
@@ -40,38 +40,42 @@ title: Calculator
 	</div>
 <script>
 var analysis = $('.analysis');
-var rs = analysis.find('[name="rents"]');
-var ex = analysis.find('[name="expenses"]');
-var cf = analysis.find('[name="cashflow"]');
+var repairs = analysis.find('[name="repairs"]');
+var expenses = analysis.find('[name="expenses"]');
+var rents = analysis.find('[name="rents"]');
+var taxes = analysis.find('[name="taxes"]');
+var insurance = analysis.find('[name="insurance"]');
+var utilities = analysis.find('[name="utilities"]');
+var maintenance = analysis.find('[name="maintenance"]');
+var monthsExit = analysis.find('[name="months-exit"]');
+var closingCosts = analysis.find('[name="closing-costs"]');
+
+var cashRequired = analysis.find('[name="cash-required"]');
+var cashflow = analysis.find('[name="cashflow"]');
+var netIncome = analysis.find('[name="net-income"]');
+var cashOnCash = analysis.find('[name="cash-on-cash"]');
+
 
 var calc1 = new Calculator('calc-1', ['wholesale', 'purchase', 'lease-option', 'seller-finance'], 'seller-finance');
 var calc2 = new Calculator('calc-2', ['wholesale', 'sell-flip', 'rent', 'lease-option', 'seller-finance'], 'lease-option');
 
 analysis.find('[name="rents"], [name="expenses"], [name="cashflow"]').on('input', e => {
-	// pmt?
-	var rsVal = Number(rs.value);
-	var exVal = Number(ex.value);
-	var cfVal = Number(cf.value);
-	var pmtAmt = Number(pmt.value);
-	if (!rsVal && !rs.is(field)) rs.value = rsVal;
-	if (!exVal && !ex.is(field)) ex.value = exVal;
-	if (!cfVal && !cf.is(field)) cf.value = cfVal;
-	switch (field.name) {
-		case 'rents':
-			cf.value = rsVal - exVal - pmtAmt;
-		break;
-		case 'expenses':
-			cf.value = rsVal - exVal - pmtAmt;
-		break;
-		case 'cashflow':
-			rs.value = cfVal + exVal + pmtAmt;
-		break;
-	}
+	calculateAnalysis();
 });
 
 function calculateAnalysis() {
-	if (Number(rs.val())) {
-		cf.val(Math.round(Number(rs.val()) - Number(ex.val()) - pmtAmt));
+	var rsVal = Number(rents.value);
+	var exVal = Number(expenses.value);
+	var cfVal = Number(cashflow.value);
+	var pmt1 = $('.calc1 [name="payment"]');
+	var pmt2 = $('.calc2 [name="payment"]');
+	var totalPayment = Number(pmt1.val()) - Number(pmt2.val());
+	// if (!rsVal && !rents.is(field)) rents.value = rsVal;
+	// if (!exVal && !expenses.is(field)) expenses.value = exVal;
+	// if (!cfVal && !cashflow.is(field)) cashflow.value = cfVal;
+
+	if (Number(rents.val())) {
+		cashflow.val(Math.round(Number(rents.val()) - Number(expenses.val()) - totalPayment));
 	}
 }
 

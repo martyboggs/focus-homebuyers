@@ -174,7 +174,7 @@ class Calculator {
 				var interest = finAmt * monthRate;
 				var pp = -100 * interest / pmtAmt + 100;
 				this.principalPerc.val(pp.toFixed(2));
-				this.principalPerc.previousSibling.val(Math.round(pp) + '%');
+				this.principalPerc.previousSibling.value = Math.round(pp) + '%';
 				// pmtAmt = -interest / (Number(this.principalPerc.value) / 100 - 1);
 				// pmtAmt * ((this.principalPerc.value / 100) - 1)= -interest;
 				// ((this.principalPerc.value / 100) - 1)= -interest / pmtAmt;
