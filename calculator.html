@@ -54,8 +54,8 @@ var utilities = analysis.find('[name="utilities"]');
 var maintenance = analysis.find('[name="maintenance"]');
 var closingCosts = analysis.find('[name="closing-costs"]');
 
-var monthlyExpenses = analytics.find('[name="monthly-expenses"]');
-var totalExpenses = analytics.find('[name="total-expenses"]');
+var monthlyExpenses = analysis.find('[name="monthly-expenses"]');
+var totalExpenses = analysis.find('[name="total-expenses"]');
 var cashRequired = analysis.find('[name="cash-required"]');
 var cashflow = analysis.find('[name="cashflow"]');
 var netIncome = analysis.find('[name="net-income"]');
@@ -81,6 +81,10 @@ function calculateAnalysis() {
 	var totalPayment = Number(pmt1.val()) - Number(pmt2.val());
 
 	var vacancyRate = Number($('.calc-2 [name="vacancy-rate"]').val());
+	
+	var oneTimeExp = Number(repairs.val()) + Number(expenses.val()) + Number(closingCosts.val());
+	var repairMonths = Number($('.calc-2 [name="repair-months"]').val());
+	console.log(oneTimeExp, repairMonths);
 
 	if (Number(rents.val())) {
 		cashflow.val(Math.round(Number(rents.val()) - Number(expenses.val()) - totalPayment));
