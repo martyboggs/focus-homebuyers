@@ -43,9 +43,12 @@ title: Calculator
 </section>
 
 <script>
+var calc1 = new Calculator('calc-1', ['wholesale', 'purchase', 'lease-option', 'seller-finance'], 'seller-finance');
+var calc2 = new Calculator('calc-2', ['wholesale', 'sell-flip', 'rent', 'lease-option', 'seller-finance'], 'lease-option');
+
 var holdingMonths = $('.calc-2 [name="holding-months"]');
 var assignmentFee = $('.calc-2 [name="assignment-fee"]');
-
+var marketingCosts = $('.calc-2 [name="marketing-costs"]');
 var rents = $('.calc-2 [name="rents"]');
 var vacancyRate = $('.calc-2 [name="vacancy-rate"]');
 
@@ -64,10 +67,6 @@ var cashRequired = analysis.find('[name="cash-required"]');
 var cashflow = analysis.find('[name="cashflow"]');
 var netIncome = analysis.find('[name="net-income"]');
 var cashOnCash = analysis.find('[name="cash-on-cash"]');
-
-
-var calc1 = new Calculator('calc-1', ['wholesale', 'purchase', 'lease-option', 'seller-finance'], 'seller-finance');
-var calc2 = new Calculator('calc-2', ['wholesale', 'sell-flip', 'rent', 'lease-option', 'seller-finance'], 'lease-option');
 
 repairs.add(expenses.add(taxes.add(insurance.add(utilities.add(maintenance.add(closingCosts)))))).on('input', e => {
 	calculateAnalysis();
