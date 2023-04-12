@@ -82,6 +82,7 @@ function calculateAnalysis() {
 	var pmt2 = $('.calc-2 [name="payment"]:visible');
 	var totalPayment = (pmt1.length ? Number(pmt1.val()) : 0) - (pmt2.length ? Number(pmt2.val()) : 0);
 
+	var downPayment = $('.calc-1 [name="down-payment"]:visible');
 	var holdingMonths = $('.calc-2 [name="holding-months"]:visible, .calc-2 [name="term-months"]:visible');
 
 	monthlyExpenses.val(Number(taxes.val()) + Number(insurance.val()) + Number(utilities.val()) + Number(maintenance.val()));
@@ -89,9 +90,9 @@ function calculateAnalysis() {
 	oneTimeExpenses.val(Number(repairs.val()) + Number(expenses.val()) + Number(closingCosts.val()));
 	holdingExpenses.val((holdingMonths.length ? Number(holdingMonths.val()) : 0) * Number(monthlyExpenses.val()));
 
-	if (Number(rents.val())) {
-		cashflow.val(Math.round(Number(rents.val()) - Number(monthlyExpenses.val()) - totalPayment));
-	}
+	cashflow.val(Math.round(Number(rents.val()) - Number(monthlyExpenses.val()) - totalPayment));
+
+	cashRequired.val(Number(downPayment.val()) + Number(oneTimeExpenses.val()) + Number(holdingExpenses.val()));
 }
 
 // analysis
