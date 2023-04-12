@@ -76,9 +76,9 @@ function calculateAnalysis() {
 	var strategy1 = $('.calc-1 [name="strategy"]').val();
 	var strategy2 = $('.calc-2 [name="strategy"]').val();
 
-	var pmt1 = $('.calc-1 [name="payment"]');
-	var pmt2 = $('.calc-2 [name="payment"]');
-	var totalPayment = Number(pmt1.val()) - Number(pmt2.val());
+	var pmt1 = $('.calc-1 [name="payment"]:visible');
+	var pmt2 = $('.calc-2 [name="payment"]:visible');
+	var totalPayment = (pmt1.length ? Number(pmt1.val()) : 0) - (pm2.length ? Number(pmt2.val()) : 0);
 
 	var holdingMonths = $('.calc-2 [name="holding-months"]:visible');
 
@@ -89,7 +89,7 @@ function calculateAnalysis() {
 	}
 
 	var oneTimeExp = Number(repairs.val()) + Number(expenses.val()) + Number(closingCosts.val());
-	totalExpenses.val(Number(holdingMonths.val()) * Number(monthlyExpenses.val()) + oneTimeExp);
+	totalExpenses.val((holdingMonths.length ? Number(holdingMonths.val()) : 0) * Number(monthlyExpenses.val()) + oneTimeExp);
 }
 
 // analysis

@@ -335,6 +335,9 @@ img {
 	font-size: 14px;
 	flex-direction: column;
 }
+.calculator [readonly] {
+	background: #efefef;
+}
 .calculator {
 	margin-bottom: 30px;
 }
