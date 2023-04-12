@@ -51,7 +51,6 @@ var assignmentFee = $('.calc-2 [name="assignment-fee"]');
 var marketingCosts = $('.calc-2 [name="marketing-costs"]');
 var rents = $('.calc-2 [name="rents"]');
 var vacancyRate = $('.calc-2 [name="vacancy-rate"]');
-
 var analysis = $('.analysis');
 var repairs = analysis.find('[name="repairs"]');
 var expenses = analysis.find('[name="expenses"]');
@@ -68,7 +67,8 @@ var cashflow = analysis.find('[name="cashflow"]');
 var netIncome = analysis.find('[name="net-income"]');
 var cashOnCash = analysis.find('[name="cash-on-cash"]');
 
-repairs.add(expenses.add(taxes.add(insurance.add(utilities.add(maintenance.add(closingCosts)))))).on('input', e => {
+repairs.add(expenses.add(taxes.add(insurance.add(utilities.add(maintenance.add(closingCosts.add(holdingMonths.add(assignmentFee.add(marketingCosts.add(rents.add(vacancyRate))))
+))))))).on('input', e => {
 	calculateAnalysis();
 });
 
