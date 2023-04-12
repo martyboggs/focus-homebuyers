@@ -64,9 +64,9 @@ analysis.find('[name="rents"], [name="expenses"], [name="cashflow"]').on('input'
 });
 
 function calculateAnalysis() {
-	var rsVal = Number(rents.value);
-	var exVal = Number(expenses.value);
-	var cfVal = Number(cashflow.value);
+	var rsVal = Number(rents.val());
+	var exVal = Number(expenses.val());
+	var cfVal = Number(cashflow.val());
 	var pmt1 = $('.calc1 [name="payment"]');
 	var pmt2 = $('.calc2 [name="payment"]');
 	var totalPayment = Number(pmt1.val()) - Number(pmt2.val());
