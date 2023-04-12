@@ -26,7 +26,7 @@ title: Calculator
 					<div><label>Monthly Maint.</label><input type="number" name="maintenance" min="0" value="0"></div>
 					<div><label>Closing costs</label><input type="number" name="closing-costs" min="0" value="0"></div>
 
-					<div><label>Monthly Holding Expenses</label><input type="number" name="monthly-expenses" readonly min="0" value="0"></div>
+					<div><label>Monthly Holding Exp.</label><input type="number" name="monthly-expenses" readonly min="0" value="0"></div>
 					<div><label>One Time Expenses</label><input type="number" name="one-time-expenses" readonly min="0" value="0"></div>
 					<div><label>Holding Expenses</label><input type="number" name="holding-expenses" readonly min="0" value="0"></div>
 					<div><label>Cash required</label><input type="number" name="cash-required" readonly min="0" value="0"></div>
@@ -44,9 +44,6 @@ title: Calculator
 </section>
 
 <script>
-var calc1 = new Calculator('calc-1', ['wholesale', 'purchase', 'lease-option', 'seller-finance'], 'seller-finance');
-var calc2 = new Calculator('calc-2', ['wholesale', 'sell-flip', 'rent', 'lease-option', 'seller-finance'], 'lease-option');
-
 var holdingMonths = $('.calc-2 [name="holding-months"]');
 var assignmentFee = $('.calc-2 [name="assignment-fee"]');
 var marketingCosts = $('.calc-2 [name="marketing-costs"]');
@@ -68,6 +65,9 @@ var cashRequired = analysis.find('[name="cash-required"]');
 var cashflow = analysis.find('[name="cashflow"]');
 var netIncome = analysis.find('[name="net-income"]');
 var cashOnCash = analysis.find('[name="cash-on-cash"]');
+
+var calc1 = new Calculator('calc-1', ['wholesale', 'purchase', 'lease-option', 'seller-finance'], 'seller-finance');
+var calc2 = new Calculator('calc-2', ['wholesale', 'sell-flip', 'rent', 'lease-option', 'seller-finance'], 'lease-option');
 
 repairs.add(expenses.add(taxes.add(insurance.add(utilities.add(maintenance.add(closingCosts.add(holdingMonths.add(assignmentFee.add(marketingCosts.add(rents.add(vacancyRate))))
 ))))))).on('input', e => {
