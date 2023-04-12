@@ -90,9 +90,9 @@ function calculateAnalysis() {
 	oneTimeExpenses.val(Number(repairs.val()) + Number(expenses.val()) + Number(closingCosts.val()));
 	holdingExpenses.val((holdingMonths.length ? Number(holdingMonths.val()) : 0) * Number(monthlyExpenses.val()));
 
-	cashflow.val(Math.round(Number(rents.val()) - Number(monthlyExpenses.val()) - totalPayment));
+	cashflow.val(Math.round((rents.length ? Number(rents.val()) : 0) - Number(monthlyExpenses.val()) - totalPayment));
 
-	cashRequired.val(Number(downPayment.val()) + Number(oneTimeExpenses.val()) + Number(holdingExpenses.val()));
+	cashRequired.val((downPayment.length ? Number(downPayment.val()) : 0) + Number(oneTimeExpenses.val()) + Number(holdingExpenses.val()));
 }
 
 // analysis
