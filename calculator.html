@@ -91,8 +91,8 @@ function calculateAnalysis() {
 
 	var downPayment1 = $('.calc-1 [name="down-payment"]:visible');
 	var downPayment2 = $('.calc-2 [name="down-payment"]:visible');
-	var totalDownPayment = (downPayment1.length ? Number(downPayment1.val()) : 0) -
-						   (downPayment2.length ? Number(downPayment2.val()) : 0);
+	var totalDownPayment = (downPayment2.length ? Number(downPayment2.val()) : 0) -
+						   (downPayment1.length ? Number(downPayment1.val()) : 0);
 	var termMonths = $('.calc-2 [name="term-months"]:visible');
 
 	monthlyHoldingExpenses.val(Number(taxes.val()) + Number(insurance.val()) + Number(utilities.val()) + Number(maintenance.val()));
