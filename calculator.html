@@ -89,16 +89,17 @@ function calculateAnalysis() {
 	var totalPayment = (pmt1.length ? Number(pmt1.val()) : 0) -
 					   (pmt2.length ? Number(pmt2.val()) : 0);
 
-	var downPayment1 = $('.calc-1 [name="down-payment"]:visible');
-	var dp1 = downPayment1.length ? Number(downPayment1.val()) : 0;
-	var downPayment2 = $('.calc-2 [name="down-payment"]:visible');
-	var dp2 = downPayment2.length ? Number(downPayment2.val()) : 0;
-	var totalDownPayment = dp2 - dp1;
+	var dp1 = $('.calc-1 [name="down-payment"]:visible');
+	var downPayment1 = dp1.length ? Number(dp1.val()) : 0;
+	var dp2 = $('.calc-2 [name="down-payment"]:visible');
+	var downPayment2 = dp2.length ? Number(dp2.val()) : 0;
+	var totalDownPayment = downPayment2 - downPayment1;
 
 	var marketingCosts = $('.calc-2 [name="marketing-costs"]:visible');
 	var mark = marketingCosts.length ? Number(marketingCosts.val()) : 0;
 
-	var termMonths = $('.calc-2 [name="term-months"]:visible');
+	var tm = $('.calc-2 [name="term-months"]:visible');
+	var termMonths = tm.length ? Number(tm.val()) : 0;
 
 	monthlyHoldingExpenses.val(Number(taxes.val()) + Number(insurance.val()) + Number(utilities.val()) + Number(maintenance.val()) + mark);
 
@@ -110,21 +111,23 @@ function calculateAnalysis() {
 	var cf = Math.round((rents.length ? Number(rents.val()) : 0) - Number(monthlyHoldingExpenses.val()) - totalPayment);
 	cashflow.val(cf);
 
-	var cr = dp1 + Number(oneTimeExpenses.val()) + Number(holdingExpenses.val());
+	var cr = downPayment1 + Number(oneTimeExpenses.val()) + Number(holdingExpenses.val());
 	cashRequired.val(cr);
 
 	// noi
-	cashOnCash.val((cf * 12 / cr * 100).toFixed(2));
+	if (cr) {
+		cashOnCash.val((cf * 12 / cr * 100).toFixed(2));
+	}
 
 	var pp1 = $('.calc-1 [name="purchase-price"]:visible');
 	var pp2 = $('.calc-2 [name="purchase-price"]:visible');
-	var totalPP = ((pp2.length ? Number(pp2.val()) : 0) - dp2) -
-				  ((pp1.length ? Number(pp1.val()) : 0) - dp1);
+	var totalPP = ((pp2.length ? Number(pp2.val()) : 0) - downPayment2) -
+				  ((pp1.length ? Number(pp1.val()) : 0) - downPayment1);
 	purchaseProfit.val(totalPP);
 	downPaymentProfit.val(totalDownPayment);
-	cashflowProfit.val(termMonths.length ? Number(termMonths.val()) : 0 * Number(cashflow.val()));
+	cashflowProfit.val(termMonths * Number(cashflow.val()));
 
-	netIncome.val(totalPP + totalDownPayment + termMonths.length ? Number(termMonths.val()) : 0 * Number(cashflow.val()) - Number(oneTimeExpenses.val()) - Number(holdingExpenses.val()));
+	netIncome.val(totalPP + totalDownPayment + termMonths * Number(cashflow.val()) - Number(oneTimeExpenses.val()) - Number(holdingExpenses.val()));
 
 	// show profit centers
 	// downpayment
