@@ -111,15 +111,15 @@ function calculateAnalysis() {
 	// noi
 	cashOnCash.val((cf * 12 / cr * 100).toFixed(2));
 
-	var fa1 = $('.calc-1 [name="finance-amount"]:visible');
-	var fa2 = $('.calc-2 [name="finance-amount"]:visible');
-	var totalFa = (fa2.length ? Number(fa2.val()) : 0) -
-				  (fa1.length ? Number(fa1.val()) : 0);
-	purchaseProfit.val(totalFa);
+	var pp1 = $('.calc-1 [name="purchase-price"]:visible');
+	var pp2 = $('.calc-2 [name="purchase-price"]:visible');
+	var totalPP = ((pp2.length ? Number(pp2.val()) : 0) - (downPayment2.length ? Number(downPayment2.val()) : 0)) -
+				  ((pp1.length ? Number(pp1.val()) : 0) - (downPayment1.length ? Number(downPayment1.val()) : 0));
+	purchaseProfit.val(totalPP);
 	downPaymentProfit.val(totalDownPayment);
-	cashflowProfit.val(Number(termMonths.length ? termMonths.val() : 0) * Number(cashflow.val()));
+	cashflowProfit.val(termMonths.length ? Number(termMonths.val()) : 0 * Number(cashflow.val()));
 
-	netIncome.val(totalFa + totalDownPayment + Number(termMonths.length ? termMonths.val() : 0) * Number(cashflow.val()) - Number(oneTimeExpenses.val()) - Number(holdingExpenses.val()));
+	netIncome.val(totalPP + totalDownPayment + termMonths.length ? Number(termMonths.val()) : 0 * Number(cashflow.val()) - Number(oneTimeExpenses.val()) - Number(holdingExpenses.val()));
 
 	// show profit centers
 	// downpayment
