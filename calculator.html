@@ -77,18 +77,31 @@ $('.calc-page').on('input change', '[name]', e => {
 function calculateAnalysis() {
 	var pmt1 = $('.calc-1 [name="payment"]:visible');
 	var pmt2 = $('.calc-2 [name="payment"]:visible');
-	var totalPayment = (pmt1.length ? Number(pmt1.val()) : 0) - (pmt2.length ? Number(pmt2.val()) : 0);
+	var totalPayment = (pmt1.length ? Number(pmt1.val()) : 0) - 
+					   (pmt2.length ? Number(pmt2.val()) : 0);
 
-	var downPayment = $('.calc-1 [name="down-payment"]:visible');
+	var downPayment1 = $('.calc-1 [name="down-payment"]:visible');
+	var downPayment2 = $('.calc-2 [name="down-payment"]:visible');
+	var totalDownPayment = (downPayment1.length ? Number(downPayment1.val()) : 0) - 
+						   (downPayment2.length ? Number(downPayment2.val()) : 0);
+	var termMonths = $('.calc-2 [name="term-months"]:visible');
 
 	monthlyExpenses.val(Number(taxes.val()) + Number(insurance.val()) + Number(utilities.val()) + Number(maintenance.val()));
 
 	oneTimeExpenses.val(Number(repairs.val()) + Number(expenses.val()) + Number(closingCosts.val()));
 	holdingExpenses.val((holdingMonths.length ? Number(holdingMonths.val()) : 0) * Number(monthlyExpenses.val()));
+// vacancy
+// acquisition cost
+// marketing cost
+	var cf = Math.round((rents.length ? Number(rents.val()) : 0) - Number(monthlyExpenses.val()) - totalPayment);
+	cashflow.val(cf);
 
-	cashflow.val(Math.round((rents.length ? Number(rents.val()) : 0) - Number(monthlyExpenses.val()) - totalPayment));
+	var cr = totalDownPayment + Number(oneTimeExpenses.val()) + Number(holdingExpenses.val());
+	cashRequired.val(cr);
 
-	cashRequired.val((downPayment.length ? Number(downPayment.val()) : 0) + Number(oneTimeExpenses.val()) + Number(holdingExpenses.val()));
+	netIncome.val(Number(termMonths.val()) * Number(cashflow.val()) + totalDownPayment);
+	// noi
+	cashOnCash.val(cf * 12 / cr * 100);
 }
 
 // analysis
@@ -110,5 +123,4 @@ function calculateAnalysis() {
 
 // it's better to make payments on an amortized loan vs simple (with 50% principal). balloon is smaller, net is smaller
 // balloon payment doesn't include future interest
-// balloon = future value?
 </script>
