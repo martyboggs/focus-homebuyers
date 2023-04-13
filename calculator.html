@@ -62,7 +62,7 @@ var maintenance = analysis.find('[name="maintenance"]');
 var closingCosts = analysis.find('[name="closing-costs"]');
 var holdingMonths = analysis.find('[name="holding-months"]');
 
-var monthlyExpenses = analysis.find('[name="monthly-expenses"]');
+var monthlyHoldingExpenses = analysis.find('[name="monthly-expenses"]');
 var holdingExpenses = analysis.find('[name="holding-expenses"]');
 var oneTimeExpenses = analysis.find('[name="one-time-expenses"]');
 var cashRequired = analysis.find('[name="cash-required"]');
@@ -86,17 +86,17 @@ function calculateAnalysis() {
 						   (downPayment2.length ? Number(downPayment2.val()) : 0);
 	var termMonths = $('.calc-2 [name="term-months"]:visible');
 
-	monthlyExpenses.val(Number(taxes.val()) + Number(insurance.val()) + Number(utilities.val()) + Number(maintenance.val()));
+	monthlyHoldingExpenses.val(Number(taxes.val()) + Number(insurance.val()) + Number(utilities.val()) + Number(maintenance.val()));
 
 	oneTimeExpenses.val(Number(repairs.val()) + Number(expenses.val()) + Number(closingCosts.val()));
-	holdingExpenses.val((holdingMonths.length ? Number(holdingMonths.val()) : 0) * Number(monthlyExpenses.val()));
+	holdingExpenses.val((holdingMonths.length ? Number(holdingMonths.val()) : 0) * Number(monthlyHoldingExpenses.val()));
 // vacancy
 // acquisition cost
 // marketing cost
-	var cf = Math.round((rents.length ? Number(rents.val()) : 0) - Number(monthlyExpenses.val()) - totalPayment);
+	var cf = Math.round((rents.length ? Number(rents.val()) : 0) - Number(monthlyHoldingExpenses.val()) - totalPayment);
 	cashflow.val(cf);
 
-	var cr = totalDownPayment + Number(oneTimeExpenses.val()) + Number(holdingExpenses.val());
+	var cr = (downPayment1.length ? Number(downPayment1.val()) : 0) + Number(oneTimeExpenses.val()) + Number(holdingExpenses.val());
 	cashRequired.val(cr);
 
 	netIncome.val(Number(termMonths.val()) * Number(cashflow.val()) + totalDownPayment);
