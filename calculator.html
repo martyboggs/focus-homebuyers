@@ -30,7 +30,7 @@ title: Calculator
 					<div><label>Monthly Holding Exp</label><input type="number" name="monthly-expenses" readonly min="0"></div>
 					<div><label>Cash Required</label><input type="number" name="cash-required" readonly min="0"></div>
 					<div><label>Monthly Cash Flow</label><input type="number" name="cashflow" readonly min="0"></div>
-					<div><label>Cash on Cash</label><input type="number" name="cash-on-cash" readonly min="0"></div>
+					<div class="input-holder"><label>Cash on Cash</label><input type="number" name="cash-on-cash" readonly min="0"></div>
 
 					<div><label>Purchase Profit</label><input type="number" name="purchase-profit" readonly min="0"></div>
 					<div><label>Down Payment Profit</label><input type="number" name="downpayment-profit" readonly min="0"></div>
@@ -84,6 +84,21 @@ $('.calc-page').on('input change', '[name]', e => {
 });
 
 function calculateAnalysis() {
+	var strategy2 = $('.calc-2 [name="strategy"]').val();
+	if (strategy2 === 'wholesale') {
+		monthlyHoldingExpenses.val(0);
+		cashRequired.val(0);
+		cashflow.val(0);
+		cashOnCash.val(0);
+		purchaseProfit.val(0);
+		downPaymentProfit.val(0);
+		cashflowProfit.val(0);
+		holdingExpenses.val(0);
+		oneTimeExpenses.val(0);
+		netIncome.val($('.calc-2 [name="assignment-fee"]').val());
+		return;
+	}
+
 	var pmt1 = $('.calc-1 [name="payment"]:visible');
 	var pmt2 = $('.calc-2 [name="payment"]:visible');
 	var totalPayment = (pmt1.length ? Number(pmt1.val()) : 0) -
@@ -121,7 +136,6 @@ function calculateAnalysis() {
 	var pp2 = $('.calc-2 [name="purchase-price"]:visible');
 	var totalPP = ((pp2.length ? Number(pp2.val()) : 0) - downPayment2) -
 				  ((pp1.length ? Number(pp1.val()) : 0) - downPayment1);
-	var strategy2 = $('.calc-2 [name="strategy"]').val();
 	totalPP = strategy2 === 'rent' ? 0 : totalPP;
 
 	// noi
