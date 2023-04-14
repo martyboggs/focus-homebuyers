@@ -111,7 +111,7 @@ function calculateAnalysis() {
 	// capex
 	var vr = $('.calc-2 [name="vacancy-rate"]:visible');
 	var vacancyRate = 100 - ((vr.length ? Number(vr.val()) : 0)) / 100;
-	var cf = Math.round((rents.length ? Number(rents.val()) * vacancyRate : 0) - Number(monthlyHoldingExpenses.val()) - totalPayment);
+	var cf = ((rents.length ? Number(rents.val()) * vacancyRate : 0) - Number(monthlyHoldingExpenses.val()) - totalPayment).toFixed(2);
 	cashflow.val(cf);
 
 	var cr = downPayment1 + Number(oneTimeExpenses.val()) + Number(holdingExpenses.val());
@@ -127,7 +127,7 @@ function calculateAnalysis() {
 		cashOnCash.val(((totalPP + totalDownPayment + (termMonths > 12 ? 12 : termMonths) * Number(cashflow.val()) - Number(oneTimeExpenses.val()) - Number(holdingExpenses.val())) / cr * 100).toFixed(2));
 	}
 
-	purchaseProfit.val(totalPP);
+	purchaseProfit.val($('.calc-2 [name="strategy"]').val() === 'rent' ? 0 : totalPP);
 	downPaymentProfit.val(totalDownPayment);
 	cashflowProfit.val(termMonths * Number(cashflow.val()));
 
