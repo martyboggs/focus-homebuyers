@@ -335,7 +335,8 @@ img {
 	font-size: 14px;
 	flex-direction: column;
 }
-.calculator [readonly] {
+.calculator .readonly,
+.calculator .readonly [readonly] {
 	background: #efefef;
 }
 .calculator {
@@ -430,15 +431,17 @@ img {
 	height: 1em;
 }
 .input-holder {
-	border: 1px solid #cccccc;
-	display: inline-block;
-	padding: 5px;
+	border: 1px solid var(--border);
+	display: flex;
+	padding: 0 5px 0 0;
+	height: 23.09px;
 }
 .input-holder > input {
 	border: 0;
 	margin: 0;
-	padding: 0;
+	/* padding: 0; */
 	outline:none;
+	max-width: 183px;
 }
 .input-holder:after {
 	content: '%';
