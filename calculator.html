@@ -101,28 +101,32 @@ function calculateAnalysis() {
 	var tm = $('.calc-2 [name="term-months"]:visible');
 	var termMonths = tm.length ? Number(tm.val()) : 0;
 
-	monthlyHoldingExpenses.val(Number(taxes.val()) + Number(insurance.val()) + Number(utilities.val()) + Number(maintenance.val()) + mark);
+	monthlyHoldingExpenses.val(Number(taxes.val()) + Number(insurance.val()) + Number(utilities.val()) + Number(maintenance.val()));
 
-	oneTimeExpenses.val(Number(repairs.val()) + Number(expenses.val()) + Number(closingCosts.val()));
+	oneTimeExpenses.val(Number(repairs.val()) + Number(expenses.val()) + Number(closingCosts.val()) + mark);
 	holdingExpenses.val((holdingMonths.length ? Number(holdingMonths.val()) : 0) * Number(monthlyHoldingExpenses.val()));
-// vacancy
-// acquisition cost
-// marketing cost
-	var cf = Math.round((rents.length ? Number(rents.val()) : 0) - Number(monthlyHoldingExpenses.val()) - totalPayment);
+	// acquisition/realtor fee
+	// HOA
+	// management
+	// capex
+	var vr = $('.calc-2 [name="vacancy-rate"]:visible');
+	var vacancyRate = 100 - ((vr.length ? Number(vr.val()) : 0)) / 100;
+	var cf = Math.round((rents.length ? Number(rents.val()) * vacancyRate : 0) - Number(monthlyHoldingExpenses.val()) - totalPayment);
 	cashflow.val(cf);
 
 	var cr = downPayment1 + Number(oneTimeExpenses.val()) + Number(holdingExpenses.val());
 	cashRequired.val(cr);
 
-	// noi
-	if (cr) {
-		cashOnCash.val((cf * 12 / cr * 100).toFixed(2));
-	}
-
 	var pp1 = $('.calc-1 [name="purchase-price"]:visible');
 	var pp2 = $('.calc-2 [name="purchase-price"]:visible');
 	var totalPP = ((pp2.length ? Number(pp2.val()) : 0) - downPayment2) -
 				  ((pp1.length ? Number(pp1.val()) : 0) - downPayment1);
+
+	// noi
+	if (cr) {
+		cashOnCash.val((totalPP + totalDownPayment + 12 * Number(cashflow.val()) - Number(oneTimeExpenses.val()) - Number(holdingExpenses.val())/ cr * 100).toFixed(2));
+	}
+
 	purchaseProfit.val(totalPP);
 	downPaymentProfit.val(totalDownPayment);
 	cashflowProfit.val(termMonths * Number(cashflow.val()));
