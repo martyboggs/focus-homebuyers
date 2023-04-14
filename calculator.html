@@ -99,7 +99,7 @@ function calculateAnalysis() {
 	var mark = marketingCosts.length ? Number(marketingCosts.val()) : 0;
 
 	var tm = $('.calc-2 [name="term-months"]:visible');
-	var termMonths = tm.length ? Number(tm.val()) : 0;
+	var termMonths = tm.length ? Number(tm.val()) : 12;
 
 	monthlyHoldingExpenses.val(Number(taxes.val()) + Number(insurance.val()) + Number(utilities.val()) + Number(maintenance.val()));
 
