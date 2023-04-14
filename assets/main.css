@@ -336,7 +336,7 @@ img {
 	flex-direction: column;
 }
 .calculator .readonly,
-.calculator .readonly [readonly] {
+.calculator [readonly] {
 	background: #efefef;
 }
 .calculator {
