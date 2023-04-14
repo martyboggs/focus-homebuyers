@@ -199,7 +199,7 @@ class Calculator {
 			<input type="radio" name="interest-type-${this.name + '-' + strategy}" value="amortized" id="amortized-${this.name + '-' + strategy}" checked><label for="amortized-${this.name + '-' + strategy}" style="min-width: 0px;">Amortized</label>
 			<input type="radio" name="interest-type-${this.name + '-' + strategy}" value="simple" id="simple-${this.name + '-' + strategy}"><label for="simple-${this.name + '-' + strategy}" style="min-width: 0px;">Simple</label>
 			</div>
-			<div><label>Annual Interest Rate</label><input style="width: 50px;" type="text" value="2.50%"><input type="range" min="0" max="10" value="6.0" step="0.25" name="interest-rate" class="interest-rate-range">
+			<div><label>Annual Interest Rate</label><input style="width: 50px;" type="number" value="2.50"><input type="range" min="0" max="10" value="6.0" step="0.25" name="interest-rate" class="interest-rate-range">
 			</div>
 			<div class="amortized-months"><label>Amortized Months</label><input type="number" name="amortized-months" value="360" min="1">
 			</div>
@@ -228,7 +228,7 @@ class Calculator {
 			<input type="radio" name="interest-type-${this.name + '-' + strategy}" value="amortized" id="amortized" checked><label for="amortized" style="min-width: 0px;">Amortized</label>
 			<input type="radio" name="interest-type-${this.name + '-' + strategy}" value="simple" id="simple"><label for="simple" style="min-width: 0px;">Simple</label>
 			</div>
-			<div><label>Annual Interest Rate</label><input style="width: 50px;" type="text" value="2.50%"><input type="range" min="0" max="10" value="2.5" step="0.25" name="interest-rate" class="interest-rate-range">
+			<div><label>Annual Interest Rate</label><input style="width: 50px;" type="number" value="2.50"><input type="range" min="0" max="10" value="2.5" step="0.25" name="interest-rate" class="interest-rate-range">
 			</div>
 			<div class="amortized-months"><label>Amortized Months</label><input type="number" name="amortized-months" value="360" min="1">
 			</div>
@@ -251,7 +251,7 @@ class Calculator {
 			<input type="radio" name="interest-type-${this.name + '-' + strategy}" value="amortized" id="amortized-${this.name + '-' + strategy}" checked><label for="amortized-${this.name + '-' + strategy}" style="min-width: 0px;">Amortized</label>
 			<input type="radio" name="interest-type-${this.name + '-' + strategy}" value="simple" id="simple-${this.name + '-' + strategy}"><label for="simple-${this.name + '-' + strategy}" style="min-width: 0px;">Simple</label>
 			</div>
-			<div><label>Annual Interest Rate</label><input style="width: 50px;" type="text" value="2.50%"><input type="range" min="0" max="10" value="2.5" step="0.25" name="interest-rate" class="interest-rate-range">
+			<div><label>Annual Interest Rate</label><span class="input-holder"><input style="width: 50px;" type="number" value="2.50"></span><input type="range" min="0" max="10" value="2.5" step="0.25" name="interest-rate" class="interest-rate-range">
 			</div>
 			<div class="amortized-months"><label>Amortized Months</label><input type="number" name="amortized-months" value="360" min="1">
 			</div>
