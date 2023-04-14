@@ -121,13 +121,14 @@ function calculateAnalysis() {
 	var pp2 = $('.calc-2 [name="purchase-price"]:visible');
 	var totalPP = ((pp2.length ? Number(pp2.val()) : 0) - downPayment2) -
 				  ((pp1.length ? Number(pp1.val()) : 0) - downPayment1);
+	totalPP = $('.calc-2 [name="strategy"]').val() === 'rent' ? 0 : totalPP;
 
 	// noi
 	if (cr) {
 		cashOnCash.val(((totalPP + totalDownPayment + (termMonths > 12 ? 12 : termMonths) * Number(cashflow.val()) - Number(oneTimeExpenses.val()) - Number(holdingExpenses.val())) / cr * 100).toFixed(2));
 	}
 
-	purchaseProfit.val($('.calc-2 [name="strategy"]').val() === 'rent' ? 0 : totalPP);
+	purchaseProfit.val(totalPP);
 	downPaymentProfit.val(totalDownPayment);
 	cashflowProfit.val(termMonths * Number(cashflow.val()));
 
