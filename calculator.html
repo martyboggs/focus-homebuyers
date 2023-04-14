@@ -124,7 +124,7 @@ function calculateAnalysis() {
 
 	// noi
 	if (cr) {
-		cashOnCash.val((totalPP + totalDownPayment + 12 * Number(cashflow.val()) - Number(oneTimeExpenses.val()) - Number(holdingExpenses.val())/ cr * 100).toFixed(2));
+		cashOnCash.val((totalPP + totalDownPayment + (termMonths > 12 ? 12 : termMonths) * Number(cashflow.val()) - Number(oneTimeExpenses.val()) - Number(holdingExpenses.val())/ cr * 100).toFixed(2));
 	}
 
 	purchaseProfit.val(totalPP);
