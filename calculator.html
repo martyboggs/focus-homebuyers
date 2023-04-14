@@ -110,7 +110,7 @@ function calculateAnalysis() {
 	// management
 	// capex
 	var vr = $('.calc-2 [name="vacancy-rate"]:visible');
-	var vacancyRate = 100 - ((vr.length ? Number(vr.val()) : 0)) / 100;
+	var vacancyRate = (100 - (vr.length ? Number(vr.val()) : 0)) / 100;
 	var cf = ((rents.length ? Number(rents.val()) * vacancyRate : 0) - Number(monthlyHoldingExpenses.val()) - totalPayment).toFixed(2);
 	cashflow.val(cf);
 
