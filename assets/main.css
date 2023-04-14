@@ -363,7 +363,7 @@ img {
 }
 .calculator input[type="range"] {
 	max-width: 100%;
-	min-width: 148px;
+	min-width: 130px;
 }
 .calculator select {
 	width: 100%;
@@ -434,6 +434,7 @@ img {
 	border: 1px solid var(--border);
 	display: flex;
 	padding: 0 5px 0 0;
+	background: white;
 	height: 23.09px;
 }
 .input-holder > input {
