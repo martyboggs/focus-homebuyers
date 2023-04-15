@@ -115,11 +115,12 @@ function calculateAnalysis() {
 	var termMonths = tm.length ? Number(tm.val()) : holdingMonthsNum;
 	if (strategy2 === 'rent') termMonths = 12;
 
-	monthlyHoldingExpenses.val(Number(taxes.val()) + Number(insurance.val()) + Number(utilities.val()) + Number(maintenance.val()));
+	monthlyHoldingExpenses.val(Number(taxes.val()) + Number(insurance.val()) + Number(utilities.val()) + Number(maintenance.val()) + (pmt1.length ? Number(pmt1.val()) : 0));
 
 	oneTimeExpenses.val(Number(repairs.val()) + Number(expenses.val()) + Number(closingCosts.val()) + mark);
 	holdingExpenses.val(holdingMonthsNum * Number(monthlyHoldingExpenses.val()));
-	// acquisition/realtor fee
+	// acquisition
+	// realtor fee (not included in cash required)
 	// HOA
 	// management
 	// capex
