@@ -216,7 +216,9 @@ class Calculator {
 			<div><label>Total</label><input readonly type="number" name="total"></div>`, 
 
 			'sell-flip': `<div><label>Purchase Price</label><input type="number" name="purchase-price" min="1"></div>
-			<div><label>Marketing Costs</label><input type="number" name="marketing-costs" min="0"></div>`,
+			<div><label>Marketing Costs</label><input type="number" name="marketing-costs" min="0"></div>
+			<div><label>Realtor Costs</label><input type="number" name="realtor-costs" min="0"></div>
+			<div><label>Closing Costs</label><input type="number" name="closing-costs" min="0"></div>`,
 
 			rent: `<div><label>Monthly Rents</label><input type="number" name="rents" min="0"></div>
 			<div><label>Vacancy Rate</label><input type="number" name="vacancy-rate" min="0"></div>`,
