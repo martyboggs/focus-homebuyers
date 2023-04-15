@@ -110,13 +110,15 @@ function calculateAnalysis() {
 	var marketingCosts = $('.calc-2 [name="marketing-costs"]:visible');
 	var mark = marketingCosts.length ? Number(marketingCosts.val()) : 0;
 
+	var holdingMonthsNum = (holdingMonths.length ? Number(holdingMonths.val()) : 0);
 	var tm = $('.calc-2 [name="term-months"]:visible');
-	var termMonths = tm.length ? Number(tm.val()) : 12;
+	var termMonths = tm.length ? Number(tm.val()) : holdingMonthsNum;
+	if (strategy2 === 'rent') termMonths = 12;
 
 	monthlyHoldingExpenses.val(Number(taxes.val()) + Number(insurance.val()) + Number(utilities.val()) + Number(maintenance.val()));
 
 	oneTimeExpenses.val(Number(repairs.val()) + Number(expenses.val()) + Number(closingCosts.val()) + mark);
-	holdingExpenses.val((holdingMonths.length ? Number(holdingMonths.val()) : 0) * Number(monthlyHoldingExpenses.val()));
+	holdingExpenses.val(holdingMonthsNum * Number(monthlyHoldingExpenses.val()));
 	// acquisition/realtor fee
 	// HOA
 	// management

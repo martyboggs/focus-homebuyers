@@ -77,7 +77,7 @@ class Calculator {
 		this.calc.find('[type="range"]').each((i, field) => {
 			field.addEventListener('input', e => {
 				var number = Number(e.target.value);
-				e.target.previousSibling.value = field.className === 'interest-rate-range' ? (number).toFixed(2) : number;
+				$(e.target).prev().find('input').val(field.className === 'interest-rate-range' ? (number).toFixed(2) : number);
 				this.calculate({className: 'payment'});
 				this.calculate({className: 'balloon'});
 			});
@@ -199,11 +199,11 @@ class Calculator {
 			<input type="radio" name="interest-type-${this.name + '-' + strategy}" value="amortized" id="amortized-${this.name + '-' + strategy}" checked><label for="amortized-${this.name + '-' + strategy}" style="min-width: 0px;">Amortized</label>
 			<input type="radio" name="interest-type-${this.name + '-' + strategy}" value="simple" id="simple-${this.name + '-' + strategy}"><label for="simple-${this.name + '-' + strategy}" style="min-width: 0px;">Simple</label>
 			</div>
-			<div><label>Annual Interest Rate</label><span class="input-holder"><input style="width: 50px;" type="number" step="0.25" value="2.50"></span><input type="range" min="0" max="10" value="6.0" step="0.25" name="interest-rate" class="interest-rate-range">
+			<div><label>Annual Interest Rate</label><span class="input-holder"><input style="width: 50px;" type="number" min="0" step="0.25" value="2.50"></span><input type="range" min="0" max="10" value="6.0" step="0.25" name="interest-rate" class="interest-rate-range">
 			</div>
 			<div class="amortized-months"><label>Amortized Months</label><input type="number" name="amortized-months" value="360" min="1">
 			</div>
-			<div style="display: none;" class="principal-percentage"><label>Principal %</label><span class="input-holder"><input readonly style="width: 50px;" type="text" value="50%"></span><input type="range" min="0" max="99" value="50" name="principal-percentage" class="principal-percentage-range">
+			<div style="display: none;" class="principal-percentage"><label>Principal %</label><span class="input-holder"><input style="width: 50px;" type="number" min="0" value="50"></span><input type="range" min="0" max="99" value="50" name="principal-percentage" class="principal-percentage-range">
 			</div>
 			<div><label>Payment</label><input type="number" name="payment" min="1">
 			</div>
@@ -228,11 +228,11 @@ class Calculator {
 			<input type="radio" name="interest-type-${this.name + '-' + strategy}" value="amortized" id="amortized-${this.name + '-' + strategy}" checked><label for="amortized-${this.name + '-' + strategy}" style="min-width: 0px;">Amortized</label>
 			<input type="radio" name="interest-type-${this.name + '-' + strategy}" value="simple" id="simple-${this.name + '-' + strategy}"><label for="simple-${this.name + '-' + strategy}" style="min-width: 0px;">Simple</label>
 			</div>
-			<div><label>Annual Interest Rate</label><span class="input-holder"><input style="width: 50px;" type="number" step="0.25" value="2.50"></span><input type="range" min="0" max="10" value="6.0" step="0.25" name="interest-rate" class="interest-rate-range">
+			<div><label>Annual Interest Rate</label><span class="input-holder"><input style="width: 50px;" type="number" min="0" step="0.25" value="2.50"></span><input type="range" min="0" max="10" value="6.0" step="0.25" name="interest-rate" class="interest-rate-range">
 			</div>
 			<div class="amortized-months"><label>Amortized Months</label><input type="number" name="amortized-months" value="360" min="1">
 			</div>
-			<div style="display: none;" class="principal-percentage"><label>Principal %</label><span class="input-holder"><input readonly style="width: 50px;" type="text" value="50%"></span><input type="range" min="0" max="99" value="50" name="principal-percentage" class="principal-percentage-range">
+			<div style="display: none;" class="principal-percentage"><label>Principal %</label><span class="input-holder"><input style="width: 50px;" type="number" min="0" value="50"></span><input type="range" min="0" max="99" value="50" name="principal-percentage" class="principal-percentage-range">
 			</div>
 			<div><label>Payment</label><input type="number" name="payment" min="1">
 			</div>
@@ -251,11 +251,11 @@ class Calculator {
 			<input type="radio" name="interest-type-${this.name + '-' + strategy}" value="amortized" id="amortized-${this.name + '-' + strategy}" checked><label for="amortized-${this.name + '-' + strategy}" style="min-width: 0px;">Amortized</label>
 			<input type="radio" name="interest-type-${this.name + '-' + strategy}" value="simple" id="simple-${this.name + '-' + strategy}"><label for="simple-${this.name + '-' + strategy}" style="min-width: 0px;">Simple</label>
 			</div>
-			<div><label>Annual Interest Rate</label><span class="input-holder"><input style="width: 50px;" type="number" step="0.25" value="2.50"></span><input type="range" min="0" max="10" value="6.0" step="0.25" name="interest-rate" class="interest-rate-range">
+			<div><label>Annual Interest Rate</label><span class="input-holder"><input style="width: 50px;" type="number" min="0" step="0.25" value="2.50"></span><input type="range" min="0" max="10" value="6.0" step="0.25" name="interest-rate" class="interest-rate-range">
 			</div>
 			<div class="amortized-months"><label>Amortized Months</label><input type="number" name="amortized-months" value="360" min="1">
 			</div>
-			<div style="display: none;" class="principal-percentage"><label>Principal %</label><span class="input-holder"><input readonly style="width: 50px;" type="text" value="50%"></span><input type="range" min="0" max="99" value="50" name="principal-percentage" class="principal-percentage-range">
+			<div style="display: none;" class="principal-percentage"><label>Principal %</label><span class="input-holder"><input style="width: 50px;" type="number" min="0" value="50"></span><input type="range" min="0" max="99" value="50" name="principal-percentage" class="principal-percentage-range">
 			</div>
 			<div><label>Payment</label><input type="number" name="payment" min="1">
 			</div>
