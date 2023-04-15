@@ -150,7 +150,7 @@ function calculateAnalysis() {
 
 	// noi
 	if (totalExpenses) {
-		cashOnCash.val((totalPP + (strategy2 === 'rent' ? 0 : totalDownPayment) + (termMonths > 12 ? 12 : termMonths) * Number(cashflow.val()) - Number(oneTimeExpenses.val()) - Number(holdingExpenses.val())) / totalExpenses * 100);
+		cashOnCash.val(Math.round((totalPP + (strategy2 === 'rent' ? 0 : totalDownPayment) + (termMonths > 12 ? 12 : termMonths) * Number(cashflow.val()) - Number(oneTimeExpenses.val()) - Number(holdingExpenses.val())) / totalExpenses * 100));
 	}
 
 	purchaseProfit.val(totalPP);
