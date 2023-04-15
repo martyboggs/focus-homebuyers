@@ -77,7 +77,7 @@ class Calculator {
 		this.calc.find('[type="range"]').each((i, field) => {
 			field.addEventListener('input', e => {
 				var number = Number(e.target.value);
-				e.target.previousSibling.value = field.className === 'interest-rate-range' ? (number).toFixed(2) + '%' : number + '%';
+				e.target.previousSibling.value = field.className === 'interest-rate-range' ? (number).toFixed(2) : number;
 				this.calculate({className: 'payment'});
 				this.calculate({className: 'balloon'});
 			});
@@ -157,7 +157,7 @@ class Calculator {
 				}
 				this.balloon.val(balloonAmt.toFixed(2));
 				if (finAmt) {
-					this.ltv.val(Math.round(balloonAmt / finAmt * 100) + '%');
+					this.ltv.val(Math.round(balloonAmt / finAmt * 100));
 				}
 			break;
 		}
@@ -174,7 +174,7 @@ class Calculator {
 				var interest = finAmt * monthRate;
 				var pp = -100 * interest / pmtAmt + 100;
 				this.principalPerc.val(pp.toFixed(2));
-				this.principalPerc.previousSibling.value = Math.round(pp) + '%';
+				this.principalPerc.previousSibling.value = Math.round(pp);
 				// pmtAmt = -interest / (Number(this.principalPerc.val()) / 100 - 1);
 				// pmtAmt * ((this.principalPerc.val() / 100) - 1)= -interest;
 				// ((this.principalPerc.val() / 100) - 1)= -interest / pmtAmt;
@@ -211,7 +211,7 @@ class Calculator {
 			</div>
 			<div>
 				<label>Balloon</label><input readonly style="max-width: 95px;" type="number" name="balloon">
-				<label style="min-width: 37px;">LTV</label><input style="max-width: 63px;" readonly type="text" name="ltv">
+				<label style="min-width: 37px;">LTV</label><input style="max-width: 63px;" readonly type="number" name="ltv">
 			</div>
 			<div><label>Total</label><input readonly type="number" name="total"></div>`, 
 
