@@ -98,8 +98,8 @@ function calculateAnalysis() {
 
 	var pmt1 = $('.calc-1 [name="payment"]:visible');
 	var pmt2 = $('.calc-2 [name="payment"]:visible');
-	var totalPayment = (pmt1.length ? Number(pmt1.val()) : 0) -
-					   (pmt2.length ? Number(pmt2.val()) : 0);
+	var payment1 = pmt1.length ? Number(pmt1.val()) : 0;
+	var payment2 = pmt2.length ? Number(pmt2.val()) : 0;
 
 	var dp1 = $('.calc-1 [name="down-payment"]:visible');
 	var downPayment1 = dp1.length ? Number(dp1.val()) : 0;
@@ -115,7 +115,7 @@ function calculateAnalysis() {
 	var termMonths = tm.length ? Number(tm.val()) : holdingMonthsNum;
 	if (strategy2 === 'rent') termMonths = 12;
 
-	monthlyHoldingExpenses.val(Number(taxes.val()) + Number(insurance.val()) + Number(utilities.val()) + Number(maintenance.val()) + (pmt1.length ? Number(pmt1.val()) : 0));
+	monthlyHoldingExpenses.val(Number(taxes.val()) + Number(insurance.val()) + Number(utilities.val()) + Number(maintenance.val()) + payment1);
 
 	oneTimeExpenses.val(Number(repairs.val()) + Number(expenses.val()) + Number(closingCosts.val()) + mark);
 	holdingExpenses.val(holdingMonthsNum * Number(monthlyHoldingExpenses.val()));
@@ -127,7 +127,7 @@ function calculateAnalysis() {
 	var rents = $('.calc-2 [name="rents"]:visible');
 	var vr = $('.calc-2 [name="vacancy-rate"]:visible');
 	var vacancyRate = (100 - (vr.length ? Number(vr.val()) : 0)) / 100;
-	var cf = ((rents.length ? Number(rents.val()) * vacancyRate : 0) - Number(monthlyHoldingExpenses.val()) - totalPayment).toFixed(2);
+	var cf = ((rents.length ? Number(rents.val()) * vacancyRate : 0) - Number(monthlyHoldingExpenses.val()) + payment2).toFixed(2);
 	cashflow.val(cf);
 
 	var cr = downPayment1 + Number(oneTimeExpenses.val()) + Number(holdingExpenses.val());
