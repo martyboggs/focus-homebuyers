@@ -149,8 +149,13 @@ function calculateAnalysis() {
 	totalPP = strategy2 === 'rent' ? 0 : totalPP;
 
 	// noi
+
 	if (totalExpenses) {
-		cashOnCash.val(Math.round((totalPP + (strategy2 === 'rent' ? 0 : totalDownPayment) + (termMonths > 12 ? 12 : termMonths) * Number(cashflow.val()) - Number(oneTimeExpenses.val()) - Number(holdingExpenses.val())) / totalExpenses * 100));
+		if (strategy2 === 'rent') {
+			cashOnCash.val(Math.round(((termMonths > 12 ? 12 : termMonths) * Number(cashflow.val())) / totalExpenses * 100));
+		} else {
+			cashOnCash.val(Math.round((totalPP + totalDownPayment + (termMonths > 12 ? 12 : termMonths) * Number(cashflow.val()) - Number(oneTimeExpenses.val()) - Number(holdingExpenses.val())) / totalExpenses * 100));
+		}
 	}
 
 	purchaseProfit.val(totalPP);

@@ -30,6 +30,7 @@ class Calculator {
 			$(this.calc).find('.wholesale, .rent, .purchase, .lease-option, .seller-finance, .sell-flip, .retail').hide();
 			this.strategyEl = this.calc.find('.' + e.target.value);
 			this.strategyEl.css({display: 'block'});
+			this.arv = this.strategyEl.find('[name="arv"]');
 			this.pp = this.strategyEl.find('[name="purchase-price"]');
 			this.dp = this.strategyEl.find('[name="down-payment"]');
 			this.fa = this.strategyEl.find('[name="finance-amount"]');
@@ -104,6 +105,7 @@ class Calculator {
 	}
 
 	calculate(button, e) {
+		var arvAmt = Number(this.arv.val());
 		var finAmt = Number(this.fa.val());
 		var monthRate = Number(this.int.val()) / 100 / 12;
 		var termMonths = Number(this.term.val());
@@ -157,7 +159,7 @@ class Calculator {
 				}
 				this.balloon.val(balloonAmt.toFixed(2));
 				if (finAmt) {
-					this.ltv.val(Math.round(balloonAmt / finAmt * 100));
+					this.ltv.val(Math.round(balloonAmt / arvAmt * 100));
 				}
 			break;
 		}
@@ -215,15 +217,19 @@ class Calculator {
 			</div>
 			<div><label>Total</label><input readonly type="number" name="total"></div>`, 
 
-			'sell-flip': `<div><label>Purchase Price</label><input type="number" name="purchase-price" min="1"></div>
+			'sell-flip': `
+			<div><label>ARV</label><input type="number" name="arv" min="1"></div>
+			<div><label>Purchase Price</label><input type="number" name="purchase-price" min="1"></div>
 			<div><label>Marketing Costs</label><input type="number" name="marketing-costs" min="0"></div>
 			<div><label>Realtor Costs</label><input type="number" name="realtor-costs" min="0"></div>
 			<div><label>Closing Costs</label><input type="number" name="closing-costs" min="0"></div>`,
 
 			rent: `<div><label>Monthly Rents</label><input type="number" name="rents" min="0"></div>
-			<div><label>Vacancy Rate</label><input type="number" name="vacancy-rate" min="0"></div>`,
+			<div><label>Vacancy Rate</label><span class="input-holder"><input type="number" name="vacancy-rate" min="0"></span></div>`,
 
-			'lease-option': `<div><label>Purchase Price</label><input type="number" name="purchase-price" min="1"></div>
+			'lease-option': `
+			<div><label>ARV</label><input type="number" name="arv" min="1"></div>
+			<div><label>Purchase Price</label><input type="number" name="purchase-price" min="1"></div>
 			<div><label>Option Payment</label><input type="number" name="down-payment" min="0"></div>
 			<div><label>Finance Amount</label><input type="number" name="finance-amount" min="1"></div>
 			<div><label>Interest Type</label>
@@ -246,7 +252,9 @@ class Calculator {
 			</div>
 			<div><label>Total</label><input readonly type="number" name="total"></div>`,
 
-			'seller-finance': `<div><label>Purchase Price</label><input type="number" name="purchase-price" min="1"></div>
+			'seller-finance': `
+			<div><label>ARV</label><input type="number" name="arv" min="1"></div>
+			<div><label>Purchase Price</label><input type="number" name="purchase-price" min="1"></div>
 			<div><label>Down Payment</label><input type="number" name="down-payment" min="0"></div>
 			<div><label>Finance Amount</label><input type="number" name="finance-amount" min="1"></div>
 			<div><label>Interest Type</label>
