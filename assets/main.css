@@ -62,9 +62,13 @@ footer,
 
 .full {
 	padding: 250px 0;
-	background: url('background-gray-10-bottom-lines-2.png') bottom center / 100% no-repeat, url('background-gray-10-top-4.png') top center / 100% no-repeat, fixed url('blue-polygon.jpg') top right / cover no-repeat, #fff;
+	/* background: url('background-gray-10-bottom-lines-2.png') bottom center / 100% no-repeat, url('background-gray-10-top-4.png') top center / 100% no-repeat, fixed url('blue-polygon.jpg') top right / cover no-repeat, #fff; */
+	background: url('blue-polygon.jpg');
+	transition: .35s;
+	-webkit-mask: var(--mask);
+	mask: var(--mask);
+	--mask: radial-gradient(30px at 50% 30px,#0000 97%,#000) 50% -30px/ 55.50px 100%;
 }
-
 .full-white {
 	background: white;
 }
