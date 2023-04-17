@@ -67,10 +67,7 @@ footer,
 	transition: .35s;
 	-webkit-mask: var(--mask);
 	mask: var(--mask);
-	/* --mask: radial-gradient(30px at 50% 30px,#0000 97%,#000) 50% -30px/ 55.50px 100%; */
-	--mask: 
-		radial-gradient({size} at 75% 100%,#0000 98%,#000) 50% calc(100% - {size})/{4*size} 100% repeat-x, 
-		radial-gradient({size} at 25% 50% ,#000 99%,#0000 101%) bottom/{4*size} {2*size} repeat-x;
+	--mask: radial-gradient(30px at 50% 30px,#0000 97%,#000) 50% -30px/ 55.50px 100%;
 }
 .full-white {
 	background: white;
