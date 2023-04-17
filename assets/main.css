@@ -62,7 +62,7 @@ footer,
 
 .full {
 	padding: 250px 0;
-	background: url('background-gray-10-bottom-lines-2.png') bottom center / 100% no-repeat, url('background-gray-10-top-4.png') top center / 100% no-repeat, fixed url('trusted-background.jpg') top right / cover no-repeat, #fff;
+	background: url('background-gray-10-bottom-lines-2.png') bottom center / 100% no-repeat, url('background-gray-10-top-4.png') top center / 100% no-repeat, fixed url('blue-polygon.jpg') top right / cover no-repeat, #fff;
 }
 
 .full-white {
