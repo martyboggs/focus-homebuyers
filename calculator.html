@@ -106,6 +106,7 @@ function calculateAnalysis() {
 	var dp2 = $('.calc-2 [name="down-payment"]:visible');
 	var downPayment2 = dp2.length ? Number(dp2.val()) : 0;
 	var totalDownPayment = downPayment2 - downPayment1;
+	totalDownPayment = strategy2 === 'rent' ? 0 : totalDownPayment;
 
 	// acquisition
 	// HOA
