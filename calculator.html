@@ -33,7 +33,6 @@ title: Calculator
 					<div><label>Cash on Cash</label><span class="input-holder readonly"><input type="number" name="cash-on-cash" readonly min="0"></span></div>
 
 					<div><label>Purchase Profit</label><input type="number" name="purchase-profit" readonly min="0"></div>
-					<div><label>Down Payment Profit</label><input type="number" name="downpayment-profit" readonly min="0"></div>
 					<div><label>Cash Flow Profit</label><input type="number" name="cashflow-profit" readonly min="0"></div>
 					<div><label>Holding Expenses</label><input type="number" name="holding-expenses" readonly min="0"></div>
 					<div><label>One Time Expenses</label><input type="number" name="one-time-expenses" readonly min="0"></div>
@@ -77,7 +76,6 @@ var cashflow = analysis.find('[name="cashflow"]');
 var cashOnCash = analysis.find('[name="cash-on-cash"]');
 
 var purchaseProfit = analysis.find('[name="purchase-profit"]');
-var downPaymentProfit = analysis.find('[name="downpayment-profit"]');
 var cashflowProfit = analysis.find('[name="cashflow-profit"]');
 var holdingExpenses = analysis.find('[name="holding-expenses"]');
 var oneTimeExpenses = analysis.find('[name="one-time-expenses"]');
@@ -95,7 +93,6 @@ function calculateAnalysis() {
 		cashflow.val(0);
 		cashOnCash.val(0);
 		purchaseProfit.val(0);
-		downPaymentProfit.val(0);
 		cashflowProfit.val(0);
 		holdingExpenses.val(0);
 		oneTimeExpenses.val(0);
@@ -112,8 +109,6 @@ function calculateAnalysis() {
 	var downPayment1 = dp1.length ? Number(dp1.val()) : 0;
 	var dp2 = $('.calc-2 [name="down-payment"]:visible');
 	var downPayment2 = dp2.length ? Number(dp2.val()) : 0;
-	var totalDownPayment = downPayment2 - downPayment1;
-	totalDownPayment = strategy2 === 'rent' ? 0 : totalDownPayment;
 
 	// acquisition
 	// HOA
@@ -152,8 +147,8 @@ function calculateAnalysis() {
 
 	var pp1 = $('.calc-1 [name="purchase-price"]:visible');
 	var pp2 = $('.calc-2 [name="purchase-price"]:visible');
-	var totalPP = ((pp2.length ? Number(pp2.val()) : 0) - downPayment2) -
-				  ((pp1.length ? Number(pp1.val()) : 0) - downPayment1);
+	var totalPP = (pp2.length ? Number(pp2.val()) : 0) -
+				  (pp1.length ? Number(pp1.val()) : 0);
 	totalPP = strategy2 === 'rent' ? 0 : totalPP;
 
 	// noi
@@ -162,15 +157,14 @@ function calculateAnalysis() {
 		if (strategy2 === 'rent') {
 			cashOnCash.val(Math.round(((termMonths > 12 ? 12 : termMonths) * Number(cashflow.val())) / totalExpenses * 100));
 		} else {
-			cashOnCash.val(Math.round((totalPP + totalDownPayment + (termMonths > 12 ? 12 : termMonths) * Number(cashflow.val()) - Number(oneTimeExpenses.val()) - Number(holdingExpenses.val())) / totalExpenses * 100));
+			cashOnCash.val(Math.round((totalPP + (termMonths > 12 ? 12 : termMonths) * Number(cashflow.val()) - Number(oneTimeExpenses.val()) - Number(holdingExpenses.val())) / totalExpenses * 100));
 		}
 	}
 
 	purchaseProfit.val(totalPP);
-	downPaymentProfit.val(totalDownPayment);
 	cashflowProfit.val(Math.round(termMonths * Number(cashflow.val())));
 
-	netIncome.val(Math.round(totalPP + totalDownPayment + termMonths * Number(cashflow.val()) - Number(oneTimeExpenses.val()) - Number(holdingExpenses.val())));
+	netIncome.val(Math.round(totalPP + termMonths * Number(cashflow.val()) - Number(oneTimeExpenses.val()) - Number(holdingExpenses.val())));
 
 	// show profit centers
 	// mortgage paydown

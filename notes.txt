@@ -61,4 +61,6 @@ REI toolbox
 		Doug & Andrea Van Soest, MURRIETA, CA 92562
 
 when renting - cash on cash includes a wholesale fee?
-balloon LTV is based on ARV not purchase price
+
+changing interest should change range
+change arv should change other arv and calc-2 pp
