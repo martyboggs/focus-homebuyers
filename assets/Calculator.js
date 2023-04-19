@@ -46,7 +46,7 @@ class Calculator {
 		this.calc.find('[name="strategy"]').val(this.strategy);
 		this.calc.find('[name="strategy"]').change();
 
-		this.calc.find('[name="purchase-price"], [name="down-payment"], [name="finance-amount"]').on('input', e => {
+		this.calc.find('[name="arv"], [name="purchase-price"], [name="down-payment"], [name="finance-amount"]').on('input', e => {
 			var ppVal = Number(this.pp.val());
 			var dpVal = Number(this.dp.val());
 			var faVal = Number(this.fa.val());
@@ -158,7 +158,7 @@ class Calculator {
 					}
 				}
 				this.balloon.val(balloonAmt.toFixed(2));
-				if (finAmt) {
+				if (arvAmt) {
 					this.ltv.val(Math.round(balloonAmt / arvAmt * 100));
 				}
 			break;
