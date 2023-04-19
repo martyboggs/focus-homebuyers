@@ -78,7 +78,7 @@ class Calculator {
 		this.calc.find('[type="range"]').each((i, field) => {
 			field.addEventListener('input', e => {
 				var number = Number(e.target.value);
-				$(e.target).prev().find('input').val(field.className === 'interest-rate-range' ? (number).toFixed(2) : number);
+				e.target.previousSibling.childNodes[0].value = field.className === 'interest-rate-range' ? (number).toFixed(2) : number;
 				this.calculate({className: 'payment'});
 				this.calculate({className: 'balloon'});
 			});
