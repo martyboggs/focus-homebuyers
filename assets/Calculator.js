@@ -1,6 +1,7 @@
 class Calculator {
 	constructor(name, strategies, activeStrategy) {
 		this.name = name;
+		this.interestType = 'amortized';
 		this.strategy = activeStrategy;
 		this.strategyNames = {
 			wholesale: 'Wholesale',
@@ -24,7 +25,6 @@ class Calculator {
 
 		${this.strategies.reduce((t, v, i) => t + `<div class="${v}">${this.getHtml(v)}</div>`, '')}
 		`);
-		this.interestType = 'amortized';
 
 		this.calc.find('[name="strategy"]').change(e => {
 			$(this.calc).find('.wholesale, .rent, .purchase, .lease-option, .seller-finance, .sell-flip, .retail').hide();
@@ -191,31 +191,8 @@ class Calculator {
 	}
 
 	getHtml(strategy) {
-		return {
+		var htmls = {
 			wholesale: `<div><label>Assignment Fee</label><input type="number" name="assignment-fee" min="0" value="10000"></div>`, 
-
-			purchase: `<div><label>Purchase Price</label><input type="number" name="purchase-price" min="1"></div>
-			<div><label>Down Payment</label><input type="number" name="down-payment" min="0"></div>
-			<div><label>Finance Amount</label><input type="number" name="finance-amount" min="1"></div>
-			<div><label>Interest Type</label>
-			<input type="radio" name="interest-type-${this.name + '-' + strategy}" value="amortized" id="amortized-${this.name + '-' + strategy}" checked><label for="amortized-${this.name + '-' + strategy}" style="min-width: 0px;">Amortized</label>
-			<input type="radio" name="interest-type-${this.name + '-' + strategy}" value="simple" id="simple-${this.name + '-' + strategy}"><label for="simple-${this.name + '-' + strategy}" style="min-width: 0px;">Simple</label>
-			</div>
-			<div><label>Annual Interest Rate</label><span class="input-holder"><input style="width: 50px;" type="number" min="0" step="0.25" value="2.5"></span><input type="range" min="0" max="10" value="2.5" step="0.25" name="interest-rate" class="interest-rate-range">
-			</div>
-			<div class="amortized-months"><label>Amortized Months</label><input type="number" name="amortized-months" value="360" min="1">
-			</div>
-			<div style="display: none;" class="principal-percentage"><label>Principal %</label><span class="input-holder"><input style="width: 50px;" type="number" min="0" value="50"></span><input type="range" min="0" max="99" value="50" name="principal-percentage" class="principal-percentage-range">
-			</div>
-			<div><label>Payment</label><input type="number" name="payment" min="1">
-			</div>
-			<div><label>Term Months</label><input type="number" name="term-months" value="360" min="1">
-			</div>
-			<div>
-				<label>Balloon</label><input readonly style="max-width: 95px;" type="number" name="balloon">
-				<label style="min-width: 37px;">LTV</label><input style="max-width: 63px;" readonly type="number" name="ltv">
-			</div>
-			<div><label>Total</label><input readonly type="number" name="total"></div>`, 
 
 			'sell-flip': `
 			<div><label>ARV</label><input type="number" name="arv" min="1"></div>
@@ -227,32 +204,7 @@ class Calculator {
 			rent: `<div><label>Monthly Rents</label><input type="number" name="rents" min="0"></div>
 			<div><label>Vacancy Rate</label><span class="input-holder"><input type="number" name="vacancy-rate" min="0"></span></div>`,
 
-			'lease-option': `
-			<div><label>ARV</label><input type="number" name="arv" min="1"></div>
-			<div><label>Purchase Price</label><input type="number" name="purchase-price" min="1"></div>
-			<div><label>Option Payment</label><input type="number" name="down-payment" min="0"></div>
-			<div><label>Finance Amount</label><input type="number" name="finance-amount" min="1"></div>
-			<div><label>Interest Type</label>
-			<input type="radio" name="interest-type-${this.name + '-' + strategy}" value="amortized" id="amortized-${this.name + '-' + strategy}" checked><label for="amortized-${this.name + '-' + strategy}" style="min-width: 0px;">Amortized</label>
-			<input type="radio" name="interest-type-${this.name + '-' + strategy}" value="simple" id="simple-${this.name + '-' + strategy}"><label for="simple-${this.name + '-' + strategy}" style="min-width: 0px;">Simple</label>
-			</div>
-			<div><label>Annual Interest Rate</label><span class="input-holder"><input style="width: 50px;" type="number" min="0" step="0.25" value="6.0"></span><input type="range" min="0" max="10" value="6.0" step="0.25" name="interest-rate" class="interest-rate-range">
-			</div>
-			<div class="amortized-months"><label>Amortized Months</label><input type="number" name="amortized-months" value="360" min="1">
-			</div>
-			<div style="display: none;" class="principal-percentage"><label>Principal %</label><span class="input-holder"><input style="width: 50px;" type="number" min="0" value="50"></span><input type="range" min="0" max="99" value="50" name="principal-percentage" class="principal-percentage-range">
-			</div>
-			<div><label>Payment</label><input type="number" name="payment" min="1">
-			</div>
-			<div><label>Term Months</label><input type="number" name="term-months" value="12" min="1">
-			</div>
-			<div>
-				<label>Balloon</label><input readonly style="max-width: 95px;" type="number" name="balloon">
-				<label style="min-width: 37px;">LTV</label><input style="max-width: 63px;" readonly type="text" name="ltv">
-			</div>
-			<div><label>Total</label><input readonly type="number" name="total"></div>`,
-
-			'seller-finance': `
+			finance: `
 			<div><label>ARV</label><input type="number" name="arv" min="1"></div>
 			<div><label>Purchase Price</label><input type="number" name="purchase-price" min="1"></div>
 			<div><label>Down Payment</label><input type="number" name="down-payment" min="0"></div>
@@ -273,9 +225,14 @@ class Calculator {
 			</div>
 			<div>
 				<label>Balloon</label><input readonly style="max-width: 95px;" type="number" name="balloon">
-				<label style="min-width: 37px;">LTV</label><input style="max-width: 63px;" readonly type="text" name="ltv">
+				<label style="min-width: 37px;">LTV</label><span class="input-holder readonly"><input style="max-width: 63px;" readonly type="number" name="ltv"></span>
 			</div>
 			<div><label>Total</label><input readonly type="number" name="total"></div>`,
-		}[strategy];
+		};
+		if (['seller-finance', 'lease-option', 'purchase'].indexOf(strategy) !== -1) {
+			return htmls.finance;
+		} else {
+			return htmls[strategy];
+		}
 	}
 }
