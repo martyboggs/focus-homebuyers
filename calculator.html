@@ -53,6 +53,13 @@ title: Calculator
 var calc1 = new Calculator('calc-1', ['wholesale', 'purchase', 'lease-option', 'seller-finance'], 'seller-finance');
 var calc2 = new Calculator('calc-2', ['wholesale', 'sell-flip', 'rent', 'lease-option', 'seller-finance'], 'lease-option');
 
+$('.lease-option [name="term-months"]').val(12);
+var els = $('.calc-2 [name="interest-rate"]');
+els.each(function (i, el) {
+	el.value = '7.00';
+	el.previousSibling.childNodes[0].value = '7.00';
+});
+
 var analysis = $('.analysis');
 
 var repairs = analysis.find('[name="repairs"]');
