@@ -225,7 +225,7 @@ class Calculator {
 			</div>
 			<div>
 				<label>Balloon</label><input readonly style="max-width: 95px;" type="number" name="balloon">
-				<label style="min-width: 37px;">LTV</label><span class="input-holder readonly"><input style="max-width: 63px;" readonly type="number" name="ltv"></span>
+				<label style="min-width: 37px;">LTV</label><span class="input-holder readonly"><input style="max-width: 46px;" readonly type="number" name="ltv"></span>
 			</div>
 			<div><label>Total</label><input readonly type="number" name="total"></div>`,
 		};
