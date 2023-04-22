@@ -208,7 +208,7 @@ class Calculator {
 			<div><label>ARV</label><input type="number" name="arv" min="1"></div>
 			<div><label>Purchase Price</label><input type="number" name="purchase-price" min="1"></div>
 			<div><label>Down Payment</label><input type="number" name="down-payment" min="0"></div>
-			<div><label>Finance Amount</label><input type="number" name="finance-amount" min="1"></div>
+			<div><label>Finance Amount</label><input type="number" name="finance-amount" min="0"></div>
 			<div><label>Interest Type</label>
 			<input type="radio" name="interest-type-${this.name + '-' + strategy}" value="amortized" id="amortized-${this.name + '-' + strategy}" checked><label for="amortized-${this.name + '-' + strategy}" style="min-width: 0px;">Amortized</label>
 			<input type="radio" name="interest-type-${this.name + '-' + strategy}" value="simple" id="simple-${this.name + '-' + strategy}"><label for="simple-${this.name + '-' + strategy}" style="min-width: 0px;">Simple</label>
