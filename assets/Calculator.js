@@ -219,7 +219,7 @@ class Calculator {
 			</div>
 			<div style="display: none;" class="principal-percentage"><label>Principal %</label><span class="input-holder"><input style="width: 50px;" type="number" min="0" value="50"></span><input type="range" min="0" max="99" value="50" name="principal-percentage" class="principal-percentage-range">
 			</div>
-			<div><label>Payment</label><input type="number" name="payment" min="1">
+			<div><label>Payment (P+I)</label><input type="number" name="payment" min="1">
 			</div>
 			<div><label>Term Months</label><input type="number" name="term-months" value="96" min="1">
 			</div>
