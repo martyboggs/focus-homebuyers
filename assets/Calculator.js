@@ -196,9 +196,9 @@ class Calculator {
 			// set termMonths if it's higher than monthsTillPaid
 			if (termMonths > monthsTillPaid) {
 				termMonths = Math.round(monthsTillPaid);
-				console.log(termMonths);
 			}
-			this.total.val((Number(this.dp.val()) + (termMonths * pmtAmt)).toFixed(2));
+			this.total.val((balloonAmt + Number(this.dp.val()) + (termMonths * pmtAmt)).toFixed(2));
+			console.log(termMonths);
 		}
 	}
 
