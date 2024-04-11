@@ -192,7 +192,7 @@ class Calculator {
 				console.log('bueller');
 			}
 		} else {
-			var monthsTillPaid = finAmt/(pmtAmt*Number(this.principalPerc.val()));
+			var monthsTillPaid = finAmt / (pmtAmt * Number(this.principalPerc.val()) / 100);
 			// set termMonths if it's higher than monthsTillPaid
 			if (termMonths > monthsTillPaid) {
 				termMonths = Math.round(monthsTillPaid);
