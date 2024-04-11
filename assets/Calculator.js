@@ -185,8 +185,20 @@ class Calculator {
 			}
 		}
 
-		if (termMonths === amortMonths || balloonAmt) {
-			this.total.val((balloonAmt + Number(this.dp.val()) + (termMonths * pmtAmt)).toFixed(2));
+		if (this.interestType === 'amortized') {
+			if (termMonths === amortMonths || balloonAmt) {
+				this.total.val((balloonAmt + Number(this.dp.val()) + (termMonths * pmtAmt)).toFixed(2));
+			} else {
+				console.log('bueller');
+			}
+		} else {
+			var monthsTillPaid = finAmt/(pmtAmt*Number(this.principalPerc.val()));
+			// set termMonths if it's higher than monthsTillPaid
+			if (termMonths > monthsTillPaid) {
+				console.log(termMonths);
+				termMonths = Math.round(monthsTillPaid);
+			}
+			this.total.val((Number(this.dp.val()) + (termMonths * pmtAmt)).toFixed(2));
 		}
 	}
 
