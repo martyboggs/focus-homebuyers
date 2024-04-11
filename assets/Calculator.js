@@ -195,8 +195,8 @@ class Calculator {
 			var monthsTillPaid = finAmt/(pmtAmt*Number(this.principalPerc.val()));
 			// set termMonths if it's higher than monthsTillPaid
 			if (termMonths > monthsTillPaid) {
-				console.log(termMonths);
 				termMonths = Math.round(monthsTillPaid);
+				console.log(termMonths);
 			}
 			this.total.val((Number(this.dp.val()) + (termMonths * pmtAmt)).toFixed(2));
 		}
